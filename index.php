@@ -27,7 +27,6 @@
 
                 <a href="#">Home</a>
                 <a href="#">Home</a>
-                
                 <a href="#">Home</a>
                 <a href="#">Home</a>
                 <a href="#">Home</a>
@@ -45,19 +44,19 @@
 
                 <div class="col-5">
                     <div class="col-4">
-                        <a href="#"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></a>
+                        <a href="#"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></a>
                     </div>
                 </div>
 
                 <div class="col-4">
                     <div class="col-6">
-                        <a href="#"><img src="assets/IMG/icons8-account-24.png" class="img-fluid"></a>
+                        <a href="#"><img src="assets/IMG/icons/icons8-account-24.png" class="img-fluid"></a>
                     </div>
                 </div>
 
                 <div class="col-5">
                     <div class="col-4">
-                        <a href="#"><img src="assets/IMG/icons8-cart-50.png" class="img-fluid"></a>
+                        <a href="#"><img src="assets/IMG/icons/icons8-cart-50.png" class="img-fluid"></a>
                     </div>
                 </div>
             </div>
@@ -202,7 +201,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -227,7 +226,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -252,7 +251,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -277,7 +276,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -311,7 +310,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -336,7 +335,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -361,7 +360,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -386,7 +385,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -409,12 +408,14 @@
     <div class="cl"></div>
 
 
+    <!--............................................ROW-4..............................................-->
+
 
     <div class="container">
         <div class="row" style="align-items: center;margin-top:80px;margin-bottom:50px;">
             <div class="col title">
-                <div class="col-4">
-                    <h1 style="font-size: 39pt;margin-bottom: 0px;font-weight: 700;">OUR
+                <div class="col">
+                    <h1 style="font-size: 39pt;margin-bottom: 0px;font-weight: 700;">WATCH AND FOOTWER
                         COLLECTION</h1>
                 </div>
             </div>
@@ -429,7 +430,7 @@
 
 
 
-    <div class="container row4" style="border-bottom:2px solid black;">
+    <div class="container row4" style="border-bottom:1px solid black;">
 
         <div class="row mb-4 se_2" style="gap: 20px;">
 
@@ -450,7 +451,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -474,7 +475,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -497,7 +498,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -521,7 +522,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -552,7 +553,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -576,7 +577,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -599,7 +600,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -623,7 +624,7 @@
                     <div class="col"><button class="cart">ADD TO CART</button></div>
 
                     <div class="col">
-                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons8-heart-64.png" class="img-fluid"></div>
+                        <div class="col-3 heart_ic1"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
                     </div>
 
                 </div>
@@ -642,6 +643,169 @@
 
     </div>
 
+    </div>
+
+
+    <div class="cl"></div>
+
+    <!--..........................................ROW-5.........................................-->
+
+
+    <div class="container" style="border-bottom:1px solid black;margin-bottom:50px;">
+        <div class="row" style="gap: 20px;margin-bottom: 100px;margin-top: 100px;">
+
+            <div class="col r5_r1" style="border-radius: 10px;background-color: #F1F1F1;">
+                <div class="row" style="display: flex;flex-direction: column;text-align: center;gap:10px">
+
+                    <div class="col img_row5" style="    text-align: center;margin-top: 25px;">
+                        <img src="assets/IMG/icons/customer.png" class="img-fluid">
+                    </div>
+
+                    <div class="col row4_contant">
+                        <div class="col r5_title">
+                            <h2 style="font-size:24px;">Customer Support</h2>
+                            <p style="font-size: 10pt; color:#696A6C;">Need Assistence?</p>
+                        </div>
+                        <div class="col lorem2" style="color: #696A6C;">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, numquam.
+                                amet consectetur adipisicing elit. Mollitia, numquam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col r5_r1" style="border-radius: 10px;background-color: #F1F1F1;">
+                <div class="row" style="display: flex;flex-direction: column;text-align: center;gap:10px">
+
+                    <div class="col img_row5" style="    text-align: center;margin-top: 25px;">
+                        <img src="assets/IMG/icons/payment.png" class="img-fluid">
+                    </div>
+
+                    <div class="col row4_contant">
+                        <div class="col r5_title">
+                            <h2 style="font-size:24px;">Secured Payment</h2>
+                            <p style="font-size: 10pt; color:#696A6C;">Safe & Fast</p>
+                        </div>
+                        <div class="col lorem2" style="color: #696A6C;">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, numquam.
+                                amet consectetur adipisicing elit. Mollitia, numquam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col r5_r1" style="border-radius: 10px;background-color: #F1F1F1;">
+                <div class="row" style="display: flex;flex-direction: column;text-align: center;gap:10px">
+
+                    <div class="col img_row5" style="    text-align: center;margin-top: 25px;">
+                        <img src="assets/IMG/icons/return.png" class="img-fluid">
+                    </div>
+
+                    <div class="col row4_contant">
+                        <div class="col r5_title">
+                            <h2 style="font-size:24px;">Free Returnst</h2>
+                            <p style="font-size: 10pt; color:#696A6C;">Easy & Free</p>
+                        </div>
+                        <div class="col lorem2" style="color: #696A6C;">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, numquam.
+                                amet consectetur adipisicing elit. Mollitia, numquam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col r5_r1" style="border-radius: 10px;background-color: #F1F1F1;">
+                <div class="row" style="display: flex;flex-direction: column;text-align: center;gap:10px">
+
+                    <div class="col img_row5" style="    text-align: center;margin-top: 25px;">
+                        <img src="assets/IMG/icons/shipping.png" class="img-fluid">
+                    </div>
+
+                    <div class="col row4_contant">
+                        <div class="col r5_title">
+                            <h2 style="font-size:24px;">Free Shipping</h2>
+                            <p style="font-size: 10pt; color:#696A6C;">Orders Over $99</p>
+                        </div>
+                        <div class="col lorem2" style="color: #696A6C;">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, numquam.
+                                amet consectetur adipisicing elit. Mollitia, numquam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="cl"></div>
+
+    <!--................................................futter.....................................-->
+
+    <div class="container mb-5" style="border-bottom:1px solid black;">
+        <div class="row" style="align-items: center;gap:25px; margin-bottom:50px;">
+
+            <div class="col">
+                <div class="col f_title">
+                    <h1>subscribe newsletter</h1>
+                    <p>Get all the latest information on Events, Sales and Offers.</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="col input_area">
+                    <input type="text" name="email" id="emailid" placeholder="Email Address....">
+                    <button class="submitbtn">Submit</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row" style="justify-content: flex-end;">
+                    <div class="col-2 facebook">
+                        <img src="assets/IMG/icons/facebook.png" class="img-fluid">
+                    </div>
+                    <div class="col-2 insta">
+                        <img src="assets/IMG/icons/insta.png" class="img-fluid">
+                    </div>
+                    <div class="col-2 twitter">
+                        <img src="assets/IMG/icons/twitter.png" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cl"></div>
+
+    <!--.................-->
+
+    <div class="container">
+        <h1>CONTACT INFO</h1>
+        <div class="row">
+
+            <div class="col row">
+                <div class="col row" style="flex-direction: column;">
+                    <div class="col-4 address">
+                        <h1>ADDRESS :</h1><br>
+                        <P>1234 Street Name, City, England</P>
+                    </div>
+                    <div class="col-4 email">
+                        <h1>EMAIL :</h1><br>
+                        <P>NEWERA@gmail.COM</P>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col"></div>
+        </div>
     </div>
 
 

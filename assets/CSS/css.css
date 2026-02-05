@@ -3,7 +3,7 @@
     font-size: 12pt;
     font-weight: 600;
     text-decoration: none;
-    padding: 5px 10px 10px 10px;
+    padding: 5px 20px 10px 20px;
 
 }
 
@@ -261,4 +261,54 @@
     background-color: white;
     border: 2px solid black;
     color: black;
+}
+
+.myaccount a {
+    color: black;
+    border: none;
+}
+
+
+/*-------------------------footer_area-----------------------------------*/
+
+.footer_area {
+    background-color: black;
+    color: white;
+}
+
+.myaccount1 a {
+    color: white;
+}
+
+.footer {
+    background-color: black;
+}
+
+/*-------------------------login_css-----------------------------------*/
+
+.inputfild input {
+    padding: 5px 10px 5px 10px;
+    width: 100%;
+}
+
+.loginbtn {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    padding: 5px 50px 5px 50px;
+}
+
+.loginbtn:hover {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+}
+
+.body_area {
+    background-image: url(../IMG/login_bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

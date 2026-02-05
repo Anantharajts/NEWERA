@@ -26,10 +26,11 @@
 
 
                 <a href="#">Home</a>
-                <a href="#">Home</a>
-                <a href="#">Home</a>
-                <a href="#">Home</a>
-                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+                
 
 
             </div>
@@ -787,31 +788,59 @@
     <!--.................-->
 
     <div class="container">
-        <h1>CONTACT INFO</h1>
-        <div class="row">
+
+        <div class="row" style="gap: 90px;margin-bottom: 50px;">
 
             <div class="col row">
+                <h1 style="margin-bottom:30px;">CONTACT INFO</h1>
                 <div class="col row" style="flex-direction: column;">
-                    <div class="col-4 address">
-                        <h1>ADDRESS :</h1><br>
+                    <div class="col mb-3 address">
+                        <h1 style="font-size: 20px;">ADDRESS :</h1>
                         <P>1234 Street Name, City, England</P>
                     </div>
-                    <div class="col-4 email">
-                        <h1>EMAIL :</h1><br>
+                    <div class="col email">
+                        <h1 style="font-size: 20px;">EMAIL :</h1>
                         <P>NEWERA@gmail.COM</P>
                     </div>
                 </div>
 
+
+                <div class="col row" style="flex-direction: column;">
+                    <div class="col mb-3 address">
+                        <h1 style="font-size: 20px;">ADDRESS :</h1>
+                        <P>1234 Street Name, City, England</P>
+                    </div>
+                    <div class="col email">
+                        <h1 style="font-size: 20px;">EMAIL :</h1>
+                        <P>NEWERA@gmail.COM</P>
+                    </div>
+                </div>
             </div>
 
-            <div class="col"></div>
+
+            <div class="col row">
+
+            <h1 style="margin-bottom:30px;text-align: center;">MY ACCOUNT</h1>
+
+            <div class="col myaccount" style="text-align: left;">
+
+                <div class="col" style="margin-bottom: 15px;padding-left: 168px;"><a href="#">About</a></div>
+                <div class="col" style="margin-bottom: 15px;padding-left: 168px;"><a href="#">Blog</a></div>
+                <div class="col" style="margin-bottom: 15px;padding-left: 168px;"><a href="#">Contact Us</a></div>
+                   
+            </div>
+
+            </div>
+
+
         </div>
     </div>
 
-
-
-
-
+    <div class="container-fluid bg-dark h-50">
+        <div class="container" style="text-align: center;">
+            <img src="assets/IMG/end_logo.png" class="img-fluid">
+        </div>
+    </div>
 
 </body>
 

@@ -17,26 +17,26 @@
 
     <form action="login_action.php" method="post" onsubmit="return valid()">
 
-        <div class="container login" style="width: 40%;padding: 30px;border-radius: 20px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-            <div class="row" style="justify-content: center;">
+        <div class="container login" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);display: flex;justify-content: center;">
+            <div class="row" style="justify-content: center;width:90%;padding: 30px;border-radius: 20px;">
 
 
 
-                <div class="col-10 row" style="flex-direction: column;">
+                <div class="col row" style="flex-direction: column;">
 
                     <div class="col inputfild" style="margin-bottom: 25px;">
 
-                        <p style="margin-bottom: 5px;color: white;">NAME :</p>
+                        <p style="margin-bottom: 5px;color: white;">USERNAME :</p>
 
                         <input type="text" name="firstname" id="fn_id" oninput="removefunction('fn_id')">
                     </div>
 
-                    <div class="col inputfild" style="margin-bottom: 25px;">
+                    <!-- <div class="col inputfild" style="margin-bottom: 25px;">
 
                         <p style="margin-bottom: 5px;color: white;">EMAIL :</p>
 
                         <input type="email" name="Email" id="email_id" oninput="removefunction('email_id')">
-                    </div>
+                    </div> -->
 
                     <div class="col inputfild" style="margin-bottom: 25px;">
                         <p style="margin-bottom: 5px;color: white;">PASSWORD :</p>
@@ -56,14 +56,17 @@
 
             </div>
     </form>
+
     </div>
+
+    <div class="container-fluid lo_overlay"></div>
 
     <!--.........................................script..........................................-->
 
     <script>
         function valid() {
             var user_na = document.getElementById("fn_id");
-            var email_id = document.getElementById("email_id");
+            // var email_id = document.getElementById("email_id");
             var password = document.getElementById("password_id");
             var f = 0;
             // alert("hlo");
@@ -76,12 +79,12 @@
                 f = 1;
             }
 
-            if (email_id.value == "") {
-                email_id.style.border = "1px solid red";
-                email_id.style.outline = "none";
-                email_id.focus();
-                f = 1;
-            }
+            // if (email_id.value == "") {
+            //     email_id.style.border = "1px solid red";
+            //     email_id.style.outline = "none";
+            //     email_id.focus();
+            //     f = 1;
+            // }
 
             if (password.value == "") {
                 password.style.border = "1px solid red";

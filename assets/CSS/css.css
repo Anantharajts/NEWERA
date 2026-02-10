@@ -296,7 +296,7 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    border: none;
+    border: 1px solid white;
     padding: 5px 50px 5px 50px;
 }
 
@@ -311,6 +311,15 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.lo_overlay{
+    background-color: black;
+    height: 100%;
+    filter: blur(2px);
+    position: absolute;
+    filter: opacity(70%);
+    z-index: -1;
 }
 
 

@@ -1,5 +1,5 @@
 <?php
-
+include('database.php');
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +22,11 @@
 
     <div class="container registration">
 
-        <div class="col-6 w_alert" id="alert-warning" style="position: absolute;top:10%;left:50%;transform:translate(-50%,-50%);width:100%;"></div>
+        
 
         <div class="col-12 col-md-12 col-lg-5 row" style="padding: 30px;border-radius: 20px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);display: flex;justify-content: center;align-items: center;">
 
+            <div class="col-6 w_alert" id="alert-warning" style="position: absolute;top:10%;left:50%;transform:translate(-50%,-50%);width:100%;"></div>
 
             <form action="#" method="post" onsubmit="return valid()">
 

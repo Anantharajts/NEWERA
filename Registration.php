@@ -28,7 +28,7 @@ include('database.php');
 
             <div class="col-6 w_alert" id="alert-warning" style="position: absolute;top:10%;left:50%;transform:translate(-50%,-50%);width:100%;"></div>
 
-            <form action="#" method="post" onsubmit="return valid()">
+            <form action="Registration_Action.php" method="post" onsubmit="return valid()">
 
                 <!--............login_entry..............-->
 

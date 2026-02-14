@@ -1,0 +1,23 @@
+
+/*------.......................admin_header.php.........................--*/
+
+.m_1{
+    padding-bottom:3px;
+    padding-top: 3px;
+}
+
+.m_1:hover{
+    border-left: 2px solid black;
+    cursor: pointer;
+    background-color:#d1d1d1;
+}
+
+.prodcut_btn{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    padding:5px 10px 5px 10px;
+}
+
+/*------.......................admin_header.php[END].........................--*/

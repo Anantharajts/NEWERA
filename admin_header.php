@@ -13,7 +13,7 @@ include('database.php');
     <script src="assets/Bootsrap/bootstrap_js.js"></script>
 </head>
 
-<body>
+<body style="background-color:#E6E6E6;">
 
     <div class="container-fluid">
         <div class="row">
@@ -24,7 +24,7 @@ include('database.php');
 
                 <div class="row menuarea" style="padding: 20px;display: flex;flex-direction: column;gap: 25px;">
 
-                    <a href="#" style="color: black;outline:none;">
+                    <a href="#" style="color: black;text-decoration: none;">
                         <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
                             <div class="col-3 dlogo"><img src="assets/IMG/icons/icons8-dashboard-24.png" class="img-fluid"></div>
                             <div class="col">
@@ -33,7 +33,7 @@ include('database.php');
                         </div>
                     </a>
 
-                    <a href="#" style="color: black;outline:none;">
+                    <a href="#" style="color: black;text-decoration: none;">
                         <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
                             <div class="col-3 dlogo"><img src="assets/IMG/icons/icons8-settings-50.png" class="img-fluid" style="width: 58%;"></div>
                             <div class="col">
@@ -55,7 +55,7 @@ include('database.php');
 
                         <div class="row menuarea" style="padding: 20px;display: flex;flex-direction: column;gap: 25px;">
 
-                            <a href="#" style="color: black;outline:none;">
+                            <a href="#" style="color: black;text-decoration: none;">
                                 <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
                                     <div class="col-3 dlogo"><img src="assets/IMG/icons/icons8-dashboard-24.png" class="img-fluid"></div>
                                     <div class="col">
@@ -65,7 +65,7 @@ include('database.php');
                             </a>
 
 
-                            <a href="#" style="color: black;outline:none;">
+                            <a href="#" style="color: black;text-decoration: none;">
                                 <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
                                     <div class="col-3 dlogo"><img src="assets/IMG/icons/icons8-settings-50.png" class="img-fluid" style="width: 48%;"></div>
                                     <div class="col">
@@ -83,20 +83,20 @@ include('database.php');
             <!--................................slidemenuend........................................-->
 
 
-            <div class="col bg-white slidbar" style="height: 50px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+            <div class="col bg-white slidbar" style="height:65px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                 <div class="row">
                     <div class="col">
-                        <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" style="background-color: none;">
+                        <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" style="background-color: none;margin-top:5px;">
                             <img src="assets/IMG/icons/icons8-menu-48.png" class="img-fluid" style="width: 70%;margin-top: 2px;">
                         </a>
                     </div>
                     <div class="col" style="text-align: end;margin-top: 14px;margin-right: 20px;">
-                        <a href="" class="prodcut_btn">+ Add Prodcut</a>
+                        <button class="prodcut_btn">+ Add Prodcut</button>
                     </div>
                 </div>
-            </div>
+            <!-- </div>
         </div>
-    </div>
+    </div> -->
 
 
     <!-- </body>

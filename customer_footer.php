@@ -4,7 +4,7 @@
 
     <div class="container footer_area">
 
-        <div class="row" style="gap: 90px;">
+        <div class="row" style="gap: 90px;padding-top: 50px;">
 
             <div class="col row" style="margin-bottom: 50px;">
                 <h1 style="margin-bottom:30px;">CONTACT INFO</h1>

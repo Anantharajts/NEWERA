@@ -18,7 +18,7 @@
 
     <div class="container-fluid bg-dark h-50 clearfix">&nbsp;</div>
 
-    <div class="container mt-4 pb-5" style="border-bottom:1px solid black;">
+    <div class="container mt-4 pb-5">
         <div class="row" style="gap: 156px;">
             <!--..........................mennu........................-->
             <div class="col-5 p-0 mennu">

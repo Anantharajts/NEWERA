@@ -313,7 +313,7 @@
     background-size: cover;
 }
 
-.lo_overlay{
+.lo_overlay {
     background-color: black;
     height: 100%;
     filter: blur(2px);
@@ -358,7 +358,7 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    border:1px solid white;
+    border: 1px solid white;
     padding: 5px 50px 5px 50px;
 }
 
@@ -368,11 +368,60 @@
     color: black;
 }
 
-.overlay{
-    background-color:black;
+.overlay {
+    background-color: black;
     height: 100%;
     position: absolute;
-    z-index:-1;
+    z-index: -1;
     /* filter: blur(2px); */
     filter: opacity(70%);
+}
+
+/*--..........................................customer.................................*/
+
+.customer_area {
+    background-image: url(../IMG/customer.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 920px;
+}
+
+.c_r1 {
+    background-image: url(../IMG/slid.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    margin-bottom:50px;
+}
+
+.cu_home {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    /* border: 1px solid white; */
+    padding: 5px 50px 5px 50px;
+}
+
+.cu_home:hover {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+}
+
+.cu_shop{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    /* border: 1px solid white; */
+    padding: 5px 50px 5px 50px;
+}
+
+.cu_shop:hover {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
 }

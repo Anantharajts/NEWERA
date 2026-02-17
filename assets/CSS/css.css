@@ -393,7 +393,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 50px;
-    margin-bottom:50px;
+    margin-bottom: 50px;
 }
 
 .cu_home {
@@ -411,7 +411,7 @@
     color: black;
 }
 
-.cu_shop{
+.cu_shop {
     background-color: black;
     color: white;
     border-radius: 5px;
@@ -424,4 +424,45 @@
     background-color: white;
     border: 2px solid black;
     color: black;
+}
+
+.ca_title:hover {
+    border-left: 2px solid black;
+    cursor: pointer;
+    background-color: #d1d1d1;
+}
+
+.s_1 {
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.s_2 {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.s_3 {
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.s_4 {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.s_5 {
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

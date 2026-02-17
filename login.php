@@ -29,7 +29,7 @@ include('database.php');
 
                         <p style="margin-bottom: 5px;color: white;">USERNAME :</p>
 
-                        <input type="text" name="firstname" id="fn_id" oninput="removefunction('fn_id')">
+                        <input type="text" name="username" id="user_id" oninput="removefunction('user_id')">
                     </div>
 
                     <!-- <div class="col inputfild" style="margin-bottom: 25px;">
@@ -66,7 +66,7 @@ include('database.php');
 
     <script>
         function valid() {
-            var user_na = document.getElementById("fn_id");
+            var user_na = document.getElementById("user_id");
             // var email_id = document.getElementById("email_id");
             var password = document.getElementById("password_id");
             var f = 0;

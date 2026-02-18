@@ -14,7 +14,7 @@ include('database.php');
     <script src="assets/Bootsrap/bootstrap_js.js"></script>
 </head>
 
-<body class="body_area" style="height: 600px;">
+<body class="body_area" style="height:710px;">
 
     <form action="login_action.php" method="post" onsubmit="return valid()">
 

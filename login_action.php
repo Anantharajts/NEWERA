@@ -8,7 +8,7 @@ $username= $_POST["username"];
 $password= $_POST["password"];
 
 
-$stment="SELECT `Id`,`Usertype` FROM `login` WHERE `UserName`='$username'  AND `Password`=$password";
+$stment="SELECT `Id`,`Usertype` FROM `login` WHERE `UserName`='$username'  AND `Password`='$password'";
 var_dump($stment);
 
 $data=mysqli_query($con,$stment);

@@ -1,24 +1,46 @@
-
 /*------.......................admin_header.php.........................--*/
 
-.m_1{
-    padding-bottom:3px;
+.m_1 {
+    padding-bottom: 3px;
     padding-top: 3px;
 }
 
-.m_1:hover{
+.m_1:hover {
     border-left: 2px solid black;
     cursor: pointer;
-    background-color:#d1d1d1;
+    background-color: #d1d1d1;
 }
 
-.prodcut_btn{
+.prodcut_btn {
     background-color: black;
     color: white;
     cursor: pointer;
     border-radius: 3px;
-    padding:5px 10px 5px 10px;
+    padding: 5px 10px 5px 10px;
 }
 
-/*------.......................admin.php_css.........................--*/
+/*------.......................country_add_section_css.........................--*/
 
+.c_addbtn {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 5px 195px;
+}
+
+/* table,th,td{
+    border: 1px solid black;
+} */
+
+.edit {
+    padding: 5px;
+    border: none;
+    margin-right: 20px;
+}
+
+.delete {
+    padding: 5px;
+    border: none;
+    /* margin-right: 20px; */
+}

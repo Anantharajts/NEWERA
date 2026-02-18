@@ -66,10 +66,10 @@
 
             <!--..........................buttones........................-->
             <div class="col-1 p-0">
-                <div class="col-12 ps-5"><button class="signup">SignUp</button></div>
+                <div class="col-12 ps-5"><a href="Registration.php" style="text-decoration: none;"><button class="signup">SignUp</button></a></div>
             </div>
             <div class="col-1 p-0">
-                <div class="col-12 ps-4"><button class="Login">Login</button></div>
+                <div class="col-12 ps-4"><a href="login.php" style="text-decoration: none;"><button class="Login">Login</button></a></div>
             </div>
 
         </div>

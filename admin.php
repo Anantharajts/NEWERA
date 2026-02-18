@@ -91,8 +91,3 @@ include('admin_header.php');
 
 </html>
 <!--...................adminheaderclosing..........-->
-
-
-
-
-<!--...................adminheaderclosing..........-->

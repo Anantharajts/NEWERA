@@ -152,13 +152,6 @@ elseif (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 </div>
-</div>
-
-
-
-
-
-
 
 <!--...................adminheaderclosing..........-->
 </div>

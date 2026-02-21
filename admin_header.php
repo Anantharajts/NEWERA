@@ -25,19 +25,29 @@ include('database.php');
                 <div class="row menuarea" style="padding: 20px 5px;display: flex;flex-direction: column;gap: 20px;">
 
                     <a href="#" style="color: black;text-decoration: none;">
-                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
-                            <div class="col-3 dlogo"><img src="assets/IMG/icons/icons8-dashboard-24.png" class="img-fluid"></div>
+                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/dashboard.png" class="img-fluid"></div>
                             <div class="col">
-                                <h1 style="margin-bottom: 0px;font-size:16pt">Dashborde</h1>
+                                <h1 style="margin-bottom: 0px;font-size:16pt">Dashboard</h1>
                             </div>
                         </div>
                     </a>
 
                     <a href="#" style="color: black;text-decoration: none;">
-                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
-                            <div class="col-3 dlogo"><img src="assets/IMG/icons/icons8-settings-50.png" class="img-fluid" style="width: 58%;"></div>
+                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/settings.png" class="img-fluid" style="width: 58%;"></div>
                             <div class="col">
-                                <h1 style="margin-bottom: 0px;font-size:16pt">settings</h1>
+                                <h1 style="margin-bottom: 0px;font-size:16pt">Settings</h1>
+                            </div>
+                        </div>
+                    </a>
+
+
+                    <a href="#" style="color: black;text-decoration: none;">
+                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/country.png" class="img-fluid" style="width:50%;"></div>
+                            <div class="col">
+                                <h1 style="margin-bottom: 0px;font-size:16pt">Country</h1>
                             </div>
                         </div>
                     </a>
@@ -91,7 +101,7 @@ include('database.php');
                 <div class="row">
                     <div class="col">
                         <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" style="background-color: none;margin-top:5px;">
-                            <img src="assets/IMG/icons/icons8-menu-48.png" class="img-fluid" style="width: 70%;margin-top: 2px;">
+                            <img src="assets/IMG/icons/menu.png" class="img-fluid" style="width: 70%;margin-top: 2px;">
                         </a>
                     </div>
                     <div class="col" style="text-align: end;margin-top: 14px;margin-right: 20px;">
@@ -100,9 +110,9 @@ include('database.php');
                 </div>
                 <!-- </div>
         </div>
-    </div> -->
+    </div>
 
 
-                <!-- </body>
+</body>
 
 </html> -->

@@ -45,19 +45,19 @@
 
                 <div class="col-5">
                     <div class="col-4">
-                        <a href="#"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></a>
+                        <a href="#"><img src="assets/IMG/icons/heart.png" class="img-fluid"></a>
                     </div>
                 </div>
 
                 <div class="col-4">
                     <div class="col-6">
-                        <a href="#"><img src="assets/IMG/icons/icons8-account-24.png" class="img-fluid"></a>
+                        <a href="#"><img src="assets/IMG/icons/account.png" class="img-fluid"></a>
                     </div>
                 </div>
 
                 <div class="col-5">
                     <div class="col-4">
-                        <a href="#"><img src="assets/IMG/icons/icons8-cart-50.png" class="img-fluid"></a>
+                        <a href="#"><img src="assets/IMG/icons/cart.png" class="img-fluid"></a>
                     </div>
                 </div>
             </div>

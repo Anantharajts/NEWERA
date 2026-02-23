@@ -24,7 +24,7 @@ include('database.php');
 
                 <div class="row menuarea" style="padding: 20px 5px;display: flex;flex-direction: column;gap: 20px;">
 
-                    <a href="#" style="color: black;text-decoration: none;">
+                    <a href="admin.php" style="color: black;text-decoration: none;">
                         <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
                             <div class="col-3 dlogo"><img src="assets/IMG/icons/dashboard.png" class="img-fluid"></div>
                             <div class="col">
@@ -43,11 +43,21 @@ include('database.php');
                     </a>
 
 
-                    <a href="#" style="color: black;text-decoration: none;">
+                    <a href="country_add_section.php" style="color: black;text-decoration: none;">
                         <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
                             <div class="col-3 dlogo"><img src="assets/IMG/icons/country.png" class="img-fluid" style="width:50%;"></div>
                             <div class="col">
                                 <h1 style="margin-bottom: 0px;font-size:16pt">Country</h1>
+                            </div>
+                        </div>
+                    </a>
+
+
+                    <a href="state_add_section.php" style="color: black;text-decoration: none;">
+                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/state.png" class="img-fluid" style="width:66%;"></div>
+                            <div class="col">
+                                <h1 style="margin-bottom: 0px;font-size:16pt">State</h1>
                             </div>
                         </div>
                     </a>
@@ -69,9 +79,9 @@ include('database.php');
 
                         <div class="row menuarea" style="padding: 20px;display: flex;flex-direction: column;gap: 25px;">
 
-                            <a href="#" style="color: black;text-decoration: none;">
+                            <a href="admin.php" style="color: black;text-decoration: none;">
                                 <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
-                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/icons8-dashboard-24.png" class="img-fluid"></div>
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/dashboard.png" class="img-fluid"></div>
                                     <div class="col">
                                         <h1 style="margin-bottom: 0px;font-size:16pt">Dashborde</h1>
                                     </div>
@@ -81,9 +91,29 @@ include('database.php');
 
                             <a href="#" style="color: black;text-decoration: none;">
                                 <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
-                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/icons8-settings-50.png" class="img-fluid" style="width: 48%;"></div>
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/settings.png" class="img-fluid" style="width: 48%;"></div>
                                     <div class="col">
                                         <h1 style="margin-bottom: 0px;font-size:16pt">settings</h1>
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <a href="country_add_section.php" style="color: black;text-decoration: none;">
+                                <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/country.png" class="img-fluid" style="width:50%;"></div>
+                                    <div class="col">
+                                        <h1 style="margin-bottom: 0px;font-size:16pt">Country</h1>
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <a href="state_add_section.php" style="color: black;text-decoration: none;">
+                                <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/state.png" class="img-fluid" style="width:66%;"></div>
+                                    <div class="col">
+                                        <h1 style="margin-bottom: 0px;font-size:16pt">State</h1>
                                     </div>
                                 </div>
                             </a>

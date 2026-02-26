@@ -98,13 +98,45 @@
 
 
 
-$array1=array(1,2,3,4,5,6);
+// $array1=array(1,2,3,4,5,6);
 
-$sum=0;
-$sum=$array1[0];
-$sum=$array1[1];
-$sum=$array1[2];
-$sum=$array1[3];
-$sum=$array1[4];
-$sum=$array1[5];
+// $sum=$array1[0];
+
+// for($i=1;$i<count($array1);$i++){
+//        if($array1[$i] > $sum){
+
+//         $sum= $array1[$i];
+
+//        }
+// }
+// echo $sum;
+
+
+
+$array2=array(1,2,3,4,5,6,7,8);
+
+// $sum1=$array2[0];
+
+// for($i=1;$i>count($array2);$i++){
+//        if($array2[$i] < $sum){
+
+//         $sum1= $array2[$i];
+
+//        }
+// }
+// echo $sum1;
+
+$sum1="";
+for($i=1;$i<count($array2);$i++){
+
+    if($array2[$i]%2==0){
+        $sum1.=$array2[$i].',';
+    }
+}
+
+echo "this number"." ".$sum1." is even";
+
+
+
+
 

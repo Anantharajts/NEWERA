@@ -25,10 +25,8 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
-
-
 ?>
+
 
 <div class="container" style="margin-top: 100px;">
     <div class="row" style="gap: 20px;">
@@ -161,8 +159,9 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                                                 </svg></button>
 
                                         </td>
+                                    </form>
                             </tr>
-                            </form>
+
                         <?php
                                     $sln++;
                                 }

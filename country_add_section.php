@@ -44,7 +44,9 @@ elseif (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col">
                     <h3>Country add section</h3>
                 </div>
-                <div class="col"><input type="text" name="country" id="countryid" value="<?php echo $country1;?>" oninput="removevalidation('countryid')" style="width: 70%;padding: 10px;"></div>
+                <div class="col">
+                    <input type="text" name="country" id="countryid" value="<?php echo $country1;?>" oninput="removevalidation('countryid')" style="width:100%;padding: 10px;">
+                </div>
                 <input type="hidden" name="id" id="c_id" value="<?php echo $country1_id;?>">
                 <div class="col"><button class="c_addbtn" type="submit" name="submit"><?php echo $country1_id == 0 ? "ADD" : "UPDATE" ?></button></div>
 

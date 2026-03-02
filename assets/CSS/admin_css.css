@@ -22,11 +22,11 @@
 /*------.......................country_add_section_css.........................--*/
 
 .c_addbtn {
+    width: 100%;
     background-color: black;
     color: white;
-    cursor: pointer;
-    border-radius: 3px;
-    padding: 5px 195px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 /* table,th,td{
@@ -49,6 +49,8 @@
 
 
 .s_addbtn {
-    padding: 6px 194px;border: none;background-color: black;color: white;
+    padding: 6px 194px;
+    border: none;
+    background-color: black;
+    color: white;
 }
-       

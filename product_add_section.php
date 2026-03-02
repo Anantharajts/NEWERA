@@ -209,7 +209,7 @@ include('admin_header.php');
         </div>
 
         <div class="col" style="text-align: center;">
-            <button class="pro_addbtn" type="submit" name="productbtn" style="padding: 7px 90px;background-color:black;color:white;">ADD</button>
+            <button class="pro_addbtn" type="submit" name="productbtn" style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
         </div>
 
     </main>

@@ -1,49 +1,27 @@
 <?php
 include('database.php');
 include('admin_header.php');
-
-$category_name="";
-$id=0;
-
-if (isset($_POST["edit"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
-
-$category_name=$_POST["cate_gory"];
-$id=$_POST["id"];
-
-
-} elseif (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
-
-$deletid=$_POST["id"];
-
-$delet="UPDATE `category` SET `IsDeleted`=1 WHERE `Id`=$deletid";
-var_dump($delet);
-if(mysqli_query($con,$delet)){
-    echo "<script>window.location.href='category_add_section.php'</script>";
-}
-
-}
-
 ?>
-
 
 <div class="container" style="margin-top: 100px;">
     <div class="row" style="gap: 20px;">
-        <div class="col" style="border-radius: 10px;background-color:white;height: 231px;">
-            <form action="category_action.php" method="post" onsubmit="return valid()">
-                <div class="row" style="padding:20px;gap:20px;flex-direction: column; text-align:center;">
+
+        <div class="col" style="background-color:white;border-radius: 10px;height: 220px;">
+            <form action="brand_action.php" method="post" onsubmit="return valid()">
+                <div class="row" style="flex-direction: column;gap:20px;padding:20px;text-align: center;">
                     <div class="col">
-                        <h3>Category add section</h3>
+                        <h3>Brand add section</h3>
                     </div>
                     <div class="col">
-                        <input type="text" name="category" id="categoryid" oninput="removevalidation('categoryid')" value="<?php echo $category_name;?>" style="width: 100%; padding:10px;">
-                        <input type="hidden" name="cate_id" id="cate_id" value="<?php echo $id;?>">
+                        <input type="text" name="brand" id="brandid" oninput="removevalidation('brandid')" style="width: 100%;padding:10px;">
                     </div>
                     <div class="col">
-                        <button name="cate_addbtn" id="cate_addbtnid" style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;"><?php echo $id==0 ? "ADD" : "UPDATE"?></button>
+                        <button type="submit" name="b_addbtn" style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
                     </div>
                 </div>
             </form>
         </div>
+
         <div class="col" style="background-color:white;padding:20px;border-radius: 10px;">
 
             <div class="col" style="background-color:white;padding:20px;border-radius: 10px;border-left:1px solid black;margin-top: 20px;">
@@ -52,7 +30,7 @@ if(mysqli_query($con,$delet)){
                     <thead>
                         <tr>
                             <th>SLN</th>
-                            <th>COUNTRY</th>
+                            <th>BRAND'S</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -61,36 +39,26 @@ if(mysqli_query($con,$delet)){
 
                         <?php
 
-                        $stment = "SELECT `Id`, `Name` FROM `category` WHERE `IsDeleted`=0";
-                        // var_dump($stment);
-                        $data1 = mysqli_query($con, $stment);
-                        if (mysqli_num_rows($data1) > 0) {
+                        $stmt = "SELECT `Id`, `Name` FROM `brand` WHERE `IsDeleted`=0";
+                        // var_dump($stmt);
+                        $d_1 = mysqli_query($con, $stmt);
+                        if (mysqli_num_rows($d_1) > 0) {
 
-                            $sln = 1;
+$sln=1;
 
-                            while ($result = mysqli_fetch_assoc($data1)) {
-
-                                $categoryid = $result["Id"];
-                                $categoryname = $result["Name"];
-
-
+                            while ($_result = mysqli_fetch_assoc($d_1)) {
+                                $brand = $_result["Name"];
+                                $brand_id = $_result["Id"];
 
                         ?>
 
+
                                 <tr>
 
-
-
-
-
-
-                                    <td style="padding-top: 15px;"><?php echo $sln; ?></td>
-                                    <td style="padding-top: 15px;"><?php echo $categoryname; ?></td>
+                                    <td style="padding-top: 15px;"><?php echo $sln;?></td>
+                                    <td style="padding-top: 15px;"><?php echo $brand;?></td>
                                     <td>
-                                        <form action="category_add_section.php" method="post">
-
-                                            <input type="hidden" name="cate_gory" id="cate_goryid" value="<?php echo $categoryname ?>">
-                                            <input type="hidden" name="id" id="id" value="<?php echo $categoryid ?>">
+                                        <form action="#" method="post">
 
                                             <button class="edit" type="submit" name="edit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="#006eff">
 
@@ -104,7 +72,7 @@ if(mysqli_query($con,$delet)){
                                                     </g>
 
                                                 </svg></button>
-                                            <button class="delete" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete....?')"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px" viewBox="0 0 24.00 24.00" stroke="#ff0000" transform="matrix(-1, 0, 0, 1, 0, 0)">
+                                            <button class="delete" type="submit" name="delete"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px" viewBox="0 0 24.00 24.00" stroke="#ff0000" transform="matrix(-1, 0, 0, 1, 0, 0)">
 
                                                     <g id="SVGRepo_bgCarrier" stroke-width="0" />
 
@@ -122,15 +90,18 @@ if(mysqli_query($con,$delet)){
 
 
                                 </tr>
+
                         <?php
-                                $sln++;
+                        $sln++;
                             }
                         }
+
                         ?>
                     </tbody>
 
 
                 </table>
+
             </div>
 
 
@@ -138,22 +109,18 @@ if(mysqli_query($con,$delet)){
     </div>
 </div>
 
-
-
-
 <script>
     function valid() {
 
-        var category = document.getElementById("categoryid");
+        var brands = document.getElementById("brandid");
         var f = 0;
 
-        if (category.value == "") {
-
-            category.style.border = "1px solid red";
-            category.style.outline = "none";
-            category.focus();
+        if (brands.value == "") {
+            // alert("hlo");
+            brands.style.border = "1px solid red";
+            brands.style.outline = "none";
+            brands.focus();
             f = 1;
-
         }
 
         if (f == 0) {
@@ -165,12 +132,50 @@ if(mysqli_query($con,$delet)){
     }
 
     function removevalidation(Id) {
-
         var id = document.getElementById(Id);
-        id.style.border = "1px solid black"
-
+        // alert("hlo");
+        id.style.border = "1px solid black";
     }
+
+//.............................ajex...................................
+
+
+
+        $(document).ready(function() {
+            loadBooks(1);
+
+            function loadBooks(page) {
+                $.ajax({
+                    url: "ajax_value_passing_action.php",
+                    type: "GET",
+                    data: {
+                        page: page
+                    },
+                    success: function(data) {
+                        let response = JSON.parse(data);
+                        // alert(data);
+                        $('#book-container').html(response.books_html);
+                        $('#pagination').html(response.pagination_html);
+                    }
+                });
+            }
+
+
+            $(document).on('click', '.pagination a', function() {
+                let page = $(this).data('page');
+                loadBooks(page);
+            });
+        });
+
+
+
+
+
+
 </script>
+
+
+
 
 
 </body>

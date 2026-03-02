@@ -51,7 +51,7 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                         ?>
 
 
-                            <select name="country" id="cid" onchange="removevalidation('cid')" style="padding: 10px;width:75%;">
+                            <select name="country" id="cid" onchange="removevalidation('cid')" style="padding: 10px;width:100%;">
                                 <option value="0">Select your country</option>
 
                                 <?php
@@ -70,12 +70,12 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <div class="col">
-                        <input type="text" name="state" id="stateid" oninput="removevalidation('stateid')" value="<?php echo $state; ?>" style="padding:10px;width:75%;">
+                        <input type="text" name="state" id="stateid" oninput="removevalidation('stateid')" value="<?php echo $state; ?>" style="padding:10px;width:100%;">
                         <input type="hidden" name="eid" id="id" value="<?php echo $r_id; ?>">
                     </div>
 
                     <div class="col">
-                        <button class="saddbtn" name="s_addbtn" type="submit" style="padding: 6px 194px;border: none;background-color: black;color: white;"><?php echo $r_id == 0 ? "ADD" : "UPDATE"; ?></button>
+                        <button class="saddbtn" name="s_addbtn" type="submit" style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;"><?php echo $r_id == 0 ? "ADD" : "UPDATE"; ?></button>
                     </div>
 
                 </div>

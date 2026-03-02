@@ -1,8 +1,8 @@
 <?php
 include('database.php');
 
-$limit = 3;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$limit = 5;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
 $query = "SELECT `Id`, `Name` FROM `brand` WHERE `IsDeleted`=0 LIMIT $offset, $limit";
@@ -21,6 +21,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $books_html .= '<td>' . $row['Name'] . '</td>';
     $books_html .= '<td>' . ' <form action="brand_add_copy.php" method="post">'
 
+        . '<input type="text" name="brandid" id="brand_id" value="' . $row['Id'] . '">'
+
         . '<button class="edit" type="submit" name="edit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="#006eff">'
 
         . '<g id="SVGRepo_bgCarrier" stroke-width="0" />'
@@ -33,7 +35,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         . '</g>'
 
         . '</svg>' . '</button>'
-        . '<button class="delete" type="submit" name="delete"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px" viewBox="0 0 24.00 24.00" stroke="#ff0000" transform="matrix(-1, 0, 0, 1, 0, 0)">'
+        . '<button class="delete" type="submit" name="delete" onclick="return confirm'.'('."'Are you sure this deleted...........?'".')'.'"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px" viewBox="0 0 24.00 24.00" stroke="#ff0000" transform="matrix(-1, 0, 0, 1, 0, 0)">'
 
         . '<g id="SVGRepo_bgCarrier" stroke-width="0" />'
 
@@ -47,13 +49,15 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         . '</svg>' . '</button>'
         . '</form>' . '</td>';
-    $books_html .= '<td>' . $row['Name'] . '</td>';
+    // $books_html .= '<td>' . $row['Name'] . '</td>';
     $books_html .= '</tr>';
-    $books_html .= $sln++;
+    $sln++;
 }
 
-$query2 = "SELECT COUNT(*) as total FROM books";
-$total_result = mysqli_query($conn, $query2);
+
+
+$query2 = "SELECT COUNT(*) as total FROM `brand`";
+$total_result = mysqli_query($con, $query2);
 $result2 = mysqli_fetch_assoc($total_result);
 $total_records = $result2['total'];
 $total_pages = ceil($total_records / $limit);

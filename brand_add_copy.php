@@ -1,6 +1,38 @@
 <?php
 include('database.php');
 include('admin_header.php');
+
+$id=0;
+$brand="";
+
+if (isset($_POST["edit"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+
+$id=$_POST[""];
+$brand=$_POST[""];
+
+$update="";
+
+
+} elseif (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $dele = $_POST["brandid"];
+
+    $deleted = "UPDATE `brand` SET `IsDeleted`=1 WHERE `Id`=$dele"; 
+    var_dump($dele);
+    // if (mysqli_query($con, $deleted)) {
+
+    //     echo "deleted";
+    //     echo "<script>window.location.href='brand_add_copy.php'</script>";
+
+    // }
+
+}
+
+
+
+
+
+
 ?>
 
 <div class="container" style="margin-top: 100px;">
@@ -13,10 +45,12 @@ include('admin_header.php');
                         <h3>Brand add section</h3>
                     </div>
                     <div class="col">
-                        <input type="text" name="brand" id="brandid" oninput="removevalidation('brandid')" style="width: 100%;padding:10px;">
+                        <input type="text" name="brand" id="brandid" oninput="removevalidation('brandid')"
+                            style="width: 100%;padding:10px;">
                     </div>
                     <div class="col">
-                        <button type="submit" name="b_addbtn" style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
+                        <button type="submit" name="b_addbtn"
+                            style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
                     </div>
                 </div>
             </form>
@@ -24,7 +58,8 @@ include('admin_header.php');
 
         <div class="col" style="background-color:white;padding:20px;border-radius: 10px;">
 
-            <div class="col" id="book-container" style="background-color:white;padding:20px;border-radius: 10px;border-left:1px solid black;margin-top: 20px;">
+            <div class="col"
+                style="background-color:white;padding:20px;border-radius: 10px;border-left:1px solid black;margin-top: 20px;">
                 <table class="table table-white table-striped">
 
                     <thead>
@@ -35,9 +70,9 @@ include('admin_header.php');
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="book-container">
 
-                       
+
                     </tbody>
 
 
@@ -82,7 +117,7 @@ include('admin_header.php');
 
 
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         loadBooks(1);
 
         function loadBooks(page) {
@@ -92,7 +127,8 @@ include('admin_header.php');
                 data: {
                     page: page
                 },
-                success: function(data) {
+                success: function (data) {
+                    console.log(data);
                     let response = JSON.parse(data);
                     // alert(data);
                     $('#book-container').html(response.books_html);
@@ -102,7 +138,7 @@ include('admin_header.php');
         }
 
 
-        $(document).on('click', '.pagination a', function() {
+        $(document).on('click', '.pagination a', function () {
             let page = $(this).data('page');
             loadBooks(page);
         });

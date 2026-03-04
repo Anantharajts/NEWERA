@@ -54,3 +54,14 @@
     background-color: black;
     color: white;
 }
+
+/*--.......................................brand_add_setion.php......................................--*/
+
+.pagination a{
+    padding: 5px 10px;
+    margin-right: 10px;
+    background-color: black;
+    color: white !important;
+    cursor: pointer;
+    /* color: none; */
+}

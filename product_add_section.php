@@ -80,6 +80,7 @@ include('admin_header.php');
 
     .form-input,
     .form-select,
+    .brand,
     .form-textarea {
         width: 100%;
         padding: 0.65rem 0.85rem;
@@ -92,6 +93,7 @@ include('admin_header.php');
 
     .form-input:focus,
     .form-select:focus,
+    .brand:focus,
     .form-textarea:focus {
         outline: none;
         border-color: var(--primary);
@@ -144,26 +146,67 @@ include('admin_header.php');
 
 
 <!-- Main Content -->
+<form action="#" method="post" onsubmit="return vaild()">
 <div class="container">
 
     <!-- Left Column -->
     <main style="background-color: white;border-radius: 0.5rem;padding:15px;">
+
+        <div class="col">
+            <h1 style="margin:15px 0px;font-size:30px;">Product add section</h1>
+        </div>
+
+
         <!-- Basic Info Card -->
         <div class="card" style="background-color: #dddddd;">
             <h3 class="card-header">Basic Information</h3>
             <div class="form-group">
                 <label for="product-name">Product Name</label>
-                <input type="text" id="product-name" class="form-input">
+                <input type="text" name="productname" id="productname_id" class="form-input">
             </div>
+
+
 
             <div class="form-group">
                 <label for="product-name">Brand Name</label>
-                <input type="text" id="product-name" class="form-input">
+
+                <?php
+                $stment1 = "SELECT `Id`, `Name` FROM `brand` WHERE `IsDeleted`=0";
+                // var_dump($stment1);
+                $data = mysqli_query($con, $stment1);
+
+                if (mysqli_num_rows($data) > 0) {
+
+                    ?>
+
+                    <select class="brand" name="brand" id="brandid">
+
+                        <option value="0">Add a brand</option>
+                        <?php
+
+                        while ($_result = mysqli_fetch_assoc($data)) {
+
+                            $bid = $_result["Id"];
+                            $brand = $_result["Name"];
+                            ?>
+
+                            <option value="<?php echo $bid; ?>"><?php echo $brand; ?></option>
+
+                            <?php
+                        }
+                }
+                ?>
+
+                </select>
             </div>
+
+
+
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" class="form-textarea" placeholder="Write a description of your product..."></textarea>
+                <textarea id="descriptionid" name="desscription" class="form-textarea"
+                    placeholder="Write a description of your product..."></textarea>
             </div>
         </div>
 
@@ -173,7 +216,7 @@ include('admin_header.php');
             <div class="upload-zone">
                 <div class="upload-icon">🖼️</div>
                 <div class="upload-text">Drop images here or click to upload</div>
-                <input type="file" style="display: none;">
+                <input type="file" name="image" id="img_id" style="display: none;">
             </div>
         </div>
 
@@ -183,33 +226,19 @@ include('admin_header.php');
             <div class="pricing-grid">
                 <div class="form-group">
                     <label for="price">Price ($)</label>
-                    <input type="text" id="price" class="form-input" placeholder="0.00">
+                    <input type="text" name="price" id="priceid" class="form-input" placeholder="0.00">
                 </div>
-                <div class="form-group">
-                    <label for="compare-price">Delivery Charge ($)</label>
-                    <input type="text" id="compare-price" class="form-input" placeholder="0.00">
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Inventory Card -->
-        <div class="card" style="background-color: #dddddd;">
-            <h3 class="card-header">Inventory</h3>
-            <div class="pricing-grid">
                 <div class="form-group">
                     <label for="sku">Quantity</label>
                     <input type="number" id="sku" class="form-input">
                 </div>
-                <div class="form-group">
-                    <label for="barcode">Size</label>
-                    <input type="text" id="barcode" class="form-input">
-                </div>
             </div>
+
         </div>
 
         <div class="col" style="text-align: center;">
-            <button class="pro_addbtn" type="submit" name="productbtn" style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
+            <button class="pro_addbtn" type="submit" name="productbtn"
+                style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
         </div>
 
     </main>
@@ -221,10 +250,10 @@ include('admin_header.php');
             <h3 class="card-header">Status</h3>
             <div class="form-group">
                 <label for="status">Product Status</label>
-                <select id="status" class="form-select" style="background-color: #dddddd;">
-                    <option value="active">Active</option>
-                    <option value="draft">Draft</option>
-                    <option value="archived">Archived</option>
+                <select id="status" name="p_status" class="form-select" style="background-color: #dddddd;">
+                    <!-- <option value="">Active</option> -->
+                    <option value="0">Instock</option>
+                    <option value="1">Out of stock</option>
                 </select>
             </div>
         </div>
@@ -234,17 +263,133 @@ include('admin_header.php');
             <h3 class="card-header">Organization</h3>
             <div class="form-group">
                 <label for="category">Category</label>
-                <select id="category" class="form-select" style="background-color: #dddddd;">
-                    <option value="">Select Category</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="clothing">Clothing</option>
-                    <option value="home">Home & Garden</option>
+
+                <?php
+                $stment = "SELECT `Id`, `Name` FROM `category` WHERE `IsDeleted`=0";
+                // var_dump($stment);
+                $data1 = mysqli_query($con, $stment);
+                if (mysqli_num_rows($data1) > 0) {
+
+                    ?>
+
+                    <select id="category" name="category" class="form-select" style="background-color: #dddddd;">
+                        <option value="0">Select Category</option>
+                        <?php
+                        while ($result = mysqli_fetch_assoc($data1)) {
+                            $cid = $result["Id"];
+                            $category = $result["Name"];
+
+                            ?>
+
+                            <option value="<?php echo $cid; ?>"><?php echo $category; ?></option>
+
+                            <?php
+                        }
+                }
+                ?>
                 </select>
             </div>
         </div>
     </aside>
 
+
 </div>
+</form>
+
+
+<!--.....................................script................................-->
+
+
+<script>
+
+    function valid() {
+       alert('hlo');
+        var p_name = document.getElementById("productname_id");
+        var brand = document.getElementById("brandid");
+        var description = document.getElementById("descriptionid");
+        var img = document.getElementById("img_id");
+        var price = document.getElementById("priceid");
+        var sku = document.getElementById("sku");
+        var status = document.getElementById("status");
+        var category = document.getElementById("category");
+        var f = 0;
+
+        if (p_name.value == "") {
+            p_name.style.border = "1px solid red";
+            p_name.style.outline = "none";
+            p_name.focus();
+            f = 1;
+        }
+
+
+        if (brand.value == "") {
+            brand.style.border = "1px solid red";
+            brand.style.outline = "none";
+            brand.focus();
+            f = 1;
+        }
+
+
+        if (description.value == "") {
+            description.style.border = "1px solid red";
+            description.style.outline = "none";
+            description.focus();
+            f = 1;
+        }
+
+        if (img.value == "") {
+            img.style.border = "1px solid red";
+            img.style.outline = "none";
+            img.focus();
+            f = 1;
+        }
+
+
+        if (price.value == "") {
+            price.style.border = "1px solid red";
+            price.style.outline = "none";
+            price.focus();
+            f = 1;
+        }
+
+
+        if (sku.value == "") {
+            sku.style.border = "1px solid red";
+            sku.style.outline = "none";
+            sku.focus();
+            f = 1;
+        }
+
+
+        if (status.value == "") {
+            status.style.border = "1px solid red";
+            status.style.outline = "none";
+            status.focus();
+            f = 1;
+        }
+
+        if (category.value == "") {
+            category.style.border = "1px solid red";
+            category.style.outline = "none";
+            categorysku.focus();
+            f = 1;
+        }
+
+        if (f = 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+    }
+
+</script>
+
+
+
+
 
 </body>
 

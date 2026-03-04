@@ -18,7 +18,8 @@ include('database.php');
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2 slidmenu" style="height:1000px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;background-color:white;">
+            <div class="col-2 slidmenu"
+                style="height:1510px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;background-color:white;">
                 <div class="col mb-5 logo" style="margin-top: 10px;">
                     <img src="assets/IMG/NEWERA.png" class="img-fluid">
                 </div><br>
@@ -26,7 +27,8 @@ include('database.php');
                 <div class="row menuarea" style="padding: 20px 5px;display: flex;flex-direction: column;gap: 20px;">
 
                     <a href="admin.php" style="color: black;text-decoration: none;">
-                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                        <div class="col row m_1"
+                            style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
                             <div class="col-3 dlogo"><img src="assets/IMG/icons/dashboard.png" class="img-fluid"></div>
                             <div class="col">
                                 <h1 style="margin-bottom: 0px;font-size:16pt">Dashboard</h1>
@@ -35,8 +37,10 @@ include('database.php');
                     </a>
 
                     <a href="#" style="color: black;text-decoration: none;">
-                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
-                            <div class="col-3 dlogo"><img src="assets/IMG/icons/settings.png" class="img-fluid" style="width: 58%;"></div>
+                        <div class="col row m_1"
+                            style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/settings.png" class="img-fluid"
+                                    style="width: 58%;"></div>
                             <div class="col">
                                 <h1 style="margin-bottom: 0px;font-size:16pt">Settings</h1>
                             </div>
@@ -45,8 +49,10 @@ include('database.php');
 
 
                     <a href="country_add_section.php" style="color: black;text-decoration: none;">
-                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
-                            <div class="col-3 dlogo"><img src="assets/IMG/icons/country.png" class="img-fluid" style="width:50%;"></div>
+                        <div class="col row m_1"
+                            style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/country.png" class="img-fluid"
+                                    style="width:50%;"></div>
                             <div class="col">
                                 <h1 style="margin-bottom: 0px;font-size:16pt">Country</h1>
                             </div>
@@ -55,10 +61,38 @@ include('database.php');
 
 
                     <a href="state_add_section.php" style="color: black;text-decoration: none;">
-                        <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
-                            <div class="col-3 dlogo"><img src="assets/IMG/icons/state.png" class="img-fluid" style="width:66%;"></div>
+                        <div class="col row m_1"
+                            style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/state.png" class="img-fluid"
+                                    style="width:66%;"></div>
                             <div class="col">
                                 <h1 style="margin-bottom: 0px;font-size:16pt">State</h1>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                    <a href="brand_add_section.php" style="color: black;text-decoration: none;">
+                        <div class="col row m_1"
+                            style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/brand.png" class="img-fluid"
+                                    style="width:66%;"></div>
+                            <div class="col">
+                                <h1 style="margin-bottom: 0px;font-size:16pt">Brand</h1>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                    <a href="product_table.php" style="color: black;text-decoration: none;">
+                        <div class="col row m_1"
+                            style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/product-add.png" class="img-fluid"
+                                    style="width:66%;"></div>
+                            <div class="col">
+                                <h1 style="margin-bottom: 0px;font-size:16pt">Product's</h1>
                             </div>
                         </div>
                     </a>
@@ -67,22 +101,26 @@ include('database.php');
                 </div>
 
                 <!-- ................................slidemenu......................................-->
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
 
                         <div class="col mb-5 logo" style="margin-top: 10px;">
                             <img src="assets/IMG/NEWERA.png" class="img-fluid">
                         </div><br>
                         <!-- <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5> -->
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
 
                         <div class="row menuarea" style="padding: 20px;display: flex;flex-direction: column;gap: 25px;">
 
                             <a href="admin.php" style="color: black;text-decoration: none;">
-                                <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
-                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/dashboard.png" class="img-fluid"></div>
+                                <div class="col row m_1"
+                                    style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/dashboard.png"
+                                            class="img-fluid"></div>
                                     <div class="col">
                                         <h1 style="margin-bottom: 0px;font-size:16pt">Dashborde</h1>
                                     </div>
@@ -91,8 +129,10 @@ include('database.php');
 
 
                             <a href="#" style="color: black;text-decoration: none;">
-                                <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
-                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/settings.png" class="img-fluid" style="width: 48%;"></div>
+                                <div class="col row m_1"
+                                    style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/settings.png" class="img-fluid"
+                                            style="width: 48%;"></div>
                                     <div class="col">
                                         <h1 style="margin-bottom: 0px;font-size:16pt">settings</h1>
                                     </div>
@@ -101,8 +141,10 @@ include('database.php');
 
 
                             <a href="country_add_section.php" style="color: black;text-decoration: none;">
-                                <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
-                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/country.png" class="img-fluid" style="width:50%;"></div>
+                                <div class="col row m_1"
+                                    style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/country.png" class="img-fluid"
+                                            style="width:50%;"></div>
                                     <div class="col">
                                         <h1 style="margin-bottom: 0px;font-size:16pt">Country</h1>
                                     </div>
@@ -111,14 +153,41 @@ include('database.php');
 
 
                             <a href="state_add_section.php" style="color: black;text-decoration: none;">
-                                <div class="col row m_1" style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
-                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/state.png" class="img-fluid" style="width:66%;"></div>
+                                <div class="col row m_1"
+                                    style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/state.png" class="img-fluid"
+                                            style="width:66%;"></div>
                                     <div class="col">
                                         <h1 style="margin-bottom: 0px;font-size:16pt">State</h1>
                                     </div>
                                 </div>
                             </a>
 
+                            <a href="brand_add_section.php" style="color: black;text-decoration: none;">
+                                <div class="col row m_1"
+                                    style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/brand.png" class="img-fluid"
+                                            style="width:66%;"></div>
+                                    <div class="col">
+                                        <h1 style="margin-bottom: 0px;font-size:16pt">Brand</h1>
+                                    </div>
+                                </div>
+                            </a>
+
+
+
+                            <a href="state_add_section.php" style="color: black;text-decoration: none;">
+                                <div class="col row m_1"
+                                    style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/product-add.png"
+                                            class="img-fluid" style="width:59%;"></div>
+                                    <div class="col">
+                                        <h1 style="margin-bottom: 0px;font-size:16pt">Product add</h1>
+                                    </div>
+                                </div>
+                            </a>
+
+                            
 
                         </div>
 
@@ -131,7 +200,8 @@ include('database.php');
             <div class="col bg-white slidbar" style="height:65px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                 <div class="row">
                     <div class="col">
-                        <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" style="background-color: none;margin-top:5px;">
+                        <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                            aria-controls="offcanvasExample" style="background-color: none;margin-top:5px;">
                             <img src="assets/IMG/icons/menu.png" class="img-fluid" style="width: 70%;margin-top: 2px;">
                         </a>
                     </div>

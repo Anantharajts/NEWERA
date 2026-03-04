@@ -19,9 +19,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     $books_html .= '<tr>';
     $books_html .= '<td>' . $sln . '</td>';
     $books_html .= '<td>' . $row['Name'] . '</td>';
-    $books_html .= '<td>' . ' <form action="brand_add_copy.php" method="post">'
+    $books_html .= '<td>' . ' <form action="brand_add_section.php" method="post">'
 
-        . '<input type="text" name="brandid" id="brand_id" value="' . $row['Id'] . '">'
+        . '<input type="hidden" name="brandid" id="brand_id" value="' . $row['Id'] . '">'
+        .'<input type="hidden" name="brand" id="brandid" value="' . $row['Name'] . '">' 
 
         . '<button class="edit" type="submit" name="edit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="#006eff">'
 
@@ -35,7 +36,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         . '</g>'
 
         . '</svg>' . '</button>'
-        . '<button class="delete" type="submit" name="delete" onclick="return confirm'.'('."'Are you sure this deleted...........?'".')'.'"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px" viewBox="0 0 24.00 24.00" stroke="#ff0000" transform="matrix(-1, 0, 0, 1, 0, 0)">'
+        . '<button class="delete" type="submit" name="delete" onclick="return confirm' . '(' . "'Are you sure this deleted...........?'" . ')' . '"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px" viewBox="0 0 24.00 24.00" stroke="#ff0000" transform="matrix(-1, 0, 0, 1, 0, 0)">'
 
         . '<g id="SVGRepo_bgCarrier" stroke-width="0" />'
 

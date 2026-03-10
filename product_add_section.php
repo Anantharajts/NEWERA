@@ -1,6 +1,14 @@
 <?php
 include('database.php');
 include('admin_header.php');
+
+if (isset($_GET["rowid"])) {
+
+    echo $edit = $_GET["rowid"];
+
+}
+
+
 ?>
 <style>
     /* Top Navigation Bar */
@@ -146,172 +154,231 @@ include('admin_header.php');
 
 
 <!-- Main Content -->
-<form action="#" method="post" onsubmit="return vaild()">
-<div class="container">
+<form action="product_action.php" method="post" onsubmit="return valid();">
+    <div class="container">
 
-    <!-- Left Column -->
-    <main style="background-color: white;border-radius: 0.5rem;padding:15px;">
+        <!-- Left Column -->
+        <main style="background-color: white;border-radius: 0.5rem;padding:15px;">
 
-        <div class="col">
-            <h1 style="margin:15px 0px;font-size:30px;">Product add section</h1>
-        </div>
-
-
-        <!-- Basic Info Card -->
-        <div class="card" style="background-color: #dddddd;">
-            <h3 class="card-header">Basic Information</h3>
-            <div class="form-group">
-                <label for="product-name">Product Name</label>
-                <input type="text" name="productname" id="productname_id" class="form-input">
+            <div class="col">
+                <h1 style="margin:15px 0px;font-size:30px;">Product add section</h1>
             </div>
 
+            <?php
+            $stmt = "SELECT `Name`, `BrandId`, `Description`, `Image`, `Price`, `Quantity`, `Status`, `CategoryId` FROM `product_add` WHERE Id=$edit";
+            var_dump($stmt);
+
+            $data2 = mysqli_query($con, $stmt);
+            if (mysqli_num_rows($data2) > 0) {
+                $result3 = mysqli_fetch_assoc($data2) {
 
 
-            <div class="form-group">
-                <label for="product-name">Brand Name</label>
+                    $p_name="";
 
-                <?php
-                $stment1 = "SELECT `Id`, `Name` FROM `brand` WHERE `IsDeleted`=0";
-                // var_dump($stment1);
-                $data = mysqli_query($con, $stment1);
 
-                if (mysqli_num_rows($data) > 0) {
 
+                }
+            }
+            ?>
+
+
+
+
+
+
+            <!-- Basic Info Card -->
+            <div class="card" style="background-color: #dddddd;">
+                <h3 class="card-header">Basic Information</h3>
+                <div class="form-group">
+                    <label for="product-name">Product Name</label>
+                    <input type="text" name="productname" id="productname_id" class="form-input"
+                        oninput="removevalidation('productname_id')">
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="product-name">Brand Name</label>
+
+                    <?php
+                    $stment1 = "SELECT `Id`, `Name` FROM `brand` WHERE `IsDeleted`=0";
+                    // var_dump($stment1);
+                    $data = mysqli_query($con, $stment1);
+
+                    if (mysqli_num_rows($data) > 0) {
+
+                        ?>
+
+                        <select class="brand" name="brand" id="brandid" onchange="removevalidation('brandid')">
+
+                            <option value="0">Add a brand</option>
+                            <?php
+
+                            while ($_result = mysqli_fetch_assoc($data)) {
+
+                                $bid = $_result["Id"];
+                                $brand = $_result["Name"];
+                                ?>
+
+                                <option value="<?php echo $bid; ?>"><?php echo $brand; ?></option>
+
+                                <?php
+                            }
+                    }
                     ?>
 
-                    <select class="brand" name="brand" id="brandid">
+                    </select>
+                </div>
 
-                        <option value="0">Add a brand</option>
-                        <?php
 
-                        while ($_result = mysqli_fetch_assoc($data)) {
 
-                            $bid = $_result["Id"];
-                            $brand = $_result["Name"];
-                            ?>
 
-                            <option value="<?php echo $bid; ?>"><?php echo $brand; ?></option>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="descriptionid" name="desscription" class="form-textarea"
+                        oninput="removevalidation('descriptionid')"
+                        placeholder="Write a description of your product..."></textarea>
+                </div>
+            </div>
 
+            <!-- Media Card -->
+            <!-- <label for="img_id" style="width:100%;"> -->
+            <div class="card" style="background-color: #dddddd;">
+                <h3 class="card-header">Media</h3>
+                <div class="upload-zone" id="dropZone">
+                    <div class="upload-icon">🖼️</div>
+                    <div class="upload-text">Drop images here or click to upload</div>
+                    <input type="file" name="image" id="img_id" onchange="removevalidation('img_id')"
+                        style="display: none;">
+                </div>
+            </div>
+            <!-- </label> -->
+
+            <!-- Pricing Card -->
+            <div class="card" style="background-color: #dddddd;">
+                <h3 class="card-header">Pricing</h3>
+                <div class="pricing-grid">
+                    <div class="form-group">
+                        <label for="price">Price ($)</label>
+                        <input type="text" name="price" id="priceid" class="form-input" placeholder="0.00"
+                            oninput="removevalidation('priceid')">
+                    </div>
+                    <div class="form-group">
+                        <label for="sku">Quantity</label>
+                        <input type="number" id="sku" name="quantity" class="form-input"
+                            oninput="removevalidation('sku')">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col" style="text-align: center;">
+                <button class="pro_addbtn" type="submit" name="productbtn"
+                    style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
+            </div>
+
+        </main>
+
+        <!-- Right Column (Sidebar) -->
+        <aside class="sidebar-card">
+            <!-- Status Card -->
+            <div class="card" style="background-color: white;">
+                <h3 class="card-header">Status</h3>
+                <div class="form-group">
+                    <label for="status">Product Status</label>
+                    <select id="statusid" name="p_status" class="form-select" onchange="removevalidation('statusid')"
+                        style="background-color: #dddddd;">
+                        <option value="">Add a stock avalabilti</option>
+                        <option value="0">Instock</option>
+                        <option value="1">Out of stock</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Organization Card -->
+            <div class="card" style="background-color: white;">
+                <h3 class="card-header">Organization</h3>
+                <div class="form-group">
+                    <label for="category">Category</label>
+
+                    <?php
+                    $stment = "SELECT `Id`, `Name` FROM `category` WHERE `IsDeleted`=0";
+                    // var_dump($stment);
+                    $data1 = mysqli_query($con, $stment);
+                    if (mysqli_num_rows($data1) > 0) {
+
+                        ?>
+
+                        <select id="categoryid" name="category" class="form-select"
+                            onchange="removevalidation('categoryid')" style="background-color: #dddddd;">
+                            <option value="0">Select Category</option>
                             <?php
-                        }
-                }
-                ?>
+                            while ($result = mysqli_fetch_assoc($data1)) {
+                                $cid = $result["Id"];
+                                $category = $result["Name"];
+                                ?>
 
-                </select>
-            </div>
+                                <option value="<?php echo $cid; ?>"><?php echo $category; ?></option>
 
-
-
-
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="descriptionid" name="desscription" class="form-textarea"
-                    placeholder="Write a description of your product..."></textarea>
-            </div>
-        </div>
-
-        <!-- Media Card -->
-        <div class="card" style="background-color: #dddddd;">
-            <h3 class="card-header">Media</h3>
-            <div class="upload-zone">
-                <div class="upload-icon">🖼️</div>
-                <div class="upload-text">Drop images here or click to upload</div>
-                <input type="file" name="image" id="img_id" style="display: none;">
-            </div>
-        </div>
-
-        <!-- Pricing Card -->
-        <div class="card" style="background-color: #dddddd;">
-            <h3 class="card-header">Pricing</h3>
-            <div class="pricing-grid">
-                <div class="form-group">
-                    <label for="price">Price ($)</label>
-                    <input type="text" name="price" id="priceid" class="form-input" placeholder="0.00">
-                </div>
-                <div class="form-group">
-                    <label for="sku">Quantity</label>
-                    <input type="number" id="sku" class="form-input">
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col" style="text-align: center;">
-            <button class="pro_addbtn" type="submit" name="productbtn"
-                style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
-        </div>
-
-    </main>
-
-    <!-- Right Column (Sidebar) -->
-    <aside class="sidebar-card">
-        <!-- Status Card -->
-        <div class="card" style="background-color: white;">
-            <h3 class="card-header">Status</h3>
-            <div class="form-group">
-                <label for="status">Product Status</label>
-                <select id="status" name="p_status" class="form-select" style="background-color: #dddddd;">
-                    <!-- <option value="">Active</option> -->
-                    <option value="0">Instock</option>
-                    <option value="1">Out of stock</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Organization Card -->
-        <div class="card" style="background-color: white;">
-            <h3 class="card-header">Organization</h3>
-            <div class="form-group">
-                <label for="category">Category</label>
-
-                <?php
-                $stment = "SELECT `Id`, `Name` FROM `category` WHERE `IsDeleted`=0";
-                // var_dump($stment);
-                $data1 = mysqli_query($con, $stment);
-                if (mysqli_num_rows($data1) > 0) {
-
+                                <?php
+                            }
+                    }
                     ?>
-
-                    <select id="category" name="category" class="form-select" style="background-color: #dddddd;">
-                        <option value="0">Select Category</option>
-                        <?php
-                        while ($result = mysqli_fetch_assoc($data1)) {
-                            $cid = $result["Id"];
-                            $category = $result["Name"];
-
-                            ?>
-
-                            <option value="<?php echo $cid; ?>"><?php echo $category; ?></option>
-
-                            <?php
-                        }
-                }
-                ?>
-                </select>
+                    </select>
+                </div>
             </div>
-        </div>
-    </aside>
+        </aside>
 
 
-</div>
+    </div>
 </form>
 
 
 <!--.....................................script................................-->
+<script>
+    const dropZone = document.getElementById("dropZone");
+    const fileInput = document.getElementById("img_id");
 
+    // Click upload
+    dropZone.addEventListener("click", () => {
+        fileInput.click();
+    });
+
+    // Drag over
+    dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZone.style.background = "#cfcfcf";
+    });
+
+    // Drag leave
+    dropZone.addEventListener("dragleave", () => {
+        dropZone.style.background = "#dddddd";
+    });
+
+    // Drop file
+    dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropZone.style.background = "#dddddd";
+
+        const files = e.dataTransfer.files;
+        fileInput.files = files;
+
+        console.log(files[0]); // selected file
+    });
+</script>
 
 <script>
 
     function valid() {
-       alert('hlo');
+        //    alert('hlo');
         var p_name = document.getElementById("productname_id");
         var brand = document.getElementById("brandid");
         var description = document.getElementById("descriptionid");
         var img = document.getElementById("img_id");
         var price = document.getElementById("priceid");
         var sku = document.getElementById("sku");
-        var status = document.getElementById("status");
-        var category = document.getElementById("category");
+        var status = document.getElementById("statusid");
+        var category = document.getElementById("categoryid");
         var f = 0;
 
         if (p_name.value == "") {
@@ -322,7 +389,7 @@ include('admin_header.php');
         }
 
 
-        if (brand.value == "") {
+        if (brand.value == "0") {
             brand.style.border = "1px solid red";
             brand.style.outline = "none";
             brand.focus();
@@ -368,15 +435,17 @@ include('admin_header.php');
             f = 1;
         }
 
-        if (category.value == "") {
+        if (category.value == "0") {
             category.style.border = "1px solid red";
             category.style.outline = "none";
-            categorysku.focus();
+            category.focus();
             f = 1;
         }
 
-        if (f = 0) {
+        if (f == 0) {
             return true;
+            alert('hlo');
+
         }
         else {
             return false;
@@ -384,6 +453,22 @@ include('admin_header.php');
 
 
     }
+
+
+    /*--...........................................removevalidation............................*/
+
+
+
+    function removevalidation(Id) {
+        var id = document.getElementById(Id);
+        id.style.border = "1px solid black";
+    }
+
+
+
+
+
+
 
 </script>
 

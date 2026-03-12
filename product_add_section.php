@@ -1,11 +1,37 @@
 <?php
 include('database.php');
 include('admin_header.php');
-
+$edit = 0;
+$p_name = "";
+$p_brand = 0;
+$p_decription = "";
+$p_image = "";
+$p_price = "";
+$p_quantity = 0;
+$p_status = 0;
+$p_category = 0;
 if (isset($_GET["rowid"])) {
 
     echo $edit = $_GET["rowid"];
 
+    $stmt = "SELECT `Name`, `BrandId`, `Description`, `Image`, `Price`, `Quantity`, `Status`, `CategoryId` FROM `product_add` WHERE `Id`=$edit";
+    // var_dump($stmt);
+
+    $data2 = mysqli_query($con, $stmt);
+    if (mysqli_num_rows($data2) > 0) {
+
+        $result3 = mysqli_fetch_assoc($data2);
+
+        $p_name = $result3["Name"];
+        echo $p_brand = $result3["BrandId"];
+        $p_decription = $result3["Description"];
+        $p_image = $result3["Image"];
+        $p_price = $result3["Price"];
+        $p_quantity = $result3["Quantity"];
+        echo $p_status = $result3["Status"];
+        echo $p_category = $result3["CategoryId"];
+
+    }
 }
 
 
@@ -117,7 +143,7 @@ if (isset($_GET["rowid"])) {
     .upload-zone {
         border: 2px dashed var(--border);
         border-radius: 0.5rem;
-        padding: 2rem;
+        padding: 0rem;
         text-align: center;
         cursor: pointer;
         /* transition: background 0.2s;- */
@@ -156,33 +182,18 @@ if (isset($_GET["rowid"])) {
 <!-- Main Content -->
 <form action="product_action.php" method="post" onsubmit="return valid();">
     <div class="container">
+        <?php
 
+
+
+
+        ?>
         <!-- Left Column -->
         <main style="background-color: white;border-radius: 0.5rem;padding:15px;">
 
             <div class="col">
                 <h1 style="margin:15px 0px;font-size:30px;">Product add section</h1>
             </div>
-
-            <?php
-            $stmt = "SELECT `Name`, `BrandId`, `Description`, `Image`, `Price`, `Quantity`, `Status`, `CategoryId` FROM `product_add` WHERE Id=$edit";
-            var_dump($stmt);
-
-            $data2 = mysqli_query($con, $stmt);
-            if (mysqli_num_rows($data2) > 0) {
-                $result3 = mysqli_fetch_assoc($data2) {
-
-
-                    $p_name="";
-
-
-
-                }
-            }
-            ?>
-
-
-
 
 
 
@@ -192,7 +203,7 @@ if (isset($_GET["rowid"])) {
                 <div class="form-group">
                     <label for="product-name">Product Name</label>
                     <input type="text" name="productname" id="productname_id" class="form-input"
-                        oninput="removevalidation('productname_id')">
+                        value="<?php echo $p_name ?>" oninput="removevalidation('productname_id')">
                 </div>
 
 
@@ -220,7 +231,8 @@ if (isset($_GET["rowid"])) {
                                 $brand = $_result["Name"];
                                 ?>
 
-                                <option value="<?php echo $bid; ?>"><?php echo $brand; ?></option>
+                                <option value="<?php echo $bid ?>" <?php echo (($p_brand == $bid) ? "selected" : ""); ?>>
+                                    <?php echo $brand; ?></option>
 
                                 <?php
                             }
@@ -237,7 +249,7 @@ if (isset($_GET["rowid"])) {
                     <label for="description">Description</label>
                     <textarea id="descriptionid" name="desscription" class="form-textarea"
                         oninput="removevalidation('descriptionid')"
-                        placeholder="Write a description of your product..."></textarea>
+                        placeholder="Write a description of your product..."><?php echo $p_decription ?></textarea>
                 </div>
             </div>
 
@@ -246,10 +258,10 @@ if (isset($_GET["rowid"])) {
             <div class="card" style="background-color: #dddddd;">
                 <h3 class="card-header">Media</h3>
                 <div class="upload-zone" id="dropZone">
-                    <div class="upload-icon">🖼️</div>
+                    <div class="upload-icon">🖼️<img src="assets/IMG/dress/m-12.png" class="img-fluid" style="width:16%;"></div>
                     <div class="upload-text">Drop images here or click to upload</div>
-                    <input type="file" name="image" id="img_id" onchange="removevalidation('img_id')"
-                        style="display: none;">
+                    <input type="file" name="image" id="img_id" value="<?php echo $p_image ?>"
+                        onchange="removevalidation('img_id')" style="display: none;">
                 </div>
             </div>
             <!-- </label> -->
@@ -261,12 +273,12 @@ if (isset($_GET["rowid"])) {
                     <div class="form-group">
                         <label for="price">Price ($)</label>
                         <input type="text" name="price" id="priceid" class="form-input" placeholder="0.00"
-                            oninput="removevalidation('priceid')">
+                            oninput="removevalidation('priceid')" value="<?php echo $p_price ?>">
                     </div>
                     <div class="form-group">
                         <label for="sku">Quantity</label>
                         <input type="number" id="sku" name="quantity" class="form-input"
-                            oninput="removevalidation('sku')">
+                            oninput="removevalidation('sku')" value="<?php echo $p_quantity ?>">
                     </div>
                 </div>
 
@@ -274,7 +286,7 @@ if (isset($_GET["rowid"])) {
 
             <div class="col" style="text-align: center;">
                 <button class="pro_addbtn" type="submit" name="productbtn"
-                    style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;">ADD</button>
+                    style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;"><?php echo $edit == 0 ? "ADD" : "UPDATE" ?></button>
             </div>
 
         </main>
@@ -288,9 +300,8 @@ if (isset($_GET["rowid"])) {
                     <label for="status">Product Status</label>
                     <select id="statusid" name="p_status" class="form-select" onchange="removevalidation('statusid')"
                         style="background-color: #dddddd;">
-                        <option value="">Add a stock avalabilti</option>
-                        <option value="0">Instock</option>
-                        <option value="1">Out of stock</option>
+                        <option value="0" <?php echo (($p_status == 0) ? "selected" : "")?>>Instock</option>
+                        <option value="1" <?php echo (($p_status == 1) ? "selected" : "")?>>Out of stock</option>
                     </select>
                 </div>
             </div>
@@ -318,7 +329,8 @@ if (isset($_GET["rowid"])) {
                                 $category = $result["Name"];
                                 ?>
 
-                                <option value="<?php echo $cid; ?>"><?php echo $category; ?></option>
+                                <option value="<?php echo $cid ?>" <?php echo (($p_category == $cid) ? "selected" : ""); ?>>
+                                    <?php echo $category; ?></option>
 
                                 <?php
                             }
@@ -328,8 +340,6 @@ if (isset($_GET["rowid"])) {
                 </div>
             </div>
         </aside>
-
-
     </div>
 </form>
 

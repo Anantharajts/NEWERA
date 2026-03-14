@@ -7,7 +7,7 @@ $p_brand = 0;
 $p_decription = "";
 $p_image = "";
 $p_price = "";
-$p_quantity = 0;
+$p_quantity =1;
 $p_status = 0;
 $p_category = 0;
 if (isset($_GET["rowid"])) {
@@ -30,7 +30,6 @@ if (isset($_GET["rowid"])) {
         $p_quantity = $result3["Quantity"];
         echo $p_status = $result3["Status"];
         echo $p_category = $result3["CategoryId"];
-
     }
 }
 
@@ -180,14 +179,14 @@ if (isset($_GET["rowid"])) {
 
 
 <!-- Main Content -->
-<form action="product_action.php" method="post" onsubmit="return valid();">
+<form action="product_action.php" method="post" onsubmit="return valid();" enctype="multipart/form-data">
     <div class="container">
-        <?php
+
+
+        <input type="hidden" name="updateid" id="ur_id" value="<?php echo $edit; ?>">
 
 
 
-
-        ?>
         <!-- Left Column -->
         <main style="background-color: white;border-radius: 0.5rem;padding:15px;">
 
@@ -218,7 +217,7 @@ if (isset($_GET["rowid"])) {
 
                     if (mysqli_num_rows($data) > 0) {
 
-                        ?>
+                    ?>
 
                         <select class="brand" name="brand" id="brandid" onchange="removevalidation('brandid')">
 
@@ -229,17 +228,17 @@ if (isset($_GET["rowid"])) {
 
                                 $bid = $_result["Id"];
                                 $brand = $_result["Name"];
-                                ?>
+                            ?>
 
                                 <option value="<?php echo $bid ?>" <?php echo (($p_brand == $bid) ? "selected" : ""); ?>>
                                     <?php echo $brand; ?></option>
 
-                                <?php
+                        <?php
                             }
-                    }
-                    ?>
+                        }
+                        ?>
 
-                    </select>
+                        </select>
                 </div>
 
 
@@ -253,18 +252,33 @@ if (isset($_GET["rowid"])) {
                 </div>
             </div>
 
+
+
             <!-- Media Card -->
-            <!-- <label for="img_id" style="width:100%;"> -->
-            <div class="card" style="background-color: #dddddd;">
+
+
+            <div class="card" style="background-color:#dddddd;">
                 <h3 class="card-header">Media</h3>
-                <div class="upload-zone" id="dropZone">
-                    <div class="upload-icon">🖼️<img src="assets/IMG/dress/m-12.png" class="img-fluid" style="width:16%;"></div>
+
+                <div class="upload-zone" id="dropZone" style="text-align:center; cursor:pointer;">
+
+                    <div class="upload-icon" id="previewBox">
+                        <?php
+                        if ($edit == 0) {
+                            echo "🖼️";
+                        } else {
+                            echo "<img src='assets/IMG/dress/$p_image' name='image1' id='imagePreview' class='img-fluid' style='width:16%;'>";
+                        }
+                        ?>
+                    </div>
+
                     <div class="upload-text">Drop images here or click to upload</div>
-                    <input type="file" name="image" id="img_id" value="<?php echo $p_image ?>"
-                        onchange="removevalidation('img_id')" style="display: none;">
+                    <input type="hidden" name="bookimg" id="bookimg" value="<?php echo $p_image; ?>">
+                    <input type="file" name="image" id="img_id" multiple style="display:none;" onchange="uploadFiles()" value="<?php echo $p_image; ?>">
+
                 </div>
             </div>
-            <!-- </label> -->
+
 
             <!-- Pricing Card -->
             <div class="card" style="background-color: #dddddd;">
@@ -285,7 +299,7 @@ if (isset($_GET["rowid"])) {
             </div>
 
             <div class="col" style="text-align: center;">
-                <button class="pro_addbtn" type="submit" name="productbtn"
+                <button class="pro_addbtn" type="submit" name="submit"
                     style="width: 100%;background-color:black;color:white;padding-top:5px;padding-bottom:5px;"><?php echo $edit == 0 ? "ADD" : "UPDATE" ?></button>
             </div>
 
@@ -300,8 +314,8 @@ if (isset($_GET["rowid"])) {
                     <label for="status">Product Status</label>
                     <select id="statusid" name="p_status" class="form-select" onchange="removevalidation('statusid')"
                         style="background-color: #dddddd;">
-                        <option value="0" <?php echo (($p_status == 0) ? "selected" : "")?>>Instock</option>
-                        <option value="1" <?php echo (($p_status == 1) ? "selected" : "")?>>Out of stock</option>
+                        <option value="0" <?php echo (($p_status == 0) ? "selected" : "") ?>>Instock</option>
+                        <option value="1" <?php echo (($p_status == 1) ? "selected" : "") ?>>Out of stock</option>
                     </select>
                 </div>
             </div>
@@ -318,7 +332,7 @@ if (isset($_GET["rowid"])) {
                     $data1 = mysqli_query($con, $stment);
                     if (mysqli_num_rows($data1) > 0) {
 
-                        ?>
+                    ?>
 
                         <select id="categoryid" name="category" class="form-select"
                             onchange="removevalidation('categoryid')" style="background-color: #dddddd;">
@@ -327,16 +341,16 @@ if (isset($_GET["rowid"])) {
                             while ($result = mysqli_fetch_assoc($data1)) {
                                 $cid = $result["Id"];
                                 $category = $result["Name"];
-                                ?>
+                            ?>
 
                                 <option value="<?php echo $cid ?>" <?php echo (($p_category == $cid) ? "selected" : ""); ?>>
                                     <?php echo $category; ?></option>
 
-                                <?php
+                        <?php
                             }
-                    }
-                    ?>
-                    </select>
+                        }
+                        ?>
+                        </select>
                 </div>
             </div>
         </aside>
@@ -378,13 +392,13 @@ if (isset($_GET["rowid"])) {
 </script>
 
 <script>
-
     function valid() {
         //    alert('hlo');
         var p_name = document.getElementById("productname_id");
         var brand = document.getElementById("brandid");
         var description = document.getElementById("descriptionid");
-        var img = document.getElementById("img_id");
+        var img1 = document.getElementById("img_id");
+        var hidimg = document.getElementById("bookimg");
         var price = document.getElementById("priceid");
         var sku = document.getElementById("sku");
         var status = document.getElementById("statusid");
@@ -414,13 +428,10 @@ if (isset($_GET["rowid"])) {
             f = 1;
         }
 
-        if (img.value == "") {
-            img.style.border = "1px solid red";
-            img.style.outline = "none";
-            img.focus();
+        if (img1.value == "" && hidimg.value == "") {
+             alert("Please choose image.");
             f = 1;
         }
-
 
         if (price.value == "") {
             price.style.border = "1px solid red";
@@ -451,13 +462,11 @@ if (isset($_GET["rowid"])) {
             category.focus();
             f = 1;
         }
-
+// alert(f);
         if (f == 0) {
             return true;
-            alert('hlo');
 
-        }
-        else {
+        } else {
             return false;
         }
 
@@ -475,11 +484,26 @@ if (isset($_GET["rowid"])) {
     }
 
 
+    /*--...........................................image_uplode_funtion............................*/
 
+    // document.getElementById("dropZone").onclick = function() {
+    //     document.getElementById("img_id").click();
+    // };
 
+    function uploadFiles() {
+        let input = document.getElementById("img_id");
+        let preview = document.getElementById("previewBox");
 
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
 
+            reader.onload = function(e) {
+                preview.innerHTML = `<img src="${e.target.result}" class="img-fluid" style="width:16%;">`;
+            };
 
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 
 

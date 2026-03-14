@@ -10,11 +10,9 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     var_dump($delet);
     if (mysqli_query($con, $delet)) {
         echo "<script>window.location.href='product_table.php'</script>";
-
     } else {
         echo "somerhing error for delete section....!";
     }
-
 }
 ?>
 
@@ -39,7 +37,35 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
+        <!--......................................search_area.................................-->
 
+
+        <div class="row" style="margin-top: 20px;margin-bottom:20px;gap:20px;">
+            <div class="col">
+                <?php
+                $brand="";
+                ?>
+                <select name="brand1" id="b1_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+                    <option value="0">a</option>
+                </select>
+
+            </div>
+
+            <div class="col">
+
+                <select name="category1" id="Cry1_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+                    <option value="0">1</option>
+                </select>
+            </div>
+
+            <div class="col">
+                <input type="search" name="search" id="search_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+            </div>
+        </div>
+
+
+
+        <!--......................................Table_area.................................-->
 
 
         <div class="col" style="background-color:white;border-radius: 10px;padding:20px;">
@@ -85,13 +111,13 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                                 $status = $result["Status"];
 
 
-                                ?>
+                        ?>
 
 
 
                                 <tr>
                                     <td style="padding-top: 40px;"><?php echo $sln ?></td>
-                                    <td style="width:15%;"><img src="assets/IMG/dress/<?php echo $img ?>" class="img-fluid"
+                                    <td style="width:15%;"><img src="assets/IMG/product_img/<?php echo $img ?>" class="img-fluid"
                                             style="width:50%;"></td>
                                     <td style="padding-top: 40px;"><?php echo $product ?></td>
                                     <td style="padding-top: 40px;"><?php echo $brand ?></td>
@@ -148,10 +174,9 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                                         </form>
                                     </td>
                                 </tr>
-                                <?php
+                        <?php
                                 $sln++;
                             }
-
                         }
                         ?>
                     </tbody>

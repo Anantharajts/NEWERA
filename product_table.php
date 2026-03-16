@@ -43,23 +43,66 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row" style="margin-top: 20px;margin-bottom:20px;gap:20px;">
             <div class="col">
                 <?php
-                $brand="";
+                $brand = "SELECT `Id`, `Name`  FROM `brand` WHERE `IsDeleted`=0";
+                // var_dump($brand);
+                $d3 = mysqli_query($con, $brand);
+                if (mysqli_num_rows($d3) > 0) {
+
+
                 ?>
-                <select name="brand1" id="b1_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
-                    <option value="0">a</option>
-                </select>
+                    <select name="brand1" id="b1_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+                        <option value="0">Select Brand</option>
+                        <?php
+                        while ($_result = mysqli_fetch_assoc($d3)) {
+                            $brand_id = $_result["Id"];
+                            $brandname = $_result["Name"];
+
+                        ?>
+                            <option value="<?php echo $brand_id; ?>"><?php echo $brandname ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                <?php
+                }
+                ?>
 
             </div>
 
+
             <div class="col">
 
-                <select name="category1" id="Cry1_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
-                    <option value="0">1</option>
-                </select>
+                <?php
+                $category = "SELECT `Id`, `Name` FROM `category` WHERE `IsDeleted`=0";
+                // var_dump($category);
+                $d4 = mysqli_query($con, $category);
+                if (mysqli_num_rows($d4) > 0) {
+
+                ?>
+
+                    <select name="category1" id="Cry1_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+                        <option value="0">Select Category</option>
+                        <?php
+                        while ($resu_lt = mysqli_fetch_assoc($d4)) {
+                            $category_id = $resu_lt["Id"];
+                            $category_na = $resu_lt["Name"];
+
+                        ?>
+
+                            <option value="<?php echo $category_id ?>"><?php echo $category_na ?></option>
+                        <?php
+                        }
+
+                        ?>
+                    </select>
+                <?php
+                }
+                ?>
             </div>
 
+
             <div class="col">
-                <input type="search" name="search" id="search_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+                <input type="search" name="search" id="search_id" placeholder="Search..." style="width: 100%;padding:10px;border-radius: 5px;border:none;">
             </div>
         </div>
 
@@ -86,13 +129,16 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody name="book-container" id="#book-container">
 
 
                         <?php
 
-                        $stment = "SELECT `Id`, `Name`, `Image`,`BrandId`,`CategoryId`, `Price`, `Quantity`,CASE WHEN `Status`=0 THEN 'Instock' 
-                                   WHEN `Status`=1 THEN 'Out of stock' END AS Status FROM `product_add` WHERE IsDeleted=0";
+                        $stment = "SELECT PA.`Id`, PA.`Name`, `Image`,`BrandId`,`CategoryId`, `Price`, `Quantity`,CASE WHEN `Status`=0 THEN 'Instock' 
+                                   WHEN `Status`=1 THEN 'Out of stock' END AS Status,B.Name AS Brandname,C.Name AS category FROM `product_add` PA
+                                   INNER JOIN `brand` B ON B.Id = PA.BrandId
+                                   INNER JOIN `category` C ON C.Id = PA.CategoryId
+                                   WHERE PA.IsDeleted=0";
                         // var_dump($stment);
                         $d1 = mysqli_query($con, $stment);
                         if (mysqli_num_rows($d1) > 0) {
@@ -109,6 +155,8 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                                 $price = $result["Price"];
                                 $quantity = $result["Quantity"];
                                 $status = $result["Status"];
+                                $categoryna = $result["category"];
+                                $brandna = $result["Brandname"];
 
 
                         ?>
@@ -120,8 +168,8 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                                     <td style="width:15%;"><img src="assets/IMG/product_img/<?php echo $img ?>" class="img-fluid"
                                             style="width:50%;"></td>
                                     <td style="padding-top: 40px;"><?php echo $product ?></td>
-                                    <td style="padding-top: 40px;"><?php echo $brand ?></td>
-                                    <td style="padding-top: 40px;"><?php echo $category ?></td>
+                                    <td style="padding-top: 40px;"><?php echo $brandna ?></td>
+                                    <td style="padding-top: 40px;"><?php echo $categoryna ?></td>
                                     <td style="padding-top: 40px;"><?php echo $price ?></td>
                                     <td style="padding-top: 40px;"><?php echo $quantity ?></td>
                                     <td style="padding-top: 40px;"><?php echo $status ?></td>
@@ -184,6 +232,42 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
                 </table>
             </div>
+
+            <div class="pagination" id="pagination" style="justify-content: center;"></div>
+
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        loadBooks(1);
+
+        function loadBooks(page) {
+            $.ajax({
+                url: "product_table_ajax.php",
+                type: "GET",
+                data: {
+                    page: page
+                },
+                success: function(data) {
+                    console.log(data);
+                    let response = JSON.parse(data);
+                    // alert(data);
+                    $('#book-container').html(response.books_html);
+                    $('#pagination').html(response.pagination_html);
+                }
+            });
+        }
+
+
+        $(document).on('click', '.pagination a', function() {
+            let page = $(this).data('page');
+            loadBooks(page);
+        });
+    });
+</script>
+
+</body>
+
+</html>

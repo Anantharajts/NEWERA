@@ -50,7 +50,7 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                 ?>
-                    <select name="brand1" id="b1_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+                    <select name="brand1" id="b1_id" onchange="loadBooks(1);" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
                         <option value="0">Select Brand</option>
                         <?php
                         while ($_result = mysqli_fetch_assoc($d3)) {
@@ -80,7 +80,7 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
                 ?>
 
-                    <select name="category1" id="Cry1_id" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+                    <select name="category1" id="Cry1_id" onchange="loadBooks(1);" style="width: 100%;padding:10px;border-radius: 5px;border:none;">
                         <option value="0">Select Category</option>
                         <?php
                         while ($resu_lt = mysqli_fetch_assoc($d4)) {
@@ -102,7 +102,8 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             <div class="col">
-                <input type="search" name="search" id="search_id" placeholder="Search..." style="width: 100%;padding:10px;border-radius: 5px;border:none;">
+                <input type="search" name="search" id="search_id" oninput="loadBooks(1);" placeholder="Search..."
+                    style="width: 100%;padding:10px;border-radius: 5px;border:none;">
             </div>
         </div>
 
@@ -129,104 +130,10 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                         </tr>
                     </thead>
 
-                    <tbody name="book-container" id="#book-container">
-
-
-                        <?php
-
-                        $stment = "SELECT PA.`Id`, PA.`Name`, `Image`,`BrandId`,`CategoryId`, `Price`, `Quantity`,CASE WHEN `Status`=0 THEN 'Instock' 
-                                   WHEN `Status`=1 THEN 'Out of stock' END AS Status,B.Name AS Brandname,C.Name AS category FROM `product_add` PA
-                                   INNER JOIN `brand` B ON B.Id = PA.BrandId
-                                   INNER JOIN `category` C ON C.Id = PA.CategoryId
-                                   WHERE PA.IsDeleted=0";
-                        // var_dump($stment);
-                        $d1 = mysqli_query($con, $stment);
-                        if (mysqli_num_rows($d1) > 0) {
-
-                            $sln = 1;
-
-                            while ($result = mysqli_fetch_assoc($d1)) {
-
-                                $id = $result["Id"];
-                                $img = $result["Image"];
-                                $product = $result["Name"];
-                                $brand = $result["BrandId"];
-                                $category = $result["CategoryId"];
-                                $price = $result["Price"];
-                                $quantity = $result["Quantity"];
-                                $status = $result["Status"];
-                                $categoryna = $result["category"];
-                                $brandna = $result["Brandname"];
-
-
-                        ?>
+                    <tbody name="book-container" id="book-container">
 
 
 
-                                <tr>
-                                    <td style="padding-top: 40px;"><?php echo $sln ?></td>
-                                    <td style="width:15%;"><img src="assets/IMG/product_img/<?php echo $img ?>" class="img-fluid"
-                                            style="width:50%;"></td>
-                                    <td style="padding-top: 40px;"><?php echo $product ?></td>
-                                    <td style="padding-top: 40px;"><?php echo $brandna ?></td>
-                                    <td style="padding-top: 40px;"><?php echo $categoryna ?></td>
-                                    <td style="padding-top: 40px;"><?php echo $price ?></td>
-                                    <td style="padding-top: 40px;"><?php echo $quantity ?></td>
-                                    <td style="padding-top: 40px;"><?php echo $status ?></td>
-                                    <td>
-                                        <form action="product_table.php" method="post" style="margin-top: 30px;">
-
-                                            <input type="hidden" name="deid" id="del_id" value="<?php echo $id ?>">
-
-                                            <a href="product_add_section.php?rowid=<?php echo $id ?>"><button class="edit"
-                                                    type="button" name="edit"><svg xmlns="http://www.w3.org/2000/svg"
-                                                        width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                        stroke="#006eff">
-
-                                                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-
-                                                        <g id="SVGRepo_iconCarrier">
-                                                            <path
-                                                                d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z"
-                                                                stroke="#007bff" stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                            <path
-                                                                d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13"
-                                                                stroke="#007bff" stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                        </g>
-
-                                                    </svg></button></a>
-                                            <button class="delete" type="submit" name="delete"
-                                                onclick="return confirm('Are you sure you want to delete....?')"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px"
-                                                    viewBox="0 0 24.00 24.00" stroke="#ff0000"
-                                                    transform="matrix(-1, 0, 0, 1, 0, 0)">
-
-                                                    <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-
-                                                    <g id="SVGRepo_iconCarrier">
-
-                                                        <path
-                                                            d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z" />
-
-                                                    </g>
-
-                                                </svg></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                        <?php
-                                $sln++;
-                            }
-                        }
-                        ?>
                     </tbody>
 
 
@@ -242,29 +149,40 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $(document).ready(function() {
         loadBooks(1);
+    });
 
-        function loadBooks(page) {
-            $.ajax({
-                url: "product_table_ajax.php",
-                type: "GET",
-                data: {
-                    page: page
-                },
-                success: function(data) {
-                    console.log(data);
-                    let response = JSON.parse(data);
-                    // alert(data);
-                    $('#book-container').html(response.books_html);
-                    $('#pagination').html(response.pagination_html);
-                }
-            });
-        }
-
-
-        $(document).on('click', '.pagination a', function() {
-            let page = $(this).data('page');
-            loadBooks(page);
+    function loadBooks(page) {
+        var b1_id = document.getElementById("b1_id").value;
+        var Cry1_id = document.getElementById("Cry1_id").value;
+        var search = document.getElementById("search_id").value;
+        // alert(search);
+        // alert(Cry1_id);
+        $.ajax({
+            url: "product_table_ajax.php",
+            type: "GET",
+            data: {
+                page: page,
+                b1_id: b1_id,
+                Cry1_id: Cry1_id,
+                search: search
+            },
+            success: function(data) {
+                // console.log(data);
+                // alert(data);
+                let response = JSON.parse(data);
+                $('#book-container').html(response.books_html);
+                $('#pagination').html(response.pagination_html);
+            },
+            error: function(xhr, status, error) {
+                alert("error");
+            }
         });
+    }
+
+
+    $(document).on('click', '.pagination a', function() {
+        let page = $(this).data('page');
+        loadBooks(page);
     });
 </script>
 

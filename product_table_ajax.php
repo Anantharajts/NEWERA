@@ -1,16 +1,42 @@
 <?php
 include('database.php');
 
-$limit = 8;
+$limit =3;
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$brandid = isset($_GET['b1_id']) ? (int) $_GET['b1_id'] :0;
+$categoryid = isset($_GET['Cry1_id']) ? (int) $_GET['Cry1_id'] :0;
+$search = isset($_GET['search']) ? (string) $_GET['search'] :"";
 $offset = ($page - 1) * $limit;
 
 $query = "SELECT PA.`Id`, PA.`Name`, `Image`,`BrandId`,`CategoryId`, `Price`, `Quantity`,CASE WHEN `Status`=0 THEN 'Instock' 
-                                   WHEN `Status`=1 THEN 'Out of stock' END AS Status,B.Name AS Brandname,C.Name AS category FROM `product_add` PA
-                                   INNER JOIN `brand` B ON B.Id = PA.BrandId
+                                   WHEN `Status`=1 THEN 'Out of stock' END AS Status,B.Name AS Brandname,C.Name AS category FROM `product_add` AS PA
+                                   INNER JOIN `brand` AS B ON B.Id = PA.BrandId
                                    INNER JOIN `category` C ON C.Id = PA.CategoryId
-                                   WHERE PA.IsDeleted=0 LIMIT $offset, $limit";
-$result = mysqli_query($con, $query);
+                                   WHERE PA.IsDeleted=0";
+                                   
+if ($categoryid != 0) {
+
+    $query = $query ." AND `CategoryId`=". $categoryid;
+
+}
+
+if ($brandid != 0) {
+
+    $query = $query . " AND BrandId=" . $brandid;
+
+}
+
+if ($search != "") {
+
+    $query = $query . " AND  PA.`Name` LIKE '%$search%'";
+
+}
+
+$query.=" LIMIT $offset, $limit";
+
+// echo $query;
+
+$result = mysqli_query($con,$query);
 $sln = 1;
 $books_html = '';
 while ($row = mysqli_fetch_assoc($result)) {
@@ -18,7 +44,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $books_html .= '<tr>';
 
     $books_html .= '<td>' . $sln . '</td>';
-    $books_html .= $books_html .= '<td style="width:15%;">
+    $books_html .= '<td style="width:15%;">
     <img src="assets/IMG/product_img/' . $row['Image'] . '" class="img-fluid" style="width:50%;">
 </td>';
     $books_html .= '<td style="padding-top: 40px;">' . $row['Name'] . '</td>';
@@ -31,9 +57,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     $books_html .= '<td>' .
         '<form action="product_table.php" method="post" style="margin-top: 30px;">
 
-                                            <input type="hidden" name="deid" id="del_id" value="<?php echo $id ?>">
+                                            <input type="hidden" name="deid" id="del_id" value="' . $row['Id'] . '">
 
-                                            <a href="product_add_section.php?rowid=<?php echo $id ?>"><button class="edit"
+                                            <a href="product_add_section.php?rowid=' . $row['Id'] . '"><button class="edit"
                                                     type="button" name="edit"><svg xmlns="http://www.w3.org/2000/svg"
                                                         width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                         stroke="#006eff">
@@ -74,18 +100,34 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                     </g>
 
                                                 </svg></button>
-</form>' . '</td>';
-
-
+                          
+                          
+                                                </form>' . '</td>';
 
 
     $books_html .= '</tr>';
     $sln++;
 }
 
+$query2 = "SELECT COUNT(*) as total FROM `product_add` WHERE IsDeleted=0";
+                                   
+if ($categoryid != 0) {
 
+    $query2 = $query2 ." AND `CategoryId`=". $categoryid;
 
-$query2 = "SELECT COUNT(*) as total FROM `brand`";
+}
+
+if ($brandid != 0) {
+
+    $query2 = $query2 . " AND BrandId=" . $brandid;
+
+}
+
+if ($search != "") {
+
+    $query2 = $query2 . " AND  PA.`Name` LIKE '%$search%'";
+
+}
 $total_result = mysqli_query($con, $query2);
 $result2 = mysqli_fetch_assoc($total_result);
 $total_records = $result2['total'];
@@ -100,3 +142,5 @@ echo json_encode([
     'books_html' => $books_html,
     'pagination_html' => $pagination_html
 ]);
+
+// red dodge car transform into robotdinosaur prime prompt

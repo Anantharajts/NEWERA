@@ -46,8 +46,8 @@ if (isset($_POST["submit"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             echo "error on updation";
         }
     } else {
-        $stment = $con->prepare("SELECT `Id` FROM `product_add` WHERE `Name`=? AND `BrandId`=?");
-        $stment->bind_param('si', $pr_name, $brand);
+        $stment = $con->prepare("SELECT `Id` FROM `product_add` WHERE `Name`=? AND `BrandId`=? AND `CategoryId`=? AND `Price`=?");
+        $stment->bind_param('siid', $pr_name, $brand, $category, $price);
         $stment->execute();
         $result = $stment->get_result();
         if ($result->num_rows > 0) {

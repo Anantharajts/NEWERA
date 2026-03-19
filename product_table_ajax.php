@@ -1,11 +1,11 @@
 <?php
 include('database.php');
 
-$limit =3;
+$limit = 3;
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-$brandid = isset($_GET['b1_id']) ? (int) $_GET['b1_id'] :0;
-$categoryid = isset($_GET['Cry1_id']) ? (int) $_GET['Cry1_id'] :0;
-$search = isset($_GET['search']) ? (string) $_GET['search'] :"";
+$brandid = isset($_GET['b1_id']) ? (int) $_GET['b1_id'] : 0;
+$categoryid = isset($_GET['Cry1_id']) ? (int) $_GET['Cry1_id'] : 0;
+$search = isset($_GET['search']) ? (string) $_GET['search'] : "";
 $offset = ($page - 1) * $limit;
 
 $query = "SELECT PA.`Id`, PA.`Name`, `Image`,`BrandId`,`CategoryId`, `Price`, `Quantity`,CASE WHEN `Status`=0 THEN 'Instock' 
@@ -13,30 +13,27 @@ $query = "SELECT PA.`Id`, PA.`Name`, `Image`,`BrandId`,`CategoryId`, `Price`, `Q
                                    INNER JOIN `brand` AS B ON B.Id = PA.BrandId
                                    INNER JOIN `category` C ON C.Id = PA.CategoryId
                                    WHERE PA.IsDeleted=0";
-                                   
+
 if ($categoryid != 0) {
 
-    $query = $query ." AND `CategoryId`=". $categoryid;
-
+    $query = $query . " AND `CategoryId`=" . $categoryid;
 }
 
 if ($brandid != 0) {
 
     $query = $query . " AND BrandId=" . $brandid;
-
 }
 
 if ($search != "") {
 
     $query = $query . " AND  PA.`Name` LIKE '%$search%'";
-
 }
 
-$query.=" LIMIT $offset, $limit";
+$query .= " LIMIT $offset, $limit";
 
 // echo $query;
 
-$result = mysqli_query($con,$query);
+$result = mysqli_query($con, $query);
 $sln = 1;
 $books_html = '';
 while ($row = mysqli_fetch_assoc($result)) {
@@ -110,23 +107,21 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $query2 = "SELECT COUNT(*) as total FROM `product_add` WHERE IsDeleted=0";
-                                   
+
 if ($categoryid != 0) {
 
-    $query2 = $query2 ." AND `CategoryId`=". $categoryid;
-
+    $query2 = $query2 . " AND `CategoryId`=" . $categoryid;
 }
 
 if ($brandid != 0) {
 
     $query2 = $query2 . " AND BrandId=" . $brandid;
-
+    
 }
 
 if ($search != "") {
 
-    $query2 = $query2 . " AND  PA.`Name` LIKE '%$search%'";
-
+    $query2 = $query2 . " AND  `Name` LIKE '%$search%'";
 }
 $total_result = mysqli_query($con, $query2);
 $result2 = mysqli_fetch_assoc($total_result);
@@ -142,5 +137,3 @@ echo json_encode([
     'books_html' => $books_html,
     'pagination_html' => $pagination_html
 ]);
-
-// red dodge car transform into robotdinosaur prime prompt

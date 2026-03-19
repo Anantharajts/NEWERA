@@ -22,7 +22,7 @@ include('database.php');
 
     <div class="container registration">
 
-        
+
 
         <div class="col-12 col-md-12 col-lg-5 row" style="padding: 30px;border-radius: 20px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);display: flex;justify-content: center;align-items: center;">
 
@@ -77,6 +77,8 @@ include('database.php');
                         </div>
                     </div>
 
+                    <!--.................................dob&age.........................................-->
+
                     <div class="col row" style="padding: 0px;">
                         <div class="col">
                             <input type="date" name="dob" id="dob_id" onchange="Removevalidation('dob_id')">
@@ -85,6 +87,7 @@ include('database.php');
                         <div class="col-4" style="width: 15%;">
                             <input type="text" name="age" id="ageid">
                         </div>
+                        <!--.................................dob&age.........................................-->
 
                         <div class="col">
                             <select name="gender" id="genderid" onchange="Removevalidation('genderid')">
@@ -109,19 +112,59 @@ include('database.php');
                     <div class="col row" style="padding: 0px;">
 
                         <div class="col">
-                            <select name="country" id="countryid" onchange="Removevalidation('countryid')">
-                                <option value="0">select your country</option>
-                                <option value="1">a</option>
-                                <option value="2">b</option>
-                            </select>
+                            <?php
+                            $country_stmt = "SELECT `Id`, `Country` FROM `country` WHERE `IsDeleted`=0";
+                            // var_dump($country_stmt);
+                            $d = mysqli_query($con, $country_stmt);
+                            if (mysqli_num_rows($d) > 0) {
+
+                            ?>
+                                <select name="country" id="countryid" onchange="Removevalidation('countryid')">
+                                    <option value="0">select your country</option>
+                                    <?php
+                                    while ($result = mysqli_fetch_assoc($d)) {
+                                        $countryid = $result["Id"];
+                                        $country_na = $result["Country"];
+
+                                    ?>
+                                        <option value="<?php echo $countryid ?>"><?php echo $country_na ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            <?php
+                            }
+                            ?>
                         </div>
 
                         <div class="col">
-                            <select name="state" id="stateid" onchange="Removevalidation('stateid')">
-                                <option value="0">select your state</option>
-                                <option value="1">a</option>
-                                <option value="2">b</option>
-                            </select>
+
+                            <?php
+                            $state_stmt = "SELECT `Id`, `CountryId`, `State` FROM `state` WHERE `IsDeleted`=0";
+                            // var_dump($state_stmt);
+                            $d1 = mysqli_query($con, $state_stmt);
+                            if (mysqli_num_rows($d1) > 0) {
+
+                            ?>
+
+                                <select name="state" id="stateid" onchange="Removevalidation('stateid')">
+                                    <option value="0">select your state</option>
+                                    <?php
+                                    while ($_result = mysqli_fetch_assoc($d1)) {
+                                        $state_id = $_result["Id"];
+                                        $state_na = $_result["State"];
+                                        $s_countryid = $result["CountryId"]
+
+                                    ?>
+                                        <option value="<?php echo $state_id ?>"><?php echo $state_na ?></option>
+                                    <?php
+                                    }
+
+                                    ?>
+                                </select>
+                            <?php
+                            }
+                            ?>
                         </div>
 
                     </div>
@@ -304,7 +347,7 @@ include('database.php');
 
             }
 
-            if(password.value != conpass.value){
+            if (password.value != conpass.value) {
                 alert("password and confirm password both are not mach!");
             }
 

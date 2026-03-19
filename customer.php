@@ -45,38 +45,65 @@ include('customer_header.php');
     <div class="row" style="gap:25px">
         <div class="col-3">
             <div class="row" style="flex-direction: column;gap: 20px;">
-                <div class="col row catagaries" style="background-color: #F1F1F1;border-radius:10px;height:520px;flex-direction: column;justify-content: center;align-content: center;align-items: center;gap: 20px;">
 
-                    <div class="col ca_titlemain" style="margin-top:15px; border-bottom:1px solid black;">
-                        <h1 style="font-size: 20px;">Categories</h1>
-                    </div>
+                <div class="col row" style="padding:0px;">
+                    <input type="search" name="search" id="search_id" placeholder="Search...." style="padding:5px 15px;border-radius:5px;border:1px solid black;">
+                </div>
 
-                    <div class="col ca_title" style="margin-top:15px;">
-                        <p style="font-size: 16px;margin-top:10px;">Clothes</p>
-                        <!-- <a href="#" style="font-size: 24px;">Categories</a> -->
-                    </div>
 
-                    <div class="col ca_title" style="margin-top:15px;">
-                        <p style="font-size: 16px;margin-top:10px;">Bags</p>
-                        <!-- <a href="#" style="font-size: 24px;">Categories</a> -->
-                    </div>
 
-                    <div class="col ca_title" style="margin-top:15px;">
-                        <p style="font-size: 16px;margin-top:10px;">Watches</p>
-                        <!-- <a href="#" style="font-size: 24px;">Categories</a> -->
-                    </div>
+                <div class="col row catagaries" style="background-color: #F1F1F1;border-radius:10px;">
 
-                    <div class="col ca_title" style="margin-top:15px;">
-                        <p style="font-size: 16px;margin-top:10px;">Make UP Prodctes</p>
-                        <!-- <a href="#" style="font-size: 24px;">Categories</a> -->
-                    </div>
+                    <select name="category" id="cate_id" style="padding:8px;background-color: #F1F1F1;border:none;">
+                        <option value="0">Select Category...</option>
 
-                    <div class="col ca_title" style="margin-top:15px;">
-                        <p style="font-size: 16px;margin-top:10px;">Shoes</p>
-                        <!-- <a href="#" style="font-size: 24px;">Categories</a> -->
-                    </div>
+                        <option value="1">a</option>
+
+                    </select>
 
                 </div>
+
+
+                <div class="col row" style="background-color: #F1F1F1;border-radius:10px;">
+
+                    <select name="brand" id="b_id" style="padding:8px;background-color: #F1F1F1;border:none;">
+                        <option value="0">Select Brand...</option>
+                        <option value="1">b</option>
+                    </select>
+
+                </div>
+
+
+                <div class="col row" style="background-color: #F1F1F1;border-radius:10px;gap:10px;flex-direction: column;align-content: center;justify-content: center;align-items: center;padding:10px;">
+
+                    <h5>Price</h5>
+                    <div class="col row">
+                        <div class="col">
+                            <h6>100 - 500</h6>
+                        </div>
+                        <div class="col-1"><input type="radio"></div>
+                    </div>
+
+                    <div class="col row">
+                        <div class="col">
+                            <h6>500 - 1000</h6>
+                        </div>
+                        <div class="col-1"><input type="radio"></div>
+                    </div>
+
+                    <div class="col row">
+                        <div class="col">
+                            <h6>1000 - Above</h6>
+                        </div>
+                        <div class="col-1"><input type="radio"></div>
+                    </div>
+                </div>
+
+
+
+
+
+
 
 
 
@@ -151,7 +178,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -175,7 +202,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -199,7 +226,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -228,7 +255,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -252,7 +279,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -276,7 +303,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -305,7 +332,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -329,7 +356,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -353,7 +380,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -382,7 +409,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -406,7 +433,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>
@@ -430,7 +457,7 @@ include('customer_header.php');
                         <div class="col"><button class="cart">ADD TO CART</button></div>
 
                         <div class="col">
-                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/icons8-heart-64.png" class="img-fluid"></div>
+                            <div class="col-3 heart_ic"><img src="assets/IMG/icons/heart.png" class="img-fluid"></div>
                         </div>
 
                     </div>

@@ -81,11 +81,11 @@ include('database.php');
 
                     <div class="col row" style="padding: 0px;">
                         <div class="col">
-                            <input type="date" name="dob" id="dob_id" onchange="Removevalidation('dob_id')">
+                            <input type="date" name="dob" id="dob_id" onchange="calculate_age()">
                         </div>
 
                         <div class="col-4" style="width: 15%;">
-                            <input type="text" name="age" id="ageid">
+                            <input type="text" name="age" id="ageid" readonly>
                         </div>
                         <!--.................................dob&age.........................................-->
 
@@ -278,12 +278,12 @@ include('database.php');
             }
 
 
-            if (dob.value == "") {
-                dob.style.border = "1px solid red";
-                dob.style.outline = "none";
-                dob.focus();
-                f = 1;
-            }
+            // if (dob.value == "") {
+            //     dob.style.border = "1px solid red";
+            //     dob.style.outline = "none";
+            //     dob.focus();
+            //     f = 1;
+            // }
 
             if (gender.value == "0") {
                 gender.style.border = "1px solid red";
@@ -358,6 +358,28 @@ include('database.php');
             }
 
         }
+
+
+       /*--..............................AGE_CALCULATION....................................*/
+
+
+           function calculate_age(){
+
+           var age =document.getElementById("ageid");
+           var dob =document.getElementById("dob_id").value;
+           var birthdate=new Date(dob);
+           var today= new Date();
+
+           var year = today.getFullYear() - birthdate.getFullYear();
+           var month = today.getMonth() - birthdate.getMonth();
+
+           if(month < 0){
+            year--;
+           }
+
+           age.value = year;
+
+           }
 
 
         /*--............................Removevalidation.......................................--*/

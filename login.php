@@ -14,53 +14,60 @@ include('database.php');
     <script src="assets/Bootsrap/bootstrap_js.js"></script>
 </head>
 
-<body class="body_area" style="height:710px;">
+<body>
 
     <form action="login_action.php" method="post" onsubmit="return valid()">
 
-        <div class="container login" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);display: flex;justify-content: center;">
-            <div class="row" style="justify-content: center;width:90%;padding: 30px;border-radius: 20px;">
+        <div class="container login" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
 
-
-
-                <div class="col row" style="flex-direction: column;">
-
-                    <div class="col inputfild" style="margin-bottom: 25px;">
-
-                        <p style="margin-bottom: 5px;color: white;">USERNAME :</p>
-
-                        <input type="text" name="username" id="user_id" oninput="removefunction('user_id')">
-                    </div>
-
-                    <!-- <div class="col inputfild" style="margin-bottom: 25px;">
-
-                        <p style="margin-bottom: 5px;color: white;">EMAIL :</p>
-
-                        <input type="email" name="Email" id="email_id" oninput="removefunction('email_id')">
-                    </div> -->
-
-                    <div class="col inputfild" style="margin-bottom: 25px;">
-                        <p style="margin-bottom: 5px;color: white;">PASSWORD :</p>
-
-                        <input type="password" name="password" id="password_id" oninput="removefunction('password_id')">
-                    </div>
+            <div class="col row" style="justify-content: center;border-radius:10px;padding:15px;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="col body_area" style="height: 856px;padding:0px;border-radius:10px;">
 
                 </div>
 
-                <div class="container">
-                    <div class="row" style="text-align: center;">
-                        <div class="col">
-                            <button class="loginbtn" name="loginbtn" type="submit">Login</button>
+                <div class="col row" style="justify-content: center;width:90%;padding: 30px;padding:0px;">
+
+
+
+                    <div class="col row" style="flex-direction: column;flex-direction: column;height: 247px;margin-top: 10%;">
+
+                        <div class="col inputfild" style="margin-bottom: 25px;">
+
+                            <p style="margin-bottom: 5px;color:black;">USERNAME :</p>
+
+                            <input type="text" name="username" id="user_id" oninput="removefunction('user_id')">
                         </div>
-                    </div>
-                </div>
 
+
+                        <div class="col inputfild" style="margin-bottom: 25px;">
+                            <p style="margin-bottom: 5px;color: black;">PASSWORD :</p>
+
+                            <input type="password" name="password" id="password_id" oninput="removefunction('password_id')">
+                        </div>
+
+
+                        <div class="container">
+                            <div class="row" style="text-align: center;">
+                                <div class="col">
+                                    <button class="loginbtn" name="loginbtn" type="submit">Login</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
             </div>
+
+
+        </div>
     </form>
 
-    </div>
 
-    <div class="container-fluid lo_overlay"></div>
+
+    <!-- <div class="container-fluid lo_overlay"></div> -->
 
     <!--.........................................script..........................................-->
 
@@ -103,11 +110,11 @@ include('database.php');
 
         }
 
-        function removefunction(Id){
-        // alert("remove");
-        var fild_id=document.getElementById(Id);
-        fild_id.style.border="1px solid black";
-        fild_id.style.outline="none";
+        function removefunction(Id) {
+            // alert("remove");
+            var fild_id = document.getElementById(Id);
+            fild_id.style.border = "1px solid black";
+            fild_id.style.outline = "none";
 
         }
     </script>

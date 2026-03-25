@@ -1,22 +1,32 @@
 <?php
+session_start();
+
+if ($_SESSION["Id"] != "") {
+    $id = $_SESSION["Id"];
+} else {
+    header('location:login.php');
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="assets/CSS/bootstrap.css" rel="stylesheet">
-    <link href="assets/CSS/css.css" rel="stylesheet">
-    <script src="assets/Bootsrap/bootstrap_js.js"></script>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="assets/CSS/bootstrap.css" rel="stylesheet">
+        <link href="assets/CSS/css.css" rel="stylesheet">
+        <script src="assets/Bootsrap/bootstrap_js.js"></script>
+    </head>
 </head>
-</head>
+
 <body>
 
-    <div class="container-fluid bg-dark h-50 clearfix">&nbsp;</div>
+    <div class="container-fluid bg-dark h-50 clearfix" style="background-color:black;">&nbsp;</div>
 
     <div class="container mt-4 pb-5">
         <div class="row" style="gap: 156px;">
@@ -29,7 +39,7 @@
                 <a href="#">About</a>
                 <a href="#">Blog</a>
                 <a href="#">Contact</a>
-                
+
 
 
             </div>
@@ -73,4 +83,3 @@
 
         </div>
     </div>
-    

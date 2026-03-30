@@ -7,6 +7,7 @@
 
 }
 
+
 .signup {
     color: white;
     background-color: black;
@@ -308,7 +309,7 @@
 
 .body_area {
     background-image: url(../IMG/login_bg1.jfif);
-    background-position: center;
+    /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -325,32 +326,43 @@
 
 /*--.............................Registration_css.........................................--*/
 
-.registration_area {
+/* .registration_area {
     background-image: url(../IMG/login_bg.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 800px;
+} */
+
+.body_area1 {
+    background-image: url(../IMG/login_bg1.jfif);
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .re-input-1 input {
     width: 100%;
     padding: 7px 5px 7px 5px;
+    border: 1px solid black;
 }
 
 .re-input-2 input {
     width: 100%;
     padding: 7px 5px 7px 5px;
+    border: 1px solid black;
 }
 
 .re-input-1 select {
     width: 100%;
     padding: 7px 5px 7px 5px;
+    border: 1px solid black;
 }
 
 .re-input-1 textarea {
     width: 100%;
     padding: 7px 5px 7px 5px;
+    border: 1px solid black;
 }
 
 .signupbtn {

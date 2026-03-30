@@ -29,7 +29,7 @@ if ($_SESSION["Id"] != "") {
     <div class="container-fluid bg-dark h-50 clearfix" style="background-color:black;">&nbsp;</div>
 
     <div class="container mt-4 pb-5">
-        <div class="row" style="gap: 156px;">
+        <div class="row" style="gap: 67px;">
             <!--..........................mennu........................-->
             <div class="col-5 p-0 mennu">
 
@@ -73,13 +73,10 @@ if ($_SESSION["Id"] != "") {
 
 
 
-            <!-- ..........................buttones........................
+            <!-- ..........................buttones........................ -->
             <div class="col-1 p-0">
-                <div class="col-12 ps-5"><button class="signup">SignUp</button></div>
+                <div class="col-12" style="text-align: end;"><a href="#"><button class="signup">Logout</button></a></div>
             </div>
-            <div class="col-1 p-0">
-                <div class="col-12 ps-4"><button class="Login">Login</button></div>
-            </div> -->
 
         </div>
     </div>

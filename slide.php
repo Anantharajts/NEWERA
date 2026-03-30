@@ -185,7 +185,7 @@
       </div>
     </header>
     <div class="slider-container mb-8">
-      <div class="slider-track" id="carousel" style="transform: translateX(0%); width: 75%;" >
+      <div class="slider-track" id="carousel" style="transform: translateX(0%); width: 75%;">
         <div class="slide">
           <article class="card">
             <div class="card-image">
@@ -259,191 +259,39 @@
         </div>
       </div>
     </div>
-    <!-- <div class="flex items-center justify-center gap-2" id="dotsContainer">
-      <button class="dot active" aria-label="Go to slide 1"></button>
-      <button class="dot " aria-label="Go to slide 2"></button>
-      <button class="dot " aria-label="Go to slide 3"></button>
-      <button class="dot " aria-label="Go to slide 4"></button></div> -->
-    <!-- Carousel -->
-    <!-- <div class="slider-container mb-8">
-      <div class="slider-track" id="sliderTrack"> -->
-        <!-- Slides injected by JS -->
-      <!-- </div>
-    </div> -->
 
-    <!-- Dots -->
-    <!-- <div class="flex items-center justify-center gap-2" id="dotsContainer"></div> -->
-  </main>
-
-  <script>
-    // // Data
-    // const items = [{
-    //     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80',
-    //     title: 'Aurora Series',
-    //     category: 'Portrait'
-    //   },
-    //   {
-    //     image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80',
-    //     title: 'Urban Edge',
-    //     category: 'Editorial'
-    //   },
-    //   {
-    //     image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=80',
-    //     title: 'Natural Light',
-    //     category: 'Fashion'
-    //   },
-    //   {
-    //     image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=600&q=80',
-    //     title: 'Mono Study',
-    //     category: 'Artistic'
-    //   },
-    //   {
-    //     image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80',
-    //     title: 'Motion Blur',
-    //     category: 'Experimental'
-    //   },
-    //   {
-    //     image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80',
-    //     title: 'Studio Session',
-    //     category: 'Commercial'
-    //   },
-    // ];
-
-    // State
-    // let currentIndex = 0;
-    // let slidesPerView = 1;
-
-    // // Elements
-    // const track = document.getElementById('sliderTrack');
-    // const dotsContainer = document.getElementById('dotsContainer');
-    // const prevBtn = document.getElementById('prevBtn');
-    // const nextBtn = document.getElementById('nextBtn');
-
-    // // Calculate slides per view based on viewport
-    // function calcSlidesPerView() {
-    //   if (window.innerWidth >= 1024) return 3;
-    //   if (window.innerWidth >= 768) return 2;
-    //   return 1;
-    // }
-
-    // Render slides
-    // function renderSlides() {
-    //   track.innerHTML = items.map(item => `
-    //     <div class="slide">
-    //       <article class="card">
-    //         <div class="card-image">
-    //           <img src="${item.image}" alt="${item.title}" loading="lazy">
-    //         </div>
-    //         <div class="p-5">
-    //           <p class="text-xs font-medium tracking-wider uppercase mb-1" style="color: var(--muted);">${item.category}</p>
-    //           <h3 class="font-display text-lg font-medium">${item.title}</h3>
-    //         </div>
-    //       </article>
-    //     </div>
-    //   `).join('');
-    // }
-
-    // Render dots
-  //   function renderDots() {
-  //     slidesPerView = calcSlidesPerView();
-  //     const maxIndex = Math.max(0, items.length - slidesPerView);
-
-  //     dotsContainer.innerHTML = '';
-  //     for (let i = 0; i <= maxIndex; i++) {
-  //       const dot = document.createElement('button');
-  //       dot.className = `dot ${i === currentIndex ? 'active' : ''}`;
-  //       dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-  //       dot.addEventListener('click', () => goToSlide(i));
-  //       dotsContainer.appendChild(dot);
-  //     }
-  //   }
-
-  //   // Update slider position
-  //   function updateSlider() {
-  //     slidesPerView = calcSlidesPerView();
-  //     const maxIndex = Math.max(0, items.length - slidesPerView);
-  //     currentIndex = Math.min(currentIndex, maxIndex);
-
-  //     const offset = currentIndex * (100 / slidesPerView);
-  //     track.style.transform = `translateX(-${offset}%)`;
-
-  //     // Update dots
-  //     const dots = dotsContainer.querySelectorAll('.dot');
-  //     dots.forEach((dot, i) => {
-  //       dot.classList.toggle('active', i === currentIndex);
-  //     });
-
-  //     // Update buttons
-  //     prevBtn.disabled = currentIndex === 0;
-  //     nextBtn.disabled = currentIndex >= maxIndex;
-  //   }
-
-  //   // Navigation
-  //   function goToSlide(index) {
-  //     currentIndex = index;
-  //     updateSlider();
-  //   }
-
-  //   function nextSlide() {
-  //     const maxIndex = items.length - slidesPerView;
-  //     if (currentIndex < maxIndex) {
-  //       currentIndex++;
-  //       updateSlider();
-  //     }
-  //   }
-
-  //   function prevSlide() {
-  //     if (currentIndex > 0) {
-  //       currentIndex--;
-  //       updateSlider();
-  //     }
-  //   }
-
-  //   // Init
-  //   function init() {
-  //     // renderSlides();
-  //     renderDots();
-  //     updateSlider();
-
-  //     prevBtn.addEventListener('click', prevSlide);
-  //     nextBtn.addEventListener('click', nextSlide);
-
-  //     window.addEventListener('resize', () => {
-  //       renderDots();
-  //       updateSlider();
-  //     });
-  //   }
-
-  //   init();
-  // </script>
 
     <script>
-        const carousel = document.getElementById("carousel");
+      const carousel = document.getElementById("carousel");
 
-        function nextSlide() {
-            const firstImage = carousel.children[0];
-            carousel.style.transition = "transform 0.5s ease-in-out";
-            carousel.style.transform = "translateX(-20%)"; // Move left
+      function nextSlide() {
+        const slideWidth = carousel.children[0].offsetWidth;
 
-            setTimeout(() => {
-                carousel.appendChild(firstImage); // Move first to last
-                carousel.style.transition = "none";
-                carousel.style.transform = "translateX(0)"; // Reset position
-            }, 500);
-        }
+        carousel.style.transition = "transform 0.5s ease-in-out";
+        carousel.style.transform = `translateX(-${slideWidth}px)`;
 
-        function prevSlide() {
-            const lastImage = carousel.children[carousel.children.length - 1];
-            carousel.style.transition = "none";
-            carousel.insertBefore(lastImage, carousel.firstChild); // Move last to first
-            carousel.style.transform = "translateX(-20%)"; // Move right
+        carousel.addEventListener("transitionend", function handler() {
+          carousel.appendChild(carousel.firstElementChild);
+          carousel.style.transition = "none";
+          carousel.style.transform = "translateX(0)";
+          carousel.removeEventListener("transitionend", handler);
+        });
+      }
 
-            setTimeout(() => {
-                carousel.style.transition = "transform 0.5s ease-in-out";
-                carousel.style.transform = "translateX(0)"; // Reset position
-            }, 10);
-        }
+      function prevSlide() {
+        const slideWidth = carousel.children[0].offsetWidth;
+
+        carousel.style.transition = "none";
+        carousel.insertBefore(carousel.lastElementChild, carousel.firstElementChild);
+        carousel.style.transform = `translateX(-${slideWidth}px)`;
+
+        requestAnimationFrame(() => {
+          carousel.style.transition = "transform 0.5s ease-in-out";
+          carousel.style.transform = "translateX(0)";
+        });
+      }
     </script>
+
 
 </body>
 

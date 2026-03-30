@@ -15,185 +15,203 @@ include('database.php');
 </head>
 
 <!-- style="filter: blur(2px);" -->
+<!-- class="registration_area" -->
 
-<body class="registration_area">
+<body>
 
     <!--...................................registration........................................-->
 
-    <div class="container registration">
 
 
 
-        <div class="col-12 col-md-12 col-lg-5 row" style="padding: 30px;border-radius: 20px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);display: flex;justify-content: center;align-items: center;">
+    <div class="container login" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
 
-            <div class="col-6 w_alert" id="alert-warning" style="position: absolute;top:10%;left:50%;transform:translate(-50%,-50%);width:100%;"></div>
+        <div class="col row" style="justify-content: center;border-radius:10px;padding:15px;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;align-items: center;">
+            <div class="col body_area1" style="height:891px;padding:0px;border-radius:10px;">
 
-            <form action="Registration_Action.php" method="post" onsubmit="return valid()">
+            </div>
 
-                <!--............login_entry..............-->
+            <div class="col row" style="justify-content: center;width:90%;flex-direction: column;">
 
-                <div class="col row re-input-2" style="display: flex;flex-direction: column;align-content: center;justify-content: center;gap: 20px;padding-bottom: 25px;border-bottom: 1px solid white;align-items: center;">
 
-                    <div class="col" style="margin-bottom:0px;color:white;">
-                        <h1>Registration</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit praesentium rerum ratione voluptatum minima nihil quas ex alias odit consequatur.</p>
-                    </div>
 
-                    <div class="col">
-                        <input type="text" name="username" id="usernameid" oninput="Removevalidation('usernameid')" placeholder="User Name*">
-                    </div>
+                <div class="col">
 
-                    <div class="col">
-                        <input type="text" name="password" id="passwordid" oninput="Removevalidation('passwordid')" placeholder="Password*">
-                    </div>
+                    <div class="col-12 col-md-12 col-lg-5 row" style="padding:10px;border-radius: 20px;width: 107%;display: flex;justify-content: center;align-items: center;">
 
-                    <div class="col">
-                        <input type="text" name="conpassword" id="conpasswordid" oninput="Removevalidation('conpasswordid')" placeholder="Conform Password*">
+                        <div class="col-6 w_alert" id="alert-warning" style="position: absolute;top:10%;left:50%;transform:translate(-50%,-50%);width:100%;"></div>
+
+                        <form action="Registration_Action.php" method="post" onsubmit="return valid()">
+
+                            <!--............login_entry..............-->
+
+                            <div class="col row re-input-2" style="display: flex;flex-direction: column;align-content: center;justify-content: center;gap: 20px;padding-bottom: 25px;border-bottom: 1px solid white;align-items: center;">
+
+                                <div class="col" style="margin-bottom:0px;color:white;">
+                                    <h1 style="color: black;">Registration</h1>
+                                    <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit praesentium rerum ratione voluptatum minima nihil quas ex alias odit consequatur.</p>
+                                </div>
+
+                                <div class="col">
+                                    <input type="text" name="username" id="usernameid" oninput="Removevalidation('usernameid')" placeholder="User Name*">
+                                </div>
+
+                                <div class="col">
+                                    <input type="text" name="password" id="passwordid" oninput="Removevalidation('passwordid')" placeholder="Password*">
+                                </div>
+
+                                <div class="col">
+                                    <input type="text" name="conpassword" id="conpasswordid" oninput="Removevalidation('conpasswordid')" placeholder="Conform Password*">
+                                </div>
+
+                            </div>
+
+                            <!--.............registration_entry.........................-->
+
+                            <div class="col row re-input-1" style="display: flex;flex-direction: column;align-content: center;justify-content: center;gap: 20px;padding-bottom: 45px;padding-top: 25px;align-items: center;">
+
+                                <div class="col row" style="padding: 0px;">
+                                    <div class="col">
+                                        <input type="text" name="f_name" id="f_nameid" oninput="Removevalidation('f_nameid')" placeholder="First Name*">
+                                    </div>
+
+                                    <div class="col">
+                                        <input type="text" name="l_name" id="l_nameid" oninput="Removevalidation('l_nameid')" placeholder="Last Name*">
+                                    </div>
+                                </div>
+
+                                <div class="col row" style="padding: 0px;">
+                                    <div class="col">
+                                        <input type="text" name="phone" id="phoneid" oninput="Removevalidation('phoneid')" placeholder="Phone No:*">
+                                    </div>
+
+                                    <div class="col">
+                                        <input type="text" name="whatsapp" id="whatsappid" oninput="Removevalidation('whatsappid')" placeholder="Whatsapp No:*">
+                                    </div>
+                                </div>
+
+                                <!--.................................dob&age.........................................-->
+
+                                <div class="col row" style="padding: 0px;">
+                                    <div class="col">
+                                        <input type="date" name="dob" id="dob_id" onchange="calculate_age()" oninput="Removevalidation('dob_id')">
+                                    </div>
+
+                                    <div class="col-4" style="width: 15%;">
+                                        <input type="text" name="age" id="ageid" readonly>
+                                    </div>
+                                    <!--.................................dob&age.........................................-->
+
+                                    <div class="col">
+                                        <select name="gender" id="genderid" onchange="Removevalidation('genderid')">
+
+                                            <option value="0">select your gender</option>
+                                            <option value="1">Mail</option>
+                                            <option value="2">Femail</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <textarea name="address" id="addressid" oninput="Removevalidation('addressid')" placeholder="Address"></textarea>
+                                </div>
+
+                                <div class="col">
+                                    <input type="email" name="email" id="emailid" oninput="Removevalidation('emailid')" placeholder="Email*">
+
+                                </div>
+
+                                <div class="col row" style="padding: 0px;">
+
+                                    <div class="col">
+                                        <?php
+                                        $country_stmt = "SELECT `Id`, `Country` FROM `country` WHERE `IsDeleted`=0";
+                                        // var_dump($country_stmt);
+                                        $d = mysqli_query($con, $country_stmt);
+                                        if (mysqli_num_rows($d) > 0) {
+
+                                        ?>
+                                            <select name="country" id="countryid" onchange="Removevalidation('countryid')">
+                                                <option value="0">select your country</option>
+                                                <?php
+                                                while ($result = mysqli_fetch_assoc($d)) {
+                                                    $countryid = $result["Id"];
+                                                    $country_na = $result["Country"];
+
+                                                ?>
+                                                    <option value="<?php echo $countryid ?>"><?php echo $country_na ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+
+                                    <div class="col">
+
+                                        <?php
+                                        $state_stmt = "SELECT `Id`, `CountryId`, `State` FROM `state` WHERE `IsDeleted`=0";
+                                        // var_dump($state_stmt);
+                                        $d1 = mysqli_query($con, $state_stmt);
+                                        if (mysqli_num_rows($d1) > 0) {
+
+                                        ?>
+
+                                            <select name="state" id="stateid" onchange="Removevalidation('stateid')">
+                                                <option value="0">select your state</option>
+                                                <?php
+                                                while ($_result = mysqli_fetch_assoc($d1)) {
+                                                    $state_id = $_result["Id"];
+                                                    $state_na = $_result["State"];
+                                                    $s_countryid = $result["CountryId"]
+
+                                                ?>
+                                                    <option value="<?php echo $state_id ?>"><?php echo $state_na ?></option>
+                                                <?php
+                                                }
+
+                                                ?>
+                                            </select>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+
+                                </div>
+
+                                <div class="col row" style="padding: 0px;">
+
+                                    <div class="col">
+                                        <input type="text" name="c_t" id="c_t_id" oninput="Removevalidation('c_t_id')" placeholder="City/Town*">
+                                    </div>
+
+                                    <div class="col">
+                                        <input type="text" name="zipcode" id="zipcodeid" oninput="Removevalidation('zipcodeid')" placeholder="Zipcode*">
+                                        <!--  -->
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col" style="text-align: center;"><button style="width: 100%;" class="signupbtn" type="submit" name="sign_up">Sign Up</button></div>
+
+                        </form>
+
                     </div>
 
                 </div>
 
-                <!--.............registration_entry.........................-->
 
-                <div class="col row re-input-1" style="display: flex;flex-direction: column;align-content: center;justify-content: center;gap: 20px;padding-bottom: 45px;padding-top: 25px;align-items: center;">
-
-                    <div class="col row" style="padding: 0px;">
-                        <div class="col">
-                            <input type="text" name="f_name" id="f_nameid" oninput="Removevalidation('f_nameid')" placeholder="First Name*">
-                        </div>
-
-                        <div class="col">
-                            <input type="text" name="l_name" id="l_nameid" oninput="Removevalidation('l_nameid')" placeholder="Last Name*">
-                        </div>
-                    </div>
-
-                    <div class="col row" style="padding: 0px;">
-                        <div class="col">
-                            <input type="text" name="phone" id="phoneid" oninput="Removevalidation('phoneid')" placeholder="Phone No:*">
-                        </div>
-
-                        <div class="col">
-                            <input type="text" name="whatsapp" id="whatsappid" oninput="Removevalidation('whatsappid')" placeholder="Whatsapp No:*">
-                        </div>
-                    </div>
-
-                    <!--.................................dob&age.........................................-->
-
-                    <div class="col row" style="padding: 0px;">
-                        <div class="col">
-                            <input type="date" name="dob" id="dob_id" onchange="calculate_age()">
-                        </div>
-
-                        <div class="col-4" style="width: 15%;">
-                            <input type="text" name="age" id="ageid" readonly>
-                        </div>
-                        <!--.................................dob&age.........................................-->
-
-                        <div class="col">
-                            <select name="gender" id="genderid" onchange="Removevalidation('genderid')">
-
-                                <option value="0">select your gender</option>
-                                <option value="1">Mail</option>
-                                <option value="2">Femail</option>
-
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <textarea name="address" id="addressid" oninput="Removevalidation('addressid')" placeholder="Address"></textarea>
-                    </div>
-
-                    <div class="col">
-                        <input type="email" name="email" id="emailid" oninput="Removevalidation('emailid')" placeholder="Email*">
-
-                    </div>
-
-                    <div class="col row" style="padding: 0px;">
-
-                        <div class="col">
-                            <?php
-                            $country_stmt = "SELECT `Id`, `Country` FROM `country` WHERE `IsDeleted`=0";
-                            // var_dump($country_stmt);
-                            $d = mysqli_query($con, $country_stmt);
-                            if (mysqli_num_rows($d) > 0) {
-
-                            ?>
-                                <select name="country" id="countryid" onchange="Removevalidation('countryid')">
-                                    <option value="0">select your country</option>
-                                    <?php
-                                    while ($result = mysqli_fetch_assoc($d)) {
-                                        $countryid = $result["Id"];
-                                        $country_na = $result["Country"];
-
-                                    ?>
-                                        <option value="<?php echo $countryid ?>"><?php echo $country_na ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
-                            <?php
-                            }
-                            ?>
-                        </div>
-
-                        <div class="col">
-
-                            <?php
-                            $state_stmt = "SELECT `Id`, `CountryId`, `State` FROM `state` WHERE `IsDeleted`=0";
-                            // var_dump($state_stmt);
-                            $d1 = mysqli_query($con, $state_stmt);
-                            if (mysqli_num_rows($d1) > 0) {
-
-                            ?>
-
-                                <select name="state" id="stateid" onchange="Removevalidation('stateid')">
-                                    <option value="0">select your state</option>
-                                    <?php
-                                    while ($_result = mysqli_fetch_assoc($d1)) {
-                                        $state_id = $_result["Id"];
-                                        $state_na = $_result["State"];
-                                        $s_countryid = $result["CountryId"]
-
-                                    ?>
-                                        <option value="<?php echo $state_id ?>"><?php echo $state_na ?></option>
-                                    <?php
-                                    }
-
-                                    ?>
-                                </select>
-                            <?php
-                            }
-                            ?>
-                        </div>
-
-                    </div>
-
-                    <div class="col row" style="padding: 0px;">
-
-                        <div class="col">
-                            <input type="text" name="c_t" id="c_t_id" oninput="Removevalidation('c_t_id')" placeholder="City/Town*">
-                        </div>
-
-                        <div class="col">
-                            <input type="text" name="zipcode" id="zipcodeid" oninput="Removevalidation('zipcodeid')" placeholder="Zipcode*">
-                            <!--  -->
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col" style="text-align: center;"><button class="signupbtn" type="submit" name="sign_up">Sign Up</button></div>
-
-            </form>
-
+            </div>
         </div>
+
 
     </div>
 
-
-    <div class="container-fluid overlay"></div>
 
 
     <!--...............script..................-->
@@ -278,12 +296,12 @@ include('database.php');
             }
 
 
-            // if (dob.value == "") {
-            //     dob.style.border = "1px solid red";
-            //     dob.style.outline = "none";
-            //     dob.focus();
-            //     f = 1;
-            // }
+            if (dob.value == "") {
+                dob.style.border = "1px solid red";
+                dob.style.outline = "none";
+                dob.focus();
+                f = 1;
+            }
 
             if (gender.value == "0") {
                 gender.style.border = "1px solid red";
@@ -360,26 +378,26 @@ include('database.php');
         }
 
 
-       /*--..............................AGE_CALCULATION....................................*/
+        /*--..............................AGE_CALCULATION....................................*/
 
 
-           function calculate_age(){
+        function calculate_age() {
 
-           var age =document.getElementById("ageid");
-           var dob =document.getElementById("dob_id").value;
-           var birthdate=new Date(dob);
-           var today= new Date();
+            var age = document.getElementById("ageid");
+            var dob = document.getElementById("dob_id").value;
+            var birthdate = new Date(dob);
+            var today = new Date();
 
-           var year = today.getFullYear() - birthdate.getFullYear();
-           var month = today.getMonth() - birthdate.getMonth();
+            var year = today.getFullYear() - birthdate.getFullYear();
+            var month = today.getMonth() - birthdate.getMonth();
 
-           if(month < 0){
-            year--;
-           }
+            if (month < 0) {
+                year--;
+            }
 
-           age.value = year;
+            age.value = year;
 
-           }
+        }
 
 
         /*--............................Removevalidation.......................................--*/

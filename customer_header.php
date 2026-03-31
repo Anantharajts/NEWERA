@@ -75,7 +75,7 @@ if ($_SESSION["Id"] != "") {
 
             <!-- ..........................buttones........................ -->
             <div class="col-1 p-0">
-                <div class="col-12" style="text-align: end;"><a href="#"><button class="signup">Logout</button></a></div>
+                <div class="col-12" style="text-align: end;"><a href="logout_page.php"><button class="signup">Logout</button></a></div>
             </div>
 
         </div>

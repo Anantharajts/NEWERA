@@ -4,7 +4,7 @@ include('customer_header.php');
 ?>
 
 <style>
-    label {
+    /* label {
         background-color: black;
         display: flex;
         align-items: center;
@@ -81,6 +81,40 @@ include('customer_header.php');
     input:checked+label .action span.option-2 {
         transform: translate(0px, 0%);
         opacity: 1;
+    } */
+
+    .fav-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #2c2c2c;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .fav-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .heart {
+        color: red;
+        font-size: 18px;
+        transition: transform 0.3s ease;
+    }
+
+    .fav-btn.active .heart {
+        transform: scale(1.3);
+    }
+
+    .text {
+        white-space: nowrap;
     }
 </style>
 
@@ -135,23 +169,64 @@ include('customer_header.php');
 
                 <div class="col row catagaries" style="background-color: #F1F1F1;border-radius:10px;">
 
-                    <select name="category" id="cate_id" style="padding:8px;background-color: #F1F1F1;border:none;">
-                        <option value="0">Select Category...</option>
+                    <?php
+                    $stment_cate = "SELECT `Id`, `Name` FROM `category` WHERE `IsDeleted`=0";
+                    // var_dump($stment_cate);
+                    $d_c = mysqli_query($con, $stment_cate);
+                    if (mysqli_num_rows($d_c) > 0) {
 
-                        <option value="1">a</option>
+                    ?>
 
-                    </select>
+                        <select name="category" id="cate_id" style="padding:8px;background-color: #F1F1F1;border:none;">
+                            <option value="0">Select Category...</option>
+                            <?php
+                            while ($_result = mysqli_fetch_assoc($d_c)) {
+
+                                $cate_id = $_result["Id"];
+                                $cate_name = $_result["Name"];
+
+                            ?>
+                                <option value="<?php echo $cate_id; ?>"><?php echo $cate_name; ?></option>
+
+                            <?php
+                            }
+                            ?>
+
+                        </select>
+                    <?php
+                    }
+                    ?>
 
                 </div>
 
 
                 <div class="col row" style="background-color: #F1F1F1;border-radius:10px;">
 
-                    <select name="brand" id="b_id" style="padding:8px;background-color: #F1F1F1;border:none;">
-                        <option value="0">Select Brand...</option>
-                        <option value="1">b</option>
-                    </select>
 
+                    <?php
+                    $stment_brand = "SELECT `Id`, `Name` FROM `brand` WHERE `IsDeleted`=0";
+                    // var_dump($stment_brand);
+                    $d_b = mysqli_query($con, $stment_brand);
+                    if (mysqli_num_rows($d_b) > 0) {
+                    ?>
+
+                        <select name="brand" id="b_id" style="padding:8px;background-color: #F1F1F1;border:none;">
+                            <option value="0">Select Brand...</option>
+                            <?php
+                            while ($result = mysqli_fetch_assoc($d_b)) {
+
+                                $bran_id = $result["Id"];
+                                $bran_name = $result["Name"];
+
+                            ?>
+                                <option value="<?php echo $bran_id; ?>"><?php echo $bran_name; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    <?php
+                    }
+                    ?>
                 </div>
 
 
@@ -179,12 +254,6 @@ include('customer_header.php');
                         <div class="col-1"><input type="radio"></div>
                     </div>
                 </div>
-
-
-
-
-
-
 
 
 
@@ -238,445 +307,70 @@ include('customer_header.php');
 
         <!--...............................................productsection.............................................-->
 
-        <div class="col">
+        <div class="col grid-contaniner" style="display: grid;grid-template-columns: repeat(3,minmax(300px,1fr));gap: 20px;justify-content: center;">
 
-            <div class="col row" style="gap: 20px;margin-bottom:35px;">
+            <!-- <div class="col row" style="gap: 20px;margin-bottom:35px;"> -->
 
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
+            <?php
+            $stmt_product = "SELECT `Id`, `Name`,`Image`, `Price` FROM `product_add` WHERE  `IsDeleted`=0";
+            // var_dump($stmt_product);
+            $d_product = mysqli_query($con, $stmt_product);
+            if (mysqli_num_rows($d_product) > 0) {
+                while ($result_1 = mysqli_fetch_assoc($d_product)) {
+                    $prodcut_id = $result_1["Id"];
+                    $prodcut_name = $result_1["Name"];
+                    $prodcut_img = $result_1["Image"];
+                    $prodcut_price = $result_1["Price"];
+            ?>
+
+
+                    <div class="col">
+                        <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;">
+                            <div class="col"><img src="assets/IMG/dress/<?php echo $prodcut_img; ?>" class="img-fluid"></div>
+                        </div>
+                        <div class="row mt-2" style="text-align: center;gap: 35px;">
+                            <div class="col row3_tx">
+                                <p><?php echo $prodcut_name; ?></p>
+                            </div>
+
+                            <div class="col row3_price">
+                                <p><?php echo $prodcut_price; ?>/-</p>
+                            </div>
+
                         </div>
 
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
+                        <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
+                            <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
 
+                            <div class="col">
+
+                                <!-- <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
+                                <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                    <div class="action">
+                                        <span class="option-1">Add to Favorites</span>
+                                        <span class="option-2">Added to Favorites</span>
+                                    </div>
+                                </label> -->
+                                <button class="fav-btn" id="favBtn">
+                                    <span class="heart">❤</span>
+                                    <span class="text">Add to Favorites</span>
+                                </button>
+
+                            </div>
+
+                        </div>
                     </div>
 
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
+            <?php
+                }
+            }
+            ?>
 
-                        <div class="col">
 
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-
-
-            <div class="col row" style="gap: 20px;margin-bottom:35px;">
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-
-
-            <div class="col row" style="gap: 20px;margin-bottom:35px">
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-
-
-            <div class="col row" style="gap: 20px;margin-bottom:35px;">
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;"></div>
-                    <div class="row mt-2" style="text-align: center;gap: 35px;">
-                        <div class="col row3_tx">
-                            <p>prodact name</p>
-                        </div>
-
-                        <div class="col row3_price">
-                            <p>$150/-</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                        <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                        <div class="col">
-
-                            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                            <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                                <div class="action">
-                                    <span class="option-1">Add to Favorites</span>
-                                    <span class="option-2">Added to Favorites</span>
-                                </div>
-                            </label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
+            <!-- </div> -->
 
 
         </div>
@@ -692,6 +386,23 @@ include('customer_header.php');
 
 
 </div>
+
+<script>
+
+    const favBtn = document.getElementById("favBtn");
+
+favBtn.addEventListener("click", () => {
+  favBtn.classList.toggle("active");
+
+  const text = favBtn.querySelector(".text");
+
+  if (favBtn.classList.contains("active")) {
+    text.textContent = "Added to Favorites";
+  } else {
+    text.textContent = "Add to Favorites";
+  }
+});
+</script>
 
 
 

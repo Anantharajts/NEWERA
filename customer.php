@@ -83,20 +83,22 @@ include('customer_header.php');
         opacity: 1;
     } */
 
-    .fav-btn {
+    /* .fav-btn {
         display: flex;
-        align-items: center;
-        gap: 10px;
-        background: #2c2c2c;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 16px;
-        cursor: pointer;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-    }
+align-items: center;
+gap: 10px;
+background: #000000;
+color: white;
+border: none;
+padding: 6px 20px;
+border-radius: 5px;
+width: 100%;
+font-size: 16px;
+cursor: pointer;
+justify-content: center;
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+transition: all 0.3s ease;
+    } */
 
     .fav-btn:hover {
         transform: translateY(-2px);
@@ -157,12 +159,12 @@ include('customer_header.php');
 
 <div class="container" style="margin-bottom: 30px;">
 
-    <div class="row" style="gap:25px">
+    <div class="row" style="gap:25px;">
         <div class="col-3">
             <div class="row" style="flex-direction: column;gap: 20px;">
 
                 <div class="col row" style="padding:0px;">
-                    <input type="search" name="search" id="search_id" placeholder="Search...." style="padding:5px 15px;border-radius:5px;border:1px solid black;display:block;width:100%;">
+                    <input type="search" name="search" id="search_id" oninput="loadproducts()" placeholder="Search...." style="padding:5px 15px;border-radius:5px;border:1px solid black;display:block;width:100%;">
                 </div>
 
 
@@ -177,7 +179,7 @@ include('customer_header.php');
 
                     ?>
 
-                        <select name="category" id="cate_id" style="padding:8px;background-color: #F1F1F1;border:none;">
+                        <select name="category" id="cate_id" onchange="loadproducts()" style="padding:8px;background-color: #F1F1F1;border:none;">
                             <option value="0">Select Category...</option>
                             <?php
                             while ($_result = mysqli_fetch_assoc($d_c)) {
@@ -210,7 +212,7 @@ include('customer_header.php');
                     if (mysqli_num_rows($d_b) > 0) {
                     ?>
 
-                        <select name="brand" id="b_id" style="padding:8px;background-color: #F1F1F1;border:none;">
+                        <select name="brand" id="b_id" onchange="loadproducts()" style="padding:8px;background-color: #F1F1F1;border:none;">
                             <option value="0">Select Brand...</option>
                             <?php
                             while ($result = mysqli_fetch_assoc($d_b)) {
@@ -237,21 +239,21 @@ include('customer_header.php');
                         <div class="col">
                             <h6>100 - 500</h6>
                         </div>
-                        <div class="col-1"><input type="radio"></div>
+                        <div class="col-1"><input type="radio" name="click_1" id="click1" value="1" onclick="loadproducts()"></div>
                     </div>
 
                     <div class="col row">
                         <div class="col">
                             <h6>500 - 1000</h6>
                         </div>
-                        <div class="col-1"><input type="radio"></div>
+                        <div class="col-1"><input type="radio" name="click_1" id="click2" value="2" onclick="loadproducts()"></div>
                     </div>
 
                     <div class="col row">
                         <div class="col">
                             <h6>1000 - Above</h6>
                         </div>
-                        <div class="col-1"><input type="radio"></div>
+                        <div class="col-1"><input type="radio" name="click_1" id="click3" value="3" onclick="loadproducts()"></div>
                     </div>
                 </div>
 
@@ -307,7 +309,7 @@ include('customer_header.php');
 
         <!--...............................................productsection.............................................-->
 
-        <div class="col grid-contaniner" style="display: grid;grid-template-columns: repeat(3,minmax(300px,1fr));gap: 20px;justify-content: center;">
+        <div class="col-8 grid-contaniner" style="display: grid;grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );gap: 20px;justify-content: center;">
 
             <!-- <div class="col row" style="gap: 20px;margin-bottom:35px;"> -->
 
@@ -324,44 +326,8 @@ include('customer_header.php');
             ?>
 
 
-                    <div class="col">
-                        <div class="col sh_im1" style="border-radius: 10px;background-color: #F1F1F1;">
-                            <div class="col"><img src="assets/IMG/dress/<?php echo $prodcut_img; ?>" class="img-fluid"></div>
-                        </div>
-                        <div class="row mt-2" style="text-align: center;gap: 35px;">
-                            <div class="col row3_tx">
-                                <p><?php echo $prodcut_name; ?></p>
-                            </div>
-
-                            <div class="col row3_price">
-                                <p><?php echo $prodcut_price; ?>/-</p>
-                            </div>
-
-                        </div>
-
-                        <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">
-                            <div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>
-
-                            <div class="col">
-
-                                <!-- <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
-                                <label for="favorite" class="container" style="justify-content: center;border-radius: 5px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                    </svg>
-                                    <div class="action">
-                                        <span class="option-1">Add to Favorites</span>
-                                        <span class="option-2">Added to Favorites</span>
-                                    </div>
-                                </label> -->
-                                <button class="fav-btn" id="favBtn">
-                                    <span class="heart">❤</span>
-                                    <span class="text">Add to Favorites</span>
-                                </button>
-
-                            </div>
-
-                        </div>
+                    <div class="col product_area" id="product_area">
+                        
                     </div>
 
             <?php
@@ -388,21 +354,65 @@ include('customer_header.php');
 </div>
 
 <script>
+    // const favBtn = document.getElementById("favBtn");
 
-    const favBtn = document.getElementById("favBtn");
+    // favBtn.addEventListener("click", () => {
+    //     favBtn.classList.toggle("active");
 
-favBtn.addEventListener("click", () => {
-  favBtn.classList.toggle("active");
+    //     const text = favBtn.querySelector(".text");
 
-  const text = favBtn.querySelector(".text");
-
-  if (favBtn.classList.contains("active")) {
-    text.textContent = "Added to Favorites";
-  } else {
-    text.textContent = "Add to Favorites";
-  }
-});
+    //     if (favBtn.classList.contains("active")) {
+    //         text.textContent = "Added to Favorites";
+    //     } else {
+    //         text.textContent = "Add to Favorites";
+    //     }
+    // });
 </script>
+
+
+<!--........................................customer_ajax_function............................................-->
+
+<script>
+    function loadproducts() {
+
+        var brand = document.getElementById("b_id").value;
+        var category = document.getElementById("cate_id").value;
+        var search = document.getElementById("search_id").value;
+        var click1 = document.querySelector('input[name=click_1]:checked').value
+
+        alert(click1);
+
+
+
+        $.ajax({
+
+            url: "customer_ajax.php",
+            type: "GET",
+            data: {
+                brand: brand,
+                category: category,
+                search: search,
+                price: click1
+            },
+
+            success: function(data) {
+                let response = JSON.parse(data);
+                $('#product_area').html(response.product_html);
+            },
+
+            error: function(xhr, status, errror) {
+                alert("error");
+            }
+
+        });
+
+
+    }
+</script>
+
+
+
+
 
 
 

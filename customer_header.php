@@ -21,6 +21,7 @@ if ($_SESSION["Id"] != "") {
         <link href="assets/CSS/bootstrap.css" rel="stylesheet">
         <link href="assets/CSS/css.css" rel="stylesheet">
         <script src="assets/Bootsrap/bootstrap_js.js"></script>
+        <script src="assets/Js/jquery.js"></script>
     </head>
 </head>
 

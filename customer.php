@@ -309,32 +309,16 @@ transition: all 0.3s ease;
 
         <!--...............................................productsection.............................................-->
 
-        <div class="col-8 grid-contaniner" style="display: grid;grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );gap: 20px;justify-content: center;">
+        <div class="col-8 grid-contaniner" id="product_area" style="display: grid;grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );gap: 20px;justify-content: center;align-content: start;">
 
             <!-- <div class="col row" style="gap: 20px;margin-bottom:35px;"> -->
 
-            <?php
-            $stmt_product = "SELECT `Id`, `Name`,`Image`, `Price` FROM `product_add` WHERE  `IsDeleted`=0";
-            // var_dump($stmt_product);
-            $d_product = mysqli_query($con, $stmt_product);
-            if (mysqli_num_rows($d_product) > 0) {
-                while ($result_1 = mysqli_fetch_assoc($d_product)) {
-                    $prodcut_id = $result_1["Id"];
-                    $prodcut_name = $result_1["Name"];
-                    $prodcut_img = $result_1["Image"];
-                    $prodcut_price = $result_1["Price"];
-            ?>
 
 
-                    <div class="col product_area" id="product_area">
-                        
-                    </div>
 
-            <?php
-                }
-            }
-            ?>
+            <!-- <div class="col product_area" id="product_area">
 
+            </div> -->
 
             <!-- </div> -->
 
@@ -347,40 +331,41 @@ transition: all 0.3s ease;
     </div>
 
 
-
-
-
-
 </div>
 
 <script>
-    // const favBtn = document.getElementById("favBtn");
+    const favBtn = document.getElementById("favBtn");
 
-    // favBtn.addEventListener("click", () => {
-    //     favBtn.classList.toggle("active");
+    favBtn.addEventListener("click", () => {
+        favBtn.classList.toggle("active");
 
-    //     const text = favBtn.querySelector(".text");
+        const text = favBtn.querySelector(".text");
 
-    //     if (favBtn.classList.contains("active")) {
-    //         text.textContent = "Added to Favorites";
-    //     } else {
-    //         text.textContent = "Add to Favorites";
-    //     }
-    // });
+        if (favBtn.classList.contains("active")) {
+            text.textContent = "Added to Favorites";
+        } else {
+            text.textContent = "Add to Favorites";
+        }
+    });
 </script>
 
 
 <!--........................................customer_ajax_function............................................-->
 
 <script>
+    loadproducts();
+
+
     function loadproducts() {
 
         var brand = document.getElementById("b_id").value;
         var category = document.getElementById("cate_id").value;
         var search = document.getElementById("search_id").value;
-        var click1 = document.querySelector('input[name=click_1]:checked').value
+        // var click1 = document.querySelector('input[name=click_1]:checked').value;
+        var selected = document.querySelector('input[name=click_1]:checked');
+        var click1 = selected ? selected.value : "";
 
-        alert(click1);
+        // alert(click1);
 
 
 
@@ -409,11 +394,6 @@ transition: all 0.3s ease;
 
     }
 </script>
-
-
-
-
-
 
 
 <?php

@@ -33,7 +33,7 @@ include('database.php');
 
                         <div class="col" style="margin-bottom:40px;">
                             <h1 style="margin-bottom:10px;margin-left:20px;margin-top:40px;">Login</h1>
-                            <p style="margin-bottom:10px;margin-left:20px;">Please enter your login details to log in.</p>
+                            <!-- <p style="margin-bottom:10px;margin-left:20px;">Please enter your login details to log in.</p> -->
                         </div>
 
                         <div class="row" style="flex-direction: column;">

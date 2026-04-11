@@ -75,9 +75,11 @@ while ($row = mysqli_fetch_assoc($result)) {
         ' <div class="col">' .
 
         ' <button class="fav-btn" id="favBtn'.$row['Id'].'" style="display: flex;align-items: center;gap: 10px;background: #000000;color: white;border: none;padding: 6px 20px;border-radius: 5px;width: 100%;font-size: 16px;' .
-        'cursor: pointer;justify-content: center;box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);transition: all 0.3s ease;">' .
-        ' <span class="heart">❤</span>' .
-        ' <span class="text">Add to Favorites</span>' .
+        'cursor: pointer;justify-content: center;box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);transition: all 0.3s ease;" onclick="checkWish(' .
+         $row['Id'] .
+         ')">' .
+        ' <span class="heart"><i class="fa-regular fa-heart"></i></span>' .
+        ' <span class="text">ADD TO FAVOURITE</span>' .
         ' </button>' .
 
         ' </div>' .

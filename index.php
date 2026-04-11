@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="col-4">
-                    <button class="explor_row1">Explor Now</button>
+                    <button class="explor_row1">Explore Now</button>
                     <button class="cont_row1">Contact Us</button>
                 </div>
             </div>

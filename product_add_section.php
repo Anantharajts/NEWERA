@@ -12,7 +12,7 @@ $p_status = 0;
 $p_category = 0;
 if (isset($_GET["rowid"])) {
 
-    echo $edit = $_GET["rowid"];
+    $edit = $_GET["rowid"];
 
     $stmt = "SELECT `Name`, `BrandId`, `Description`, `Image`, `Price`, `Quantity`, `Status`, `CategoryId` FROM `product_add` WHERE `Id`=$edit";
     // var_dump($stmt);
@@ -23,13 +23,13 @@ if (isset($_GET["rowid"])) {
         $result3 = mysqli_fetch_assoc($data2);
 
         $p_name = $result3["Name"];
-        echo $p_brand = $result3["BrandId"];
+        $p_brand = $result3["BrandId"];
         $p_decription = $result3["Description"];
         $p_image = $result3["Image"];
         $p_price = $result3["Price"];
         $p_quantity = $result3["Quantity"];
-        echo $p_status = $result3["Status"];
-        echo $p_category = $result3["CategoryId"];
+        $p_status = $result3["Status"];
+        $p_category = $result3["CategoryId"];
     }
 }
 
@@ -191,7 +191,7 @@ if (isset($_GET["rowid"])) {
         <main style="background-color: white;border-radius: 0.5rem;padding:15px;">
 
             <div class="col">
-                <h1 style="margin:15px 0px;font-size:30px;">Product add section</h1>
+                <h1 style="margin:15px 0px;font-size:30px;">Manage Product</h1>
             </div>
 
 

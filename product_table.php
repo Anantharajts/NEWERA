@@ -31,7 +31,7 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="col" style="text-align:end;">
                     <a href="product_add_section.php"
-                        style="padding: 10px 10px; margin:10px;text-decoration: none;background-color:black;color:white;border-radius:5px;"><-Product
+                        style="padding: 10px 10px; margin:10px;text-decoration: none;background-color:black;color:white;border-radius:5px;">Product
                             Add</a>
                 </div>
             </div>
@@ -118,8 +118,8 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 <table class="table table-sm">
                     <thead>
                         <tr>
-                            <th>SLN</th>
-                            <th>P-IMG</th>
+                            <th>SL</th>
+                            <th>IMG</th>
                             <th>NAME</th>
                             <th>BRAND</th>
                             <th>CATEGORY</th>

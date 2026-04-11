@@ -106,8 +106,8 @@ include('database.php');
                                         <select name="gender" id="genderid" onchange="Removevalidation('genderid')">
 
                                             <option value="0">select your gender</option>
-                                            <option value="1">Mail</option>
-                                            <option value="2">Femail</option>
+                                            <option value="1">male</option>
+                                            <option value="2">Female</option>
 
                                         </select>
                                     </div>
@@ -367,6 +367,7 @@ include('database.php');
 
             if (password.value != conpass.value) {
                 alert("password and confirm password both are not mach!");
+                f = 1;
             }
 
             if (f == 0) {

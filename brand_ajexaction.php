@@ -36,7 +36,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         . '</g>'
 
         . '</svg>' . '</button>'
-        . '<button class="delete" type="submit" name="delete" onclick="return confirm' . '(' . "'Are you sure this deleted...........?'" . ')' . '"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px" viewBox="0 0 24.00 24.00" stroke="#ff0000" transform="matrix(-1, 0, 0, 1, 0, 0)">'
+        . '<button class="delete" type="submit" name="delete" onclick="return confirm' . '(' . "'Are you sure you want to delete this?'" . ')' . '"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="20px" height="20px" viewBox="0 0 24.00 24.00" stroke="#ff0000" transform="matrix(-1, 0, 0, 1, 0, 0)">'
 
         . '<g id="SVGRepo_bgCarrier" stroke-width="0" />'
 

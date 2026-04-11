@@ -126,7 +126,7 @@ transition: all 0.3s ease;
     <div class="row" style="padding-top:28%;gap:393px;">
 
         <div class="col" style="padding: 30px;">
-            <h3 style="margin-bottom: 96px;color:black;">New Arrivels</h3>
+            <h3 style="margin-bottom: 96px;color:black;">New Arrivals</h3>
             <div class="col">
                 <h1 style="font-size: 51px;font-weight: bolder;padding-bottom: 10px;color:black;">Where Art Meets
                     Your Style</h1>
@@ -311,22 +311,13 @@ transition: all 0.3s ease;
 
         <div class="col-8 grid-contaniner" id="product_area" style="display: grid;grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );gap: 20px;justify-content: center;align-content: start;">
 
-            <!-- <div class="col row" style="gap: 20px;margin-bottom:35px;"> -->
 
-
-
-
-            <!-- <div class="col product_area" id="product_area">
-
-            </div> -->
-
-            <!-- </div> -->
 
 
         </div>
 
 
-
+        <input type="hidden" name="lid" id="lid" value="<?php echo $id ?>">
 
     </div>
 
@@ -334,19 +325,33 @@ transition: all 0.3s ease;
 </div>
 
 <script>
-    const favBtn = document.getElementById("favBtn");
+    function checkWish(Id) {
+        alert(Id);
+        var lid = document.getElementById('lid').value;
+        alert(lid);
 
-    favBtn.addEventListener("click", () => {
-        favBtn.classList.toggle("active");
+        $.ajax({
+            url: "customer_fav_ajax.php",
+            type: "GET",
+            data: {
+                pid: Id,
+                lid: lid
+            },
 
-        const text = favBtn.querySelector(".text");
+            // success: function(data) {
+            //     let response = JSON.parse(data);
+            //     $('#product_area').html(response.product_html);
+            // },
 
-        if (favBtn.classList.contains("active")) {
-            text.textContent = "Added to Favorites";
-        } else {
-            text.textContent = "Add to Favorites";
-        }
-    });
+            // error: function(xhr, status, errror) {
+            //     alert("error");
+            // }
+
+
+        })
+
+
+    }
 </script>
 
 

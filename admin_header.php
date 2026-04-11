@@ -97,6 +97,17 @@ include('database.php');
                         </div>
                     </a>
 
+                    <a href="category_add_section.php" style="color: black;text-decoration: none;">
+                        <div class="col row m_1"
+                            style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/category.png" class="img-fluid"
+                                    style="width:66%;"></div>
+                            <div class="col">
+                                <h1 style="margin-bottom: 0px;font-size:16pt">Category</h1>
+                            </div>
+                        </div>
+                    </a>
+
 
                 </div>
 
@@ -187,7 +198,18 @@ include('database.php');
                                 </div>
                             </a>
 
-                            
+                            <a href="category_add_section.php" style="color: black;text-decoration: none;">
+                                <div class="col row m_1"
+                                    style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/category.png"
+                                            class="img-fluid" style="width:59%;"></div>
+                                    <div class="col">
+                                        <h1 style="margin-bottom: 0px;font-size:16pt">Category</h1>
+                                    </div>
+                                </div>
+                            </a>
+
+
 
                         </div>
 
@@ -206,7 +228,7 @@ include('database.php');
                         </a>
                     </div>
                     <div class="col" style="text-align: end;margin-top: 14px;margin-right: 20px;">
-                        <button class="prodcut_btn"><- Sign Out</button>
+                        <a href="logout_page"><button class="prodcut_btn">Sign Out</button></a>
                     </div>
                 </div>
                 <!-- </div>

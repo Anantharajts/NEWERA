@@ -20,6 +20,7 @@ if ($_SESSION["Id"] != "") {
         <title>Document</title>
         <link href="assets/CSS/bootstrap.css" rel="stylesheet">
         <link href="assets/CSS/css.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
         <script src="assets/Bootsrap/bootstrap_js.js"></script>
         <script src="assets/Js/jquery.js"></script>
     </head>

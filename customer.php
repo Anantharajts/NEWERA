@@ -4,101 +4,6 @@ include('customer_header.php');
 ?>
 
 <style>
-    /* label {
-        background-color: black;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 10px 15px 10px 10px;
-        cursor: pointer;
-        user-select: none;
-        border-radius: 10px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        color: white;
-    }
-
-    input {
-        display: none;
-    }
-
-    input:checked+label svg {
-        fill: hsl(0deg 100% 50%);
-        stroke: hsl(0deg 100% 50%);
-        animation: heartButton 1s;
-    }
-
-    @keyframes heartButton {
-        0% {
-            transform: scale(1);
-        }
-
-        25% {
-            transform: scale(1.3);
-        }
-
-        50% {
-            transform: scale(1);
-        }
-
-        75% {
-            transform: scale(1.3);
-        }
-
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    input+label .action {
-        position: relative;
-        overflow: hidden;
-        display: grid;
-    }
-
-    input+label .action span {
-        grid-column-start: 1;
-        grid-column-end: 1;
-        grid-row-start: 1;
-        grid-row-end: 1;
-        transition: all .5s;
-    }
-
-    input+label .action span.option-1 {
-        transform: translate(0px, 0%);
-        opacity: 1;
-    }
-
-    input:checked+label .action span.option-1 {
-        transform: translate(0px, -100%);
-        opacity: 0;
-    }
-
-    input+label .action span.option-2 {
-        transform: translate(0px, 100%);
-        opacity: 0;
-    }
-
-    input:checked+label .action span.option-2 {
-        transform: translate(0px, 0%);
-        opacity: 1;
-    } */
-
-    /* .fav-btn {
-        display: flex;
-align-items: center;
-gap: 10px;
-background: #000000;
-color: white;
-border: none;
-padding: 6px 20px;
-border-radius: 5px;
-width: 100%;
-font-size: 16px;
-cursor: pointer;
-justify-content: center;
-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-transition: all 0.3s ease;
-    } */
 
     .fav-btn:hover {
         transform: translateY(-2px);
@@ -118,6 +23,7 @@ transition: all 0.3s ease;
     .text {
         white-space: nowrap;
     }
+
 </style>
 
 <!--...................................banner...........................................-->
@@ -221,7 +127,7 @@ transition: all 0.3s ease;
                                 $bran_name = $result["Name"];
 
                             ?>
-                                <option value="<?php echo $bran_id; ?>"><?php echo $bran_name; ?></option>
+                                <option value="<?php echo $bran_id; ?>"><?php echo $bran_name;?></option>
                             <?php
                             }
                             ?>
@@ -325,27 +231,28 @@ transition: all 0.3s ease;
 </div>
 
 <script>
-    function checkWish(Id) {
-        alert(Id);
+    function checkWish(Id ,wid) {
+        // alert(Id);
         var lid = document.getElementById('lid').value;
-        alert(lid);
+        // alert(w_rowid);
 
         $.ajax({
             url: "customer_fav_ajax.php",
             type: "GET",
             data: {
                 pid: Id,
-                lid: lid
+                lid: lid,
+                w_rowid:wid
             },
 
-            // success: function(data) {
-            //     let response = JSON.parse(data);
-            //     $('#product_area').html(response.product_html);
-            // },
+            success: function(data) {
+                // alert(data);
+                loadproducts();
+            },
 
-            // error: function(xhr, status, errror) {
-            //     alert("error");
-            // }
+            error: function(xhr, status, errror) {
+                alert("error");
+            }
 
 
         })
@@ -366,11 +273,12 @@ transition: all 0.3s ease;
         var brand = document.getElementById("b_id").value;
         var category = document.getElementById("cate_id").value;
         var search = document.getElementById("search_id").value;
+        var lid = document.getElementById("lid").value;
         // var click1 = document.querySelector('input[name=click_1]:checked').value;
         var selected = document.querySelector('input[name=click_1]:checked');
         var click1 = selected ? selected.value : "";
 
-        // alert(click1);
+        // alert(lid);
 
 
 
@@ -380,16 +288,20 @@ transition: all 0.3s ease;
             type: "GET",
             data: {
                 brand: brand,
+                lid1: lid,
                 category: category,
                 search: search,
                 price: click1
             },
 
             success: function(data) {
+                // alert(data);
                 let response = JSON.parse(data);
                 $('#product_area').html(response.product_html);
+                
             },
 
+            
             error: function(xhr, status, errror) {
                 alert("error");
             }

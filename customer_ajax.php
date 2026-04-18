@@ -11,7 +11,7 @@ $price = isset($_GET['price']) ? (string) $_GET['price'] : "";
 
 
 
-$query = "SELECT PA.`Id`, PA.`Name`,PA.`Image`,`BrandId`,`CategoryId`, PA.`Price`, `Quantity`,CASE WHEN `Status`=0 THEN 'Instock' 
+$query = "SELECT PA.`Id` AS p_id, PA.`Name`,PA.`Image`,`BrandId`,`CategoryId`, PA.`Price`, `Quantity`,CASE WHEN `Status`=0 THEN 'Instock' 
                                    WHEN `Status`=1 THEN 'Out of stock' END AS Status,B.Name AS Brandname,C.Name AS category, W.Product_Id AS Product_Id, W.Favourite AS heart,ifnull(w.Id,0) AS w_id FROM `product_add` AS PA
                                    INNER JOIN `brand` AS B ON B.Id = PA.BrandId
                                    INNER JOIN `category` C ON C.Id = PA.CategoryId
@@ -76,13 +76,13 @@ while ($row = mysqli_fetch_assoc($result)) {
         '</div>' .
 
         ' <div class="row" style="gap:5px;text-align: -webkit-center;flex-direction: column;">' .
-        '<div class="col"><button class="cart" style="width: 100%;">ADD TO CART</button></div>' .
+        '<div class="col">'.'<a href="add_to_cart.php?prodacutid1='.$row['p_id'].'">'.'<button class="cart" style="width: 100%;">ADD TO CART</button>'.'</a>'.'</div>' .
 
         ' <div class="col">'.
         // '<input type="text" name="w_rowid" id="w_rowid" value="'.$row['w_id'].'">' .
-        ' <button class="fav-btn" id="favBtn' . $row['Id'] . '" style="display: flex;align-items: center;gap: 10px;background: #000000;color: white;border: none;padding: 6px 20px;border-radius: 5px;width: 100%;font-size: 16px;' .
+        ' <button class="fav-btn" id="favBtn' . $row['p_id'] . '" style="display: flex;align-items: center;gap: 10px;background: #000000;color: white;border: none;padding: 6px 20px;border-radius: 5px;width: 100%;font-size: 16px;' .
         'cursor: pointer;justify-content: center;box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);transition: all 0.3s ease;" onclick="checkWish(' .
-        $row['Id'] .','. $row['w_id'].
+        $row['p_id'] .','. $row['w_id'].
         ')">' .
         // ' <span class="heart"><i class="fa-regular fa-heart"></i></span>' .
         ' <span class="heart">' .

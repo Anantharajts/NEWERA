@@ -19,7 +19,18 @@ if (isset($_POST["submit"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 
+
+
+
 <div class="container" style="border-top: 1px solid black;margin-bottom:50px;">
+
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col">
+                <a href="customer.php"><img src="assets/IMG/icons/arrow.png" class="img-fluid"></a>
+            </div>
+        </div>
+    </div>
 
     <div class="col">
         <p style="margin-bottom:2px;margin-top:70px;">Saved Items</p>
@@ -62,7 +73,7 @@ if (isset($_POST["submit"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                     <div class="col row" style="justify-content: center;align-items: center;text-align: center;gap:0px;">
-                        <div class="col"><button style="width: 100%;padding: 8px 10px;color: white;background-color: black;border-radius: 5px;">Add to cart</button></div>
+                        <div class="col"><a href="add_to_cart.php?productid=<?php echo $id; ?>"><button style="width: 100%;padding: 8px 10px;color: white;background-color: black;border-radius: 5px;">Add to cart</button></a></div>
                         <div class="col">
                             <form action="my_wishlist.php" method="post">
                                 <input type="hidden" Name="rowid" id="rowid" value="<?php echo $id; ?>">

@@ -6,7 +6,15 @@ $loginerid = isset($_GET['lid']) ? $_GET['lid'] : '';
 $rowid = isset($_GET['w_rowid']) ? $_GET['w_rowid'] : '';
 
 
+// $update = "UPDATE my_wishlist 
+//            SET Favourite = IF(Favourite = 1, 0, 1) 
+//            WHERE Id = $rowid";
 
+// if (mysqli_query($con, $update)) {
+//     echo "Favorite toggled";
+// } else {
+//     echo "Error updating";
+// }
 
 
 $query1 = "SELECT `Id` FROM `my_wishlist` WHERE IsDeleted=0  AND  `Lid`=$loginerid AND `Product_Id`=$productid";

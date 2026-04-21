@@ -2,10 +2,9 @@
 include('database.php');
 include('customer_header.php');
 
-if(isset($_GET['prodacutid1']) != ""){
+if (isset($_GET['prodacutid1']) != "") {
 
-  echo $pid = $_GET["prodacutid1"];
-
+  $pid = $_GET["prodacutid1"];
 }
 
 if (isset($_GET['productid']) != "") {
@@ -115,9 +114,10 @@ if (isset($_GET['productid']) != "") {
   <div class="row" style="justify-content: center;gap:20px;margin-top:65px;">
 
     <?php
-    $stmant = "SELECT pro.`Name` AS p_name, `BrandId`, `Description`, `Image`, `Price`, `Quantity`, `Status`, `CategoryId`, b.Name AS brand_na,c.Name AS category_na FROM `product_add` AS pro 
+    $stmant = "SELECT pro.`Name` AS p_name, `BrandId`, `Description`, `Image`, `Price`, `Quantity`, `Status`, `CategoryId`, b.Name AS brand_na,c.Name AS category_na,a.Id AS a_rowid FROM `product_add` AS pro 
                INNER JOIN `brand` AS b ON b.Id = pro.BrandId
                INNER JOIN `category` AS c ON c.Id = pro.CategoryId
+               LEFT JOIN `add_to_cart` AS a ON a.Product_Id = pro.Id
                WHERE pro.`Id`=$pid";
 
     // var_dump($stmant);
@@ -131,6 +131,7 @@ if (isset($_GET['productid']) != "") {
       $price = $result["Price"];
       $brand = $result["brand_na"];
       $category = $result["category_na"];
+      $a_rowid=$result["a_rowid"];
 
     ?>
 
@@ -141,33 +142,44 @@ if (isset($_GET['productid']) != "") {
         </div>
 
       </div>
+      <div class="col">
 
-      <div class="col row" style="gap:20px;flex-direction: column;">
+        <form action="cart_action.php" method="post">
+        <div class="col row" style="gap:20px;flex-direction: column;align-items: center;">
 
-        <div class="col">
-          <h1><?php echo $product_na; ?></h1>
+          <div class="col">
+            <h1><?php echo $product_na; ?></h1>
+          </div>
+          <div class="col">
+            <h5 style="font-size: 30px;"><?php echo $price; ?></h5>
+          </div>
+          <div class="col">
+            <h5 style="font-size:14px;"><?php echo $description; ?></h5>
+          </div>
+          <div class="col">
+            <p>Brand : <?php echo $brand; ?></p>
+          </div>
+          <div class="col" style="padding-bottom: 15px;">
+            <p>Category : <?php echo $category; ?></p>
+          </div>
+
+          <div class="col">
+            <input type="text" name="product_id" id="product_id" value="<?php echo $pid; ?>" style="display: block;">
+            <input type="text" name="customerid" id="customerid" value="<?php echo $id; ?>" style="display: block;">
+            <input type="text" name="cartid" id="cartid" value="<?php echo $a_rowid; ?>" style="display: block;">
+          </div>
+
+
+          <div class="col row" style="align-items:center;">
+            <div class="col"><button type="submit" name="submit" style="width: 100%;padding: 8px 10px;color: white;background-color: black;border-radius: 5px;"><?php echo $a_rowid == 0 ? "ADD TO CART" : "ADDED TO CART"?></button></div>
+            <!-- <div class="col"><button style="width:100%;">b</button></div> -->
+          </div>
+
         </div>
-        <div class="col">
-          <h5 style="font-size: 30px;"><?php echo $price; ?></h5>
-        </div>
-        <div class="col">
-          <h5 style="font-size:14px;"><?php echo $description; ?></h5>
-        </div>
-        <div class="col">
-          <p>Brand:<?php echo $brand; ?></p>
-        </div>
-        <div class="col" style="border-bottom: 1px solid black;padding-bottom: 15px;">
-          <p>Categiry:<?php echo $category; ?></p>
-        </div>
-        <div class="col row" style="align-items:center;">
-          <input type="number" name="count" id="count">
-        </div>
-        <div class="col row" style="align-items:center;">
-          <div class="col"><button style="width: 100%;padding: 8px 10px;color: white;background-color: black;border-radius: 5px;">ADD TO CART</button></div>
-          <!-- <div class="col"><button style="width:100%;">b</button></div> -->
-        </div>
+        </form>
 
       </div>
+
     <?php
     }
     ?>

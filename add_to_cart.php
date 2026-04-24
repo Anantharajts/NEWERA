@@ -9,8 +9,9 @@ if (isset($_GET['prodacutid1']) != "") {
 
 if (isset($_GET['productid']) != "") {
 
-  echo $pid = $_GET["productid"];
+  $pid = $_GET["productid"];
 }
+
 
 
 
@@ -111,6 +112,8 @@ if (isset($_GET['productid']) != "") {
     </div>
   </div>
 
+
+
   <div class="row" style="justify-content: center;gap:20px;margin-top:65px;">
 
     <?php
@@ -131,7 +134,7 @@ if (isset($_GET['productid']) != "") {
       $price = $result["Price"];
       $brand = $result["brand_na"];
       $category = $result["category_na"];
-      $a_rowid=$result["a_rowid"];
+      echo $a_rowid=$result["a_rowid"];
 
     ?>
 

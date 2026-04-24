@@ -16,7 +16,7 @@ if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
         $update = "UPDATE `add_to_cart` SET  `Count`=(`Count`+1) WHERE `Id`=$cart_id AND `Lid`=$loginer_id AND `Product_Id`=$pro_id";
         var_dump($update);
-        if (mysqli_query($con, $update)) {
+        if (mysqli_query($con,$update)) {
             echo "updated";
         } else {
             echo "updated error";
@@ -26,9 +26,10 @@ if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
         var_dump($stment);
         if (mysqli_query($con, $stment)) {
             echo "insert";
-            header('add_to_cart.php');
         } else {
             echo "insert error";
         }
     }
+
+    header('location:add_to_cart.php?prodacutid1='.$pro_id);
 }

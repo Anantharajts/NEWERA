@@ -39,7 +39,7 @@ include('customer_header.php');
                         $product_img = $_result["Pro_img"];
                         $product_price = $_result["p_price"];
                         $product_count = $_result["Count"];
-                        $rowid=$_result["rowid"];
+                        $rowid = $_result["rowid"];
 
 
                 ?>
@@ -64,9 +64,9 @@ include('customer_header.php');
 
                             <td style="width:40%;">
                                 <div class="col-3 row" style="align-items: center;justify-content: center;margin-top:25px;width: 90%;">
-                                    <div class="col-2"><img src="assets/IMG/icons/minus.png" class="img-fluid" onclick="count(minus,countid_<?php echo $sl;?>,<?php echo $rowid;?>)"></div>
-                                    <div class="col-4" style="padding: 0px;"><input type="number" name="count" id="countid" value="<?php echo $product_count; ?>" style="border-radius:5px;width:100%;"></div>
-                                    <div class="col-2"><img src="assets/IMG/icons/plus.png" class="img-fluid" onclick="count(plus,countid_<?php echo $sl;?>,<?php echo $rowid;?>)"></div>
+                                    <div class="col-2"><img src="assets/IMG/icons/minus.png" class="img-fluid" onclick="count('minus','countid_<?php echo $sl; ?>',<?php echo $rowid; ?>)"></div>
+                                    <div class="col-4" style="padding: 0px;"><input type="number" name="count" id="countid_<?php echo $sl; ?>" value="<?php echo $product_count; ?>" style="border-radius:5px;width:100%;"></div>
+                                    <div class="col-2"><img src="assets/IMG/icons/plus.png" class="img-fluid" onclick="count('plus','countid_<?php echo $sl; ?>',<?php echo $rowid; ?>)"></div>
 
                                 </div>
                             </td>
@@ -114,7 +114,7 @@ include('customer_header.php');
                     <p>Subtotal :</p>
                 </div>
                 <div class="col">
-                    <p>$100/-</p>
+                    <p id="subtotal">$100/-</p>
                 </div>
             </div>
 
@@ -123,7 +123,7 @@ include('customer_header.php');
                     <p>Delivery charge :</p>
                 </div>
                 <div class="col">
-                    <p>$50/-</p>
+                    <p id="delivery">$50/-</p>
                 </div>
             </div>
 
@@ -133,7 +133,7 @@ include('customer_header.php');
                     <p>Total amount :</p>
                 </div>
                 <div class="col">
-                    <p>$150/-</p>
+                    <p id="total">$150/-</p>
                 </div>
             </div>
 
@@ -150,6 +150,85 @@ include('customer_header.php');
     </div>
 
 </div>
+
+
+<script>
+    function count(type, inputid, rowid) {
+
+        var count = document.getElementById(inputid);
+
+        let btn = parseInt(count.value);
+
+        if (type == 'plus') {
+            btn += 1;
+        } else if (type == 'minus') {
+            btn -= 1;
+
+            if (btn <= 0) {
+                return;
+            }
+
+        }
+
+        count.value = btn;
+        update(inputid, rowid);
+
+
+    }
+
+
+    function update(input2, rowid2) {
+
+        let input2_value = document.getElementById(input2).value;
+        // alert(input2_value);
+
+        $.ajax({
+
+            type: "POST",
+            url: "cart_ajax.php",
+            data: {
+                input_2: input2_value,
+                row_id2: rowid2,
+                type: 1
+            },
+
+            success: function(success) {
+                gettotal();
+            },
+            error: function() {
+                alert("error");
+            }
+
+        });
+
+    }
+
+    gettotal();
+
+    function gettotal() {
+
+    let lid =<?php echo $_SESSION["Id"]?>;
+
+    $.ajax({
+        type:"POST",
+        url :"cart_ajax.php",
+        data :{
+            loginerid:lid
+        },
+        success:function(success){
+            let data = JSON.parse(success);
+
+            document.getElementById('subtotal').innerText
+            document.getElementById('delivery').innerText
+            document.getElementById('total').innerText
+        },
+        error:function(){
+            alert("error");
+        }
+    })
+
+    }
+</script>
 
 
 

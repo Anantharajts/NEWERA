@@ -250,7 +250,7 @@ include('customer_header.php');
                 loadproducts();
             },
 
-            error: function(xhr, status, errror) {
+            error: function(xhr, status, error) {
                 alert("error");
             }
 

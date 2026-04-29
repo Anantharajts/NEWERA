@@ -19,7 +19,7 @@ include('admin_header.php');
                             <th>SL</th>
                             <th>IMG</th>
                             <th>NAME</th>
-                            <th>Delivery charge</th>
+                            <th>DELIVERY CHARGE</th>
                         </tr>
                     </thead>
 
@@ -67,6 +67,7 @@ include('admin_header.php');
         });
 
     }
+
 
     $(document).on('click', '.pagination a', function() {
         let page = $(this).data('page');

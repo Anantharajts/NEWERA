@@ -109,6 +109,18 @@ include('database.php');
                     </a>
 
 
+                    <a href="delivery_charge.php" style="color: black;text-decoration: none;">
+                        <div class="col row m_1"
+                            style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                            <div class="col-3 dlogo"><img src="assets/IMG/icons/delivery charge.png" class="img-fluid"
+                                    style="width:66%;"></div>
+                            <div class="col">
+                                <h1 style="margin-bottom: 0px;font-size:16pt">Delivery Charge</h1>
+                            </div>
+                        </div>
+                    </a>
+
+
                 </div>
 
                 <!-- ................................slidemenu......................................-->
@@ -205,6 +217,18 @@ include('database.php');
                                             class="img-fluid" style="width:59%;"></div>
                                     <div class="col">
                                         <h1 style="margin-bottom: 0px;font-size:16pt">Category</h1>
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <a href="delivery_charge.php" style="color: black;text-decoration: none;">
+                                <div class="col row m_1"
+                                    style="display: flex;align-content: center;justify-content: center;align-items: center;margin-bottom: 0px;padding: 5px 0px 5px 0px;">
+                                    <div class="col-3 dlogo"><img src="assets/IMG/icons/delivery charge.png"
+                                            class="img-fluid" style="width:59%;"></div>
+                                    <div class="col">
+                                        <h1 style="margin-bottom: 0px;font-size:16pt">Delivery Charge</h1>
                                     </div>
                                 </div>
                             </a>

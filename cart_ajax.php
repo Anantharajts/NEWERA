@@ -19,8 +19,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($data) > 0) {
             echo "count value is increased";
         }
-    }
-    else{
-        echo "error alert";
+    } else {
+
+        $loginerid = $_POST["loginerid"];
+
+        $stment = "SELECT A.`Id` AS rowid,(`Count`* `price`) AS subtotal,P.Price AS p_price FROM `add_to_cart` AS A 
+                         INNER JOIN `product_add` AS P ON P.Id = A.Product_Id
+                         WHERE A.IsDeleted=0 AND A.Lid=$loginerid";
+
+        var_dump($stment);
+        $d1 = mysqli_query($con, $stment);
+        if (mysqli_num_rows($d1) > 0) {
+            while ($_result = mysqli_fetch_assoc($d1)) {
+
+
+            
+            }
+        }
     }
 }

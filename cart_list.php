@@ -1,6 +1,9 @@
 <?php
 include('database.php');
 include('customer_header.php');
+
+$subtotal = 0;
+
 ?>
 
 
@@ -26,7 +29,7 @@ include('customer_header.php');
 
                 <?php
 
-                $stmt = "SELECT A.`Id` AS rowid, `Lid`, `Product_Id`, `Count`,P.`Name` AS pro_name,P.Image AS Pro_img,P.Price AS p_price FROM `add_to_cart` AS A 
+                $stmt = "SELECT A.`Id` AS rowid, `Lid`, `Product_Id`,`Count`,P.`Name` AS pro_name,P.Image AS Pro_img,P.Price AS p_price FROM `add_to_cart` AS A 
                          INNER JOIN `product_add` AS P ON P.Id = A.Product_Id
                          WHERE A.IsDeleted=0 AND A.Lid=$id";
                 //  var_dump($stmt);
@@ -40,6 +43,14 @@ include('customer_header.php');
                         $product_price = $_result["p_price"];
                         $product_count = $_result["Count"];
                         $rowid = $_result["rowid"];
+
+                        // $subtotal2 = $_result["subtotal"];
+
+                        // $subtotal = $subtotal + $subtotal2;
+                        
+
+
+
 
 
                 ?>
@@ -73,7 +84,7 @@ include('customer_header.php');
                             <td>
                                 <div class="col row" style="margin-top:25px;">
 
-                                    <div class="col" style="text-align: center;"><button style="background-color:black;padding:3px 20px;border-radius:5px;"><svg xmlns="http://www.w3.org/2000/svg" fill="#ff0000" width="25px" height="25px" viewBox="0 0 24 24" stroke="#ff0000">
+                                    <div class="col" style="text-align: center;"><button style="background-color:none;padding:3px 20px;border-radius:5px;border:none;"><svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="25px" height="25px" viewBox="0 0 24 24" stroke="#000000">
 
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
 
@@ -93,7 +104,9 @@ include('customer_header.php');
                 <?php
                         $sl++;
                     }
+                    // echo $subtotal;
                 }
+
                 ?>
 
             </tbody>
@@ -207,25 +220,25 @@ include('customer_header.php');
 
     function gettotal() {
 
-    let lid =<?php echo $_SESSION["Id"]?>;
+        let lid = <?php echo $_SESSION["Id"] ?>;
 
-    $.ajax({
-        type:"POST",
-        url :"cart_ajax.php",
-        data :{
-            loginerid:lid
-        },
-        success:function(success){
-            let data = JSON.parse(success);
+        $.ajax({
+            type: "POST",
+            url: "cart_ajax.php",
+            data: {
+                loginerid: lid
+            },
+            success: function(success) {
+                let data = JSON.parse(success);
 
-            document.getElementById('subtotal').innerText
-            document.getElementById('delivery').innerText
-            document.getElementById('total').innerText
-        },
-        error:function(){
-            alert("error");
-        }
-    })
+                document.getElementById('subtotal').innerText
+                document.getElementById('delivery').innerText
+                document.getElementById('total').innerText
+            },
+            error: function() {
+                alert("error");
+            }
+        })
 
     }
 </script>

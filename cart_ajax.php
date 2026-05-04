@@ -27,14 +27,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                          INNER JOIN `product_add` AS P ON P.Id = A.Product_Id
                          WHERE A.IsDeleted=0 AND A.Lid=$loginerid";
 
-        var_dump($stment);
+        // var_dump($stment);
         $d1 = mysqli_query($con, $stment);
         if (mysqli_num_rows($d1) > 0) {
+
+            $subtotal = 0;
+
+
             while ($_result = mysqli_fetch_assoc($d1)) {
 
-
-            
+                $subtotal += $_result["subtotal"];
+                $delivery = $subtotal < 3000 ? "50" : "0";
             }
+
+            $total = $subtotal + $delivery;
+
+            echo json_encode([
+                "subtotal" => $subtotal,
+                "delivery" => $delivery,
+                "total" => $total
+            ]);
         }
     }
+} else {
+    echo "error";
 }

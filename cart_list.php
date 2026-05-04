@@ -47,7 +47,7 @@ $subtotal = 0;
                         // $subtotal2 = $_result["subtotal"];
 
                         // $subtotal = $subtotal + $subtotal2;
-                        
+
 
 
 
@@ -127,7 +127,7 @@ $subtotal = 0;
                     <p>Subtotal :</p>
                 </div>
                 <div class="col">
-                    <p id="subtotal">$100/-</p>
+                    <p id="subtotal"></p>
                 </div>
             </div>
 
@@ -136,7 +136,7 @@ $subtotal = 0;
                     <p>Delivery charge :</p>
                 </div>
                 <div class="col">
-                    <p id="delivery">$50/-</p>
+                    <p id="delivery"></p>
                 </div>
             </div>
 
@@ -146,7 +146,7 @@ $subtotal = 0;
                     <p>Total amount :</p>
                 </div>
                 <div class="col">
-                    <p id="total">$150/-</p>
+                    <p id="total"></p>
                 </div>
             </div>
 
@@ -156,7 +156,9 @@ $subtotal = 0;
 
 
         <div class="col">
-            <button style="width: 100%;padding:5px 10px;background-color:black;color:white;border-radius:10px;">checkout</button>
+            <form action="#">
+                <button onclick="gototal()" style="width: 100%;padding:5px 10px;background-color:black;color:white;border-radius:10px;">Checkout</button>
+            </form>
         </div>
 
 
@@ -220,7 +222,7 @@ $subtotal = 0;
 
     function gettotal() {
 
-        let lid = <?php echo $_SESSION["Id"] ?>;
+        let lid = <?php echo $_SESSION['Id'] ?>;
 
         $.ajax({
             type: "POST",
@@ -228,18 +230,27 @@ $subtotal = 0;
             data: {
                 loginerid: lid
             },
-            success: function(success) {
-                let data = JSON.parse(success);
+            success: function(result) {
+                // alert(result);
+                let data = JSON.parse(result);
+                // alert(data);
 
-                document.getElementById('subtotal').innerText
-                document.getElementById('delivery').innerText
-                document.getElementById('total').innerText
+                document.getElementById("subtotal").innerText = '$' + data.subtotal;
+                document.getElementById("delivery").innerText = '$' + data.delivery;
+                document.getElementById("total").innerText = '$' + data.total;
             },
             error: function() {
                 alert("error");
             }
         })
 
+    };
+
+
+    function gototal() {
+        var total = document.getElementById('total');
+
+        window.location.herf = 'payment_page.php?subtotal=' + total.innerText;
     }
 </script>
 

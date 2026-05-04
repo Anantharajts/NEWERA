@@ -68,7 +68,7 @@ if ($_SESSION["Id"] != "") {
 
                 <div class="col-5">
                     <div class="col-4">
-                        <a href="#"><img src="assets/IMG/icons/cart.png" class="img-fluid"></a>
+                        <a href="cart_list.php"><img src="assets/IMG/icons/cart.png" class="img-fluid"></a>
                     </div>
                 </div>
             </div>

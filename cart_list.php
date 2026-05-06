@@ -272,7 +272,7 @@ $subtotal = 0;
 
     function gototal() {
         var total = document.getElementById('total').innerText;
-        alert(total);
+        // alert(total);
         window.location.href = 'payment_page.php?subtotal=' + total;
     }
 </script>

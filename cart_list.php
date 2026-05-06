@@ -2,6 +2,24 @@
 include('database.php');
 include('customer_header.php');
 
+    $delet =0;
+
+
+if (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $delet = $_POST["del"];
+    $customer = $_POST["lid"];
+
+    $delets = "UPDATE `add_to_cart` SET `IsDeleted`=1 WHERE Id=$delet AND Lid=$customer";
+    if (mysqli_query($con, $delets)) {
+        // echo "deleted";
+        echo "<script>window.location.href='cart_list.php'</script>";
+    } else {
+        echo "not deieted";
+    }
+}
+
+
 $subtotal = 0;
 
 ?>
@@ -43,6 +61,7 @@ $subtotal = 0;
                         $product_price = $_result["p_price"];
                         $product_count = $_result["Count"];
                         $rowid = $_result["rowid"];
+                        $customerid = $_result["Lid"];
 
                         // $subtotal2 = $_result["subtotal"];
 
@@ -83,20 +102,26 @@ $subtotal = 0;
                             </td>
                             <td>
                                 <div class="col row" style="margin-top:25px;">
+                                    <form action="cart_list.php" method="post">
+                                        <div class="col" style="text-align: center;">
+                                            <input type="hidden" name="del" id="delid" value="<?php echo $rowid; ?>">
+                                            <input type="hidden" name="lid" id="lid" value="<?php echo $customerid; ?>">
+                                            <button type="submit" name="deleted" onclick="return confirm ('Are you sure you want to delete this?')" style="background-color:none;padding:3px 20px;border-radius:5px;border:none;"><svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="25px" height="25px" viewBox="0 0 24 24" stroke="#000000">
 
-                                    <div class="col" style="text-align: center;"><button style="background-color:none;padding:3px 20px;border-radius:5px;border:none;"><svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="25px" height="25px" viewBox="0 0 24 24" stroke="#000000">
+                                                    <g id="SVGRepo_bgCarrier" stroke-width="0" />
 
-                                                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
 
-                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <g id="SVGRepo_iconCarrier">
 
-                                                <g id="SVGRepo_iconCarrier">
+                                                        <path d="M22,5H17V2a1,1,0,0,0-1-1H8A1,1,0,0,0,7,2V5H2A1,1,0,0,0,2,7H3.117L5.008,22.124A1,1,0,0,0,6,23H18a1,1,0,0,0,.992-.876L20.883,7H22a1,1,0,0,0,0-2ZM9,3h6V5H9Zm8.117,18H6.883L5.133,7H18.867Z" />
 
-                                                    <path d="M22,5H17V2a1,1,0,0,0-1-1H8A1,1,0,0,0,7,2V5H2A1,1,0,0,0,2,7H3.117L5.008,22.124A1,1,0,0,0,6,23H18a1,1,0,0,0,.992-.876L20.883,7H22a1,1,0,0,0,0-2ZM9,3h6V5H9Zm8.117,18H6.883L5.133,7H18.867Z" />
+                                                    </g>
 
-                                                </g>
-
-                                            </svg></button></div>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -156,9 +181,7 @@ $subtotal = 0;
 
 
         <div class="col">
-            <form action="#">
                 <button onclick="gototal()" style="width: 100%;padding:5px 10px;background-color:black;color:white;border-radius:10px;">Checkout</button>
-            </form>
         </div>
 
 
@@ -248,9 +271,9 @@ $subtotal = 0;
 
 
     function gototal() {
-        var total = document.getElementById('total');
-
-        window.location.herf = 'payment_page.php?subtotal=' + total.innerText;
+        var total = document.getElementById('total').innerText;
+        alert(total);
+        window.location.href = 'payment_page.php?subtotal=' + total;
     }
 </script>
 

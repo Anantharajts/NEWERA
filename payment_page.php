@@ -1,6 +1,11 @@
 <?php
 include('database.php');
 include('customer_header.php');
+$subtotal = "";
+if (isset($_GET['subtotal'])) {
+    $subtotal = $_GET['subtotal'];
+}
+
 ?>
 
 <style>
@@ -33,7 +38,7 @@ include('customer_header.php');
                     <h4>Information</h4>
                 </div>
                 <div class="col">
-                    <p style="margin-bottom:0px;padding-top: 10px;">Already have an account?Login</p>
+                    <!-- <p style="margin-bottom:0px;padding-top: 10px;">Already have an account?Login</p> -->
                 </div>
             </div>
 
@@ -62,18 +67,33 @@ include('customer_header.php');
             <div class="col row" style="gap:25px;">
                 <div class="col" style="padding: 0px;">
 
-                    <select name="country" id="countryid" style="width: 100%;padding: 7px 5px;border: none;border-bottom: 1px solid black;">
-                        <option value="0">Select Country</option>
-                        <option value="1">a</option>
-                        <option value="2">b</option>
-                    </select>
+                    <?php
+                    $country = "SELECT `Id`, `Country` FROM `country` WHERE IsDeleted=0";
+                    $data2 = mysqli_query($con, $country);
+                    if (mysqli_num_rows($data2) > 0) {
+
+                    ?>
+
+                        <select name="country" id="countryid" onchange="statebycountry()" style="width: 100%;padding: 7px 5px;border: none;border-bottom: 1px solid black;">
+                            <option value="0">Select Country</option>
+                            <?php
+                            while ($result1 = mysqli_fetch_assoc($data2)) {
+                                $value = $result1['Id'];
+                                $country_na = $result1['Country'];
+
+                            ?>
+                                <option value="<?php echo $value; ?>"><?php echo $country_na; ?></option>
+                        <?php
+                            }
+                        }
+                        ?>
+                        </select>
 
                 </div>
                 <div class="col" style="padding: 0px;">
-                    <select name="country" id="countryid" style="width: 100%;padding: 7px 5px;border: none;border-bottom: 1px solid black;">
-                        <option value="0">Select Country</option>
-                        <option value="1">a</option>
-                        <option value="2">b</option>
+
+                    <select name="state" id="stateid"  style="width: 100%;padding: 7px 5px;border: none;border-bottom: 1px solid black;">
+                        <!-- <option value="0">Select Country</option> -->
                     </select>
                 </div>
             </div>
@@ -156,10 +176,21 @@ include('customer_header.php');
 
     <div class="col">
 
-        <div class="col row" style="gap: 20px;flex-direction: column;">
+        <div class="col row" style="gap:50px;flex-direction: column;">
 
             <div class="col">
-                <h4>Shopping Bag(3)</h4>
+                <?php
+                $shoppingbag = "SELECT COUNT(*) AS BAG FROM `add_to_cart` WHERE IsDeleted=0";
+                // var_dump($shoppingbag);
+                $data1 = mysqli_query($con, $shoppingbag);
+                if (mysqli_num_rows($data1) > 0) {
+                    $result = mysqli_fetch_assoc($data1);
+                    $bags = $result["BAG"];
+                ?>
+                    <h4>Shopping Bag(<?php echo $bags; ?>)</h4>
+                <?php
+                }
+                ?>
             </div>
 
             <div class="row">
@@ -169,22 +200,33 @@ include('customer_header.php');
                     $stment = "SELECT A.`Id`, `Lid`, `Product_Id`, `Count`,P.Name AS P_NAME,P.Price AS PRICE,P.Image AS P_IMG FROM `add_to_cart` AS A
                                INNER JOIN `product_add` AS P ON P.Id = A.Product_Id
                                WHERE A.IsDeleted=0";
-                               var_dump($stment);
-                               $data=mysqli_query($con,$stment);
+                    // var_dump($stment);
+                    $data = mysqli_query($con, $stment);
+                    if (mysqli_num_rows($data) > 0) {
+                        while ($_result = mysqli_fetch_assoc($data)) {
+
+                            $productname = $_result["P_NAME"];
+                            $img = $_result["P_IMG"];
+                            $price = $_result["PRICE"];
+                            $count = $_result["Count"];
+
                     ?>
 
-                    <div class="col row" style="gap:20px;text-align: center;margin-bottom:15px;">
-                        <div class="col-3"><img src="assets/IMG/dress/m-16.png" class="img-fluid" style="background-color:#c3c3c3;border-radius:4px;"></div>
-                        <div class="col">
-                            <h5 style="padding-top: 50px;">product name</h5>
-                        </div>
-                        <div class="col">
-                            <h4 style="padding-top: 50px;">price</h4>
-                        </div>
-                    </div>
+                            <div class="col row" style="gap:20px;text-align: center;margin-bottom:15px;">
+                                <div class="col-3"><img src="assets/IMG/dress/<?php echo $img; ?>" class="img-fluid" style="background-color:#c3c3c3;border-radius:4px;"></div>
+                                <div class="col">
+                                    <h5 style="padding-top: 50px;"><?php echo $productname; ?></h5><br>
+                                    <p>Count :<?php echo $count; ?></p>
+                                </div>
+                                <div class="col">
+                                    <h4 style="padding-top: 50px;"><?php echo $price; ?></h4>
+                                </div>
+                            </div>
 
-
-
+                    <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -196,7 +238,7 @@ include('customer_header.php');
                     <h4>Total</h4>
                 </div>
                 <div class="col" style="text-align: right;">
-                    <h4 id="total">100</h4>
+                    <h4 id="subtotal"><?php echo $subtotal; ?>/-</h4>
                 </div>
             </div>
 
@@ -209,6 +251,33 @@ include('customer_header.php');
 
 
 </div>
+
+<!--.........................................(script).........................................-->
+
+<script>
+    statebycountry();
+
+    function statebycountry() {
+        var cid = document.getElementById('countryid').value;
+        // alert(cid);
+
+        $.ajax({
+            type: "POST",
+            url: "pay_state_by_country_ajax.php",
+            data: {
+                cid: cid
+            },
+            success: function(success) {
+                // alert(success);
+                $("#stateid").html(success);
+                $("#stateid").val(stateid);
+            },
+            error: function(error) {
+                alert("error");
+            }
+        });
+    }
+</script>
 
 
 

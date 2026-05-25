@@ -2,7 +2,7 @@
 include('database.php');
 include('customer_header.php');
 
-    $delet =0;
+$delet = 0;
 
 
 if (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
@@ -156,32 +156,32 @@ $subtotal = 0;
                 </div>
             </div>
 
-            <div class="col row" style="gap:10px;">
+            <!-- <div class="col row" style="gap:10px;">
                 <div class="col">
                     <p>Delivery charge :</p>
                 </div>
                 <div class="col">
                     <p id="delivery"></p>
                 </div>
-            </div>
+            </div> -->
 
 
-            <div class="col row" style="gap:10px;margin-bottom:10px;">
+            <div class="col row" style="gap:10px;margin-bottom:10px;display:none;">
                 <div class="col">
                     <p>Total amount :</p>
                 </div>
                 <div class="col">
-                    <p id="total"></p>
+                    <p id="total">$</p>
                 </div>
             </div>
 
 
         </div>
 
-
+        <!-- <input type="text" name="amount" id="fullamount"> -->
 
         <div class="col">
-                <button onclick="gototal()" style="width: 100%;padding:5px 10px;background-color:black;color:white;border-radius:10px;">Checkout</button>
+            <button onclick="gototal()" style="width: 100%;padding:5px 10px;background-color:black;color:white;border-radius:10px;">Checkout</button>
         </div>
 
 
@@ -259,8 +259,9 @@ $subtotal = 0;
                 // alert(data);
 
                 document.getElementById("subtotal").innerText = '$' + data.subtotal;
-                document.getElementById("delivery").innerText = '$' + data.delivery;
-                document.getElementById("total").innerText = '$' + data.total;
+                // document.getElementById("delivery").innerText = '$' + data.delivery;
+                document.getElementById("total").innerText = data.total;
+                // document.getElementById("fullamount").value = '$' + data.fullamount;
             },
             error: function() {
                 alert("error");
@@ -272,15 +273,10 @@ $subtotal = 0;
 
     function gototal() {
         var total = document.getElementById('total').innerText;
-        // alert(total);
+        alert(total);
         window.location.href = 'payment_page.php?subtotal=' + total;
     }
 </script>
-
-
-
-
-
 
 
 <?php

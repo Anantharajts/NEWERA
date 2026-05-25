@@ -25,7 +25,7 @@
             <div class="mennu col-5 ">
 
 
-                <a href="#">Home</a>
+                <a href="index.php">Home</a>
                 <a href="#">Shop</a>
                 <a href="#">About</a>
                 <a href="#">Blog</a>

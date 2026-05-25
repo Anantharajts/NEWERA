@@ -36,8 +36,8 @@ if ($_SESSION["Id"] != "") {
             <div class="col-5 p-0 mennu">
 
 
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
+                <a href="index.php">Home</a>
+                <a href="customer.php">Shop</a>
                 <a href="#">About</a>
                 <a href="#">Blog</a>
                 <a href="#">Contact</a>

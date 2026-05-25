@@ -4,6 +4,7 @@ include('database.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $c_id = $_POST["cid"] ?? "";
+    $s_id = $_POST["sid"] ?? "";
 
     $state_q = "SELECT `Id`, `State` FROM `state` WHERE `CountryId`=$c_id";
     // var_dump($state_q);

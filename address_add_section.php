@@ -2,15 +2,39 @@
 include('database.php');
 include('customer_header.php');
 
-if(isset($_POST["edit"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
-
-
-
-
+$c_total="";
+if (isset($_GET['c_total'])) {
+    $c_total = $_GET['c_total'];
 }
 
+$edit_id = 0;
+$cid = 0;
 
-elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+$name = '';
+$phone_nub = '';
+$address_id = '';
+$country_val = '';
+$state_val = '';
+$city_twon = '';
+$zip = '';
+$address_detailes = "";
+
+if (isset($_POST["edit"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $edit_id = $_POST['rid'];
+    $cid = $_POST['lid'];
+
+    $name = $_POST['f_name'];
+    $phone_nub = $_POST['p_number'];
+    $address_id = $_POST['add_ress'];
+    $country_val = $_POST['country_id'];
+    $state_val = $_POST['state_id'];
+    $city_twon = $_POST['c_t'];
+    $zip = $_POST['z_id'];
+    $country_name = $_POST['country_na'];
+    $state_name = $_POST['sta_id'];
+
+} elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
     $ship_rid = $_POST['rid'];
     $customer_id = $_POST['lid'];
@@ -48,26 +72,31 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-
-
+    <?php echo $address_detailes?>
 
     <div class="col row" style="gap:20px;flex-direction: column;padding:15px;">
 
-        <div class="col" style="padding: 0px;">
-            <h4>Shipping Information</h4>
+        <div class="col row" style="padding: 0px;">
+
+        <div class="col"><h4>Shipping Information</h4></div>
+        <div class="col-2"><a href="payment_page.php?subtotal=<?php echo $c_total;?>"><button style="background-color: black;padding:5px 10px;border-radius:3px;width:100%;color:white;">Back</button></a></div>
+            
+
         </div>
         <form action="address_action.php" method="post" onsubmit="return valid()">
             <div class="col row" style="flex-direction: column;gap:20px;margin-bottom:0px;">
 
-
+            <input type="hidden" name="ch_total" id="ch_total" value="<?php echo $c_total;?>">
 
                 <div class="col row" style="gap:25px;">
-                    <div class="col" style="padding: 0px;"><input type="text" name="first" id="f_name" placeholder="First Name" oninput="removevalidation('f_name')"></div>
-                    <div class="col" style="padding: 0px;"><input type="text" name="phone" id="phoneid" placeholder="Phone Number" maxlength="10" oninput="removevalidation('phoneid')"></div>
+                    <div class="col" style="padding: 0px;"><input type="text" name="first" id="f_name" placeholder="First Name" oninput="removevalidation('f_name')" value="<?php echo $name; ?>"></div>
+                    <div class="col" style="padding: 0px;"><input type="text" name="phone" id="phoneid" placeholder="Phone Number" maxlength="10" oninput="removevalidation('phoneid')" value="<?php echo $phone_nub; ?>"></div>
                 </div>
 
+                <input type="hidden" name="address_de" id="address_de" oninput="get('address_de')" value="<?php echo $address_detailes; ?>">
+
                 <div class="col" style="padding: 0px;">
-                    <textarea name="address" id="address" style="width:96%;padding: 7px 5px;border: none;border-bottom: 1px solid black;" placeholder="Address" oninput="removevalidation('address')"></textarea>
+                    <textarea name="address" id="address" style="width:96%;padding: 7px 5px;border: none;border-bottom: 1px solid black;" placeholder="Address" oninput="removevalidation('address')"><?php echo $address_id; ?></textarea>
                 </div>
 
                 <div class="col row" style="gap:25px;">
@@ -88,7 +117,7 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                                     $country_na = $result1['Country'];
 
                                 ?>
-                                    <option value="<?php echo $value; ?>"><?php echo $country_na; ?></option>
+                                    <option value="<?php echo $value; ?>" <?php echo (($country_val == $value) ? "selected" : ""); ?>><?php echo $country_na; ?></option>
                             <?php
                                 }
                             }
@@ -97,7 +126,7 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
                     </div>
                     <div class="col" style="padding: 0px;">
-
+                        <input type="hidden" name="hidStateId" id="hidStateId" value="<?php echo $state_val; ?>">
                         <select name="state" id="stateid" onchange="removevalidation('stateid')" style="width: 100%;padding: 7px 5px;border: none;border-bottom: 1px solid black;">
                             <!-- <option value="0">Select Country</option> -->
                         </select>
@@ -105,13 +134,14 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="col row" style="gap:25px;">
-                    <div class="col" style="padding: 0px;"><input type="text" name="city" id="cityid" placeholder="City/Town" oninput="removevalidation('cityid')"></div>
-                    <div class="col" style="padding: 0px;"><input type="code" name="zipcode" id="zipcodeid" placeholder="Zipcode" oninput="removevalidation('zipcodeid')"></div>
+                    <div class="col" style="padding: 0px;"><input type="text" name="city" id="cityid" placeholder="City/Town" value="<?php echo $city_twon; ?>" oninput="removevalidation('cityid')"></div>
+                    <div class="col" style="padding: 0px;"><input type="code" name="zipcode" id="zipcodeid" placeholder="Zipcode" value="<?php echo $zip; ?>" oninput="removevalidation('zipcodeid')"></div>
                 </div>
 
                 <div class="col" style="padding: 0px;width: 94%">
+                    <input type="hidden" name="rowid" id="rowid" value="<?php echo $edit_id; ?>">
                     <input type="hidden" name="userid" id="user_id" value="<?php echo $id; ?>">
-                    <button type="submit" name="submit" style="background-color: black;padding:5px 10px;border-radius:3px;width:103%;color:white;">ADD ADDRESS</button>
+                    <button type="submit" name="submit" style="background-color: black;padding:5px 10px;border-radius:3px;width:103%;color:white;"><?php echo $edit_id == 0 ? "ADD ADDRESS" : "UPDATE" ?></button>
                 </div>
 
 
@@ -177,6 +207,8 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                         $_state = $_result1['StateName'];
                         $c_t = $_result1['City/Town'];
                         $_zipcode = $_result1['ZipCode'];
+                        $coun_id = $_result1['Country'];
+                        $sta_id = $_result1['State']
 
                 ?>
 
@@ -193,8 +225,22 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                             <td>
 
                                 <form action="address_add_section.php" method="POST">
+
                                     <input type="hidden" name="rid" id="rid" value="<?php echo $r_id; ?>">
                                     <input type="hidden" name="lid" id="l_id" value="<?php echo $lid; ?>">
+                                    <!--........................editfunction................................-->
+
+                                    <input type="hidden" name="f_name" id="f_id" value="<?php echo $first_na; ?>">
+                                    <input type="hidden" name="p_number" id="p_id" value="<?php echo $phone_num; ?>">
+                                    <input type="hidden" name="add_ress" id="ad_id" value="<?php echo $_address; ?>">
+                                    <input type="hidden" name="c_t" id="c_t_id" value="<?php echo $c_t; ?>">
+                                    <input type="hidden" name="z_id" id="zid" value="<?php echo $_zipcode; ?>">
+                                    <input type="hidden" name="state_id" id="s_id" value="<?php echo $sta_id; ?>">
+                                    <input type="hidden" name="country_id" id="fcountry_id" value="<?php echo $coun_id; ?>">
+                                    <input type="hidden" name="country_na" id="country_id" value="<?php echo $_country; ?>">
+                                    <input type="hidden" name="sta_id" id="state_id" value="<?php echo $_state; ?>">
+
+
                                     <div class="col row">
                                         <div class="col"><button type="submit" name="edit" style="padding:6px 6px; background-color:white;border:none;border-radius:3px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="#006eff">
@@ -255,7 +301,8 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
     function statebycountry() {
         var cid = document.getElementById('countryid').value;
-        // alert(cid);
+        var sid = document.getElementById('hidStateId').value;
+        // alert(sid);
 
         $.ajax({
             type: "POST",
@@ -266,6 +313,7 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             success: function(success) {
                 // alert(success);
                 $("#stateid").html(success);
+                $("#stateid").val(sid);
             },
             error: function(error) {
                 alert("error");
@@ -381,6 +429,14 @@ elseif (isset($_POST["deleted"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
         id.style.border = "1px solid black";
 
     }
+
+    function get(getd){
+
+    var address_detailes=document.getElementById(getd).value;
+     window.location.href = 'payment_page.php?ad_details=' + address_detailes;
+
+    }
+
 </script>
 
 

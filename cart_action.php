@@ -8,28 +8,42 @@ if (isset($_POST['submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     echo $cart_id = $_POST["cartid"];
 
 
-    $stment2 = "SELECT `Id` FROM `add_to_cart` WHERE `Lid`=$loginer_id AND `Product_Id`=$pro_id";
-    var_dump($stment2);
+    $stment2 = "SELECT `Id` FROM `add_to_cart` WHERE `Lid`=$loginer_id AND `Product_Id`=$pro_id AND IsDeleted=0";
+    // var_dump($stment2);
     $data = mysqli_query($con, $stment2);
     if (mysqli_num_rows($data) > 0) {
-        echo "already exsist";
+        // echo "already exsist";
 
-        $update = "UPDATE `add_to_cart` SET  `Count`=(`Count`+1) WHERE `Id`=$cart_id AND `Lid`=$loginer_id AND `Product_Id`=$pro_id";
-        var_dump($update);
-        if (mysqli_query($con,$update)) {
+        $update = "UPDATE `add_to_cart` SET  `Count`=(`Count`+1) WHERE `Id`=$cart_id";
+        // var_dump($update);
+        if (mysqli_query($con, $update)) {
             echo "updated";
-        } else {
-            echo "updated error";
         }
     } else {
-        $stment = "INSERT INTO `add_to_cart`(`Lid`, `Product_Id`) VALUES ($loginer_id,$pro_id)";
-        var_dump($stment);
-        if (mysqli_query($con, $stment)) {
-            echo "insert";
-        } else {
-            echo "insert error";
-        }
-    }
 
-    header('location:add_to_cart.php?prodacutid1='.$pro_id);
+        $stment3 = "SELECT `Id` FROM `add_to_cart` WHERE `Lid`=$loginer_id AND `Product_Id`=$pro_id AND IsDeleted=1";
+        // var_dump($stment2);
+        $data1 = mysqli_query($con, $stment3);
+        if (mysqli_num_rows($data1) > 0) {
+            // echo "already exsist";
+
+            $update2 = "UPDATE `add_to_cart` SET `Count`=1,`IsDeleted`=0 WHERE `Id`=$cart_id";
+            var_dump($update2);
+            if (mysqli_query($con, $update2)) {
+                echo "updated";
+            } else {
+                echo "error in update2";
+            }
+        } else {
+            $stment = "INSERT INTO `add_to_cart`(`Lid`, `Product_Id`) VALUES ($loginer_id,$pro_id)";
+            // var_dump($stment);
+            if (mysqli_query($con, $stment)) {
+                echo "insert";
+            } else {
+                echo "insert error";
+            }
+        }
+
+        header('location:add_to_cart.php?prodacutid1=' . $pro_id);
+    }
 }

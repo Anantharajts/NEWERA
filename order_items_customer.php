@@ -24,6 +24,7 @@ include('customer_header.php');
                             <th>#</th>
                             <th>IMG</th>
                             <th>PRODUCT NAME</th>
+                            <th>ADDRESS</th>
                             <th>PRICE</th>
                             <th>COUNT</th>
                             <th>STATUS</th>
@@ -34,11 +35,17 @@ include('customer_header.php');
 
                     <tbody>
                         <?php
-                        $select_query = "SELECT O.`Id`,CH.Lid AS Lid, `CheckoutId`, O.`ProductId`, O.`Price`, `Count`, `TotalPrice`,P.`Name` AS P_NAME,P.`Description`AS P_DES,P.Image AS P_IMG,B.Name AS BRAND,C.Name AS CATEGORY FROM `order_items` AS O
+                        $select_query = "SELECT O.`Id`,CH.Lid AS Lid, `CheckoutId`, O.`ProductId`, O.`Price`, `Count`, `TotalPrice`,P.`Name` AS P_NAME,P.`Description`AS P_DES,P.Image AS P_IMG,B.Name AS BRAND,C.Name AS CATEGORY,S.`Address` AS a_ddress, CASE WHEN CH.Order_Status=0 THEN 'Order Placed'
+                                         WHEN CH.Order_Status=1 THEN 'Processing'
+                                         WHEN CH.Order_Status=2 THEN 'Shipped'
+                                         WHEN CH.Order_Status=3 THEN 'Out for Delivery'
+                                         WHEN CH.Order_Status=4 THEN 'Delivered' END AS ORDER_STATUS
+                                         FROM `order_items` AS O
                                          INNER JOIN `product_add` AS P ON P.Id = O.ProductId
-                                         LEFT JOIN `brand` AS B ON B.Id = P.BrandId
-                                         LEFT JOIN `category` AS C ON C.Id = P.CategoryId
-                                         LEFT JOIN `checkout` AS CH ON CH.Id = O.CheckoutId
+                                         INNER JOIN `brand` AS B ON B.Id = P.BrandId
+                                         INNER JOIN `category` AS C ON C.Id = P.CategoryId
+                                         INNER JOIN `checkout` AS CH ON CH.Id = O.CheckoutId
+                                         INNER JOIN `shipping_info`AS S ON S.`Id` = CH.AddressId
                                          WHERE CH.Lid=$id AND O.`IsDeleted`=0";
                         //  var_dump($select_query);
 
@@ -54,6 +61,8 @@ include('customer_header.php');
                                 $p_description = $_result['P_DES'];
                                 $brand = $_result['BRAND'];
                                 $category = $_result['CATEGORY'];
+                                $address = $_result['a_ddress'];
+                                $order_status = $_result['ORDER_STATUS'];
 
                         ?>
                                 <tr>
@@ -68,6 +77,11 @@ include('customer_header.php');
                                     <td>
                                         <h6 style="margin-top: 34px;"><?php echo  $product_name; ?></h6>
                                     </td>
+
+                                    <td>
+                                        <h6 style="margin-top: 34px;"><?php echo  $address; ?></h6>
+                                    </td>
+
                                     <td>
                                         <h6 style="margin-top: 34px;"><?php echo $price; ?></h6>
                                     </td>
@@ -75,16 +89,16 @@ include('customer_header.php');
                                         <h6 style="margin-top: 34px;"><?php echo $count; ?></h6>
                                     </td>
                                     <td>
-                                        <P style="margin-top: 34px;">Panding</P>
+                                        <P style="margin-top: 34px;"><?php echo $order_status ?></P>
                                     </td>
                                     <td style="width: 15%;">
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $sln;?>" style="margin-top: 27px;">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $sln; ?>" style="margin-top: 27px;">
                                             View Details
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal<?php echo $sln;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal<?php echo $sln; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -105,9 +119,9 @@ include('customer_header.php');
                                                             <div class="col">
                                                                 <p>category : <?php echo $category; ?></p>
                                                             </div>
-                                                            <div class="col">
+                                                            <!-- <div class="col">
                                                                 <p>order address:</p>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>

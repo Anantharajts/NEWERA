@@ -151,6 +151,7 @@ if (isset($_POST["delete"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
         loadBooks(1);
     });
 
+    
     function loadBooks(page) {
         var b1_id = document.getElementById("b1_id").value;
         var Cry1_id = document.getElementById("Cry1_id").value;

@@ -31,15 +31,16 @@ if ($_SESSION["Id"] != "") {
     <div class="container-fluid bg-dark h-50 clearfix" style="background-color:black;">&nbsp;</div>
 
     <div class="container mt-4 pb-5">
-        <div class="row" style="gap: 67px;">
+        <div class="row" style="gap: 30px;">
             <!--..........................mennu........................-->
-            <div class="col-5 p-0 mennu">
+            <div class="col-6 p-0 mennu">
 
 
                 <a href="index.php">Home</a>
                 <a href="customer.php">Shop</a>
                 <a href="#">About</a>
                 <a href="#">Blog</a>
+                <a href="order_items_customer.php">My orders</a>
                 <a href="#">Contact</a>
 
 

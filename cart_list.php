@@ -24,37 +24,41 @@ $subtotal = 0;
 
 ?>
 
+<?php
 
-<div class="container" style="display:flex;margin-top:60px;margin-bottom:60px;gap:20px;">
-
-    <div class="col" style="background-color: #f4f4f4;padding: 20px;border-radius: 10px;">
-        <table class="table table-hover">
-
-            <thead>
-
-                <tr>
-                    <th>SL</th>
-                    <th>IMG</th>
-                    <th>Products Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th></th>
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <?php
-
-                $stmt = "SELECT A.`Id` AS rowid, `Lid`, `Product_Id`,`Count`,P.`Name` AS pro_name,P.Image AS Pro_img,P.Price AS p_price FROM `add_to_cart` AS A 
+$stmt = "SELECT A.`Id` AS rowid, `Lid`, `Product_Id`,`Count`,P.`Name` AS pro_name,P.Image AS Pro_img,P.Price AS p_price FROM `add_to_cart` AS A 
                          INNER JOIN `product_add` AS P ON P.Id = A.Product_Id
                          WHERE A.IsDeleted=0 AND A.Lid=$id";
-                //  var_dump($stmt);
+//  var_dump($stmt);
 
-                $data_con = mysqli_query($con, $stmt);
-                $sl = 1;
-                if (mysqli_num_rows($data_con) > 0) {
+$data_con = mysqli_query($con, $stmt);
+$sl = 1;
+if (mysqli_num_rows($data_con) > 0) {
+
+?>
+
+    <div class="container" style="display:flex;margin-top:60px;margin-bottom:60px;gap:20px;">
+
+        <div class="col" style="background-color: #f4f4f4;padding: 20px;border-radius: 10px;">
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+                        <th>SL</th>
+                        <th>IMG</th>
+                        <th>Products Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <?php
+
                     while ($_result = mysqli_fetch_assoc($data_con)) {
                         $productname = $_result["pro_name"];
                         $product_img = $_result["Pro_img"];
@@ -72,7 +76,7 @@ $subtotal = 0;
 
 
 
-                ?>
+                    ?>
 
                         <tr>
                             <td>
@@ -126,37 +130,37 @@ $subtotal = 0;
                             </td>
                         </tr>
 
-                <?php
+                    <?php
                         $sl++;
                     }
                     // echo $subtotal;
-                }
 
-                ?>
 
-            </tbody>
+                    ?>
 
-        </table>
-    </div>
+                </tbody>
 
-    <div class="col-4 row" style="flex-direction: column;background-color: #f4f4f4;padding: 20px;border-radius: 10px;height: 300px;">
-
-        <div class="col" style="margin-bottom: 10px;">
-            <h4>Order Summary</h4>
+            </table>
         </div>
 
-        <div class="col row" style="flex-direction: column;">
+        <div class="col-4 row" style="flex-direction: column;background-color: #f4f4f4;padding: 20px;border-radius: 10px;height: 300px;">
 
-            <div class="col row" style="gap:10px;">
-                <div class="col">
-                    <p>Subtotal :</p>
-                </div>
-                <div class="col">
-                    <p id="subtotal"></p>
-                </div>
+            <div class="col" style="margin-bottom: 10px;">
+                <h4>Order Summary</h4>
             </div>
 
-            <!-- <div class="col row" style="gap:10px;">
+            <div class="col row" style="flex-direction: column;">
+
+                <div class="col row" style="gap:10px;">
+                    <div class="col">
+                        <p>Subtotal :</p>
+                    </div>
+                    <div class="col">
+                        <p id="subtotal"></p>
+                    </div>
+                </div>
+
+                <!-- <div class="col row" style="gap:10px;">
                 <div class="col">
                     <p>Delivery charge :</p>
                 </div>
@@ -166,117 +170,134 @@ $subtotal = 0;
             </div> -->
 
 
-            <div class="col row" style="gap:10px;margin-bottom:10px;display:none;">
-                <div class="col">
-                    <p>Total amount :</p>
+                <div class="col row" style="gap:10px;margin-bottom:10px;display:none;">
+                    <div class="col">
+                        <p>Total amount :</p>
+                    </div>
+                    <div class="col">
+                        <p id="total">$</p>
+                    </div>
                 </div>
-                <div class="col">
-                    <p id="total">$</p>
-                </div>
+
+
+            </div>
+
+            <!-- <input type="text" name="amount" id="fullamount"> -->
+
+            <div class="col">
+                <button onclick="gototal()" style="width: 100%;padding:5px 10px;background-color:black;color:white;border-radius:10px;">Checkout</button>
             </div>
 
 
         </div>
 
-        <!-- <input type="text" name="amount" id="fullamount"> -->
-
-        <div class="col">
-            <button onclick="gototal()" style="width: 100%;padding:5px 10px;background-color:black;color:white;border-radius:10px;">Checkout</button>
-        </div>
-
-
     </div>
 
-</div>
 
+    <script>
+        function count(type, inputid, rowid) {
 
-<script>
-    function count(type, inputid, rowid) {
+            var count = document.getElementById(inputid);
 
-        var count = document.getElementById(inputid);
+            let btn = parseInt(count.value);
 
-        let btn = parseInt(count.value);
+            if (type == 'plus') {
+                btn += 1;
+            } else if (type == 'minus') {
+                btn -= 1;
 
-        if (type == 'plus') {
-            btn += 1;
-        } else if (type == 'minus') {
-            btn -= 1;
+                if (btn <= 0) {
+                    return;
+                }
 
-            if (btn <= 0) {
-                return;
             }
+
+            count.value = btn;
+            update(inputid, rowid);
+
 
         }
 
-        count.value = btn;
-        update(inputid, rowid);
+
+        function update(input2, rowid2) {
+
+            let input2_value = document.getElementById(input2).value;
+            // alert(input2_value);
+
+            $.ajax({
+
+                type: "POST",
+                url: "cart_ajax.php",
+                data: {
+                    input_2: input2_value,
+                    row_id2: rowid2,
+                    type: 1
+                },
+
+                success: function(success) {
+                    gettotal();
+                },
+                error: function() {
+                    alert("error");
+                }
+
+            });
+
+        }
+
+        gettotal();
+
+        function gettotal() {
+
+            let lid = <?php echo $_SESSION['Id'] ?>;
+
+            $.ajax({
+                type: "POST",
+                url: "cart_ajax.php",
+                data: {
+                    loginerid: lid
+                },
+                success: function(result) {
+                    // alert(result);
+                    let data = JSON.parse(result);
+                    // alert(data);
+
+                    document.getElementById("subtotal").innerText = '$' + data.subtotal;
+                    // document.getElementById("delivery").innerText = '$' + data.delivery;
+                    document.getElementById("total").innerText = data.total;
+                    // document.getElementById("fullamount").value = '$' + data.fullamount;
+                },
+                error: function() {
+                    alert("error");
+                }
+            })
+
+        };
 
 
-    }
+        function gototal() {
+            var total = document.getElementById('total').innerText;
+            alert(total);
+            window.location.href = 'payment_page.php?subtotal=' + total;
+        }
+    </script>
 
 
-    function update(input2, rowid2) {
+<?php
+} else {
+?>
+    <div class="container" style="margin-top:60px;margin-bottom:60px;gap:20px;">
+        <div class="col" style="text-align: center;">
+            <img src="assets/IMG/icons/no_iteam_cart.png" class="img-fluid" style="width: 30%;"><br>
+            <h4>Shopping Cart Is Empty</h4>
 
-        let input2_value = document.getElementById(input2).value;
-        // alert(input2_value);
-
-        $.ajax({
-
-            type: "POST",
-            url: "cart_ajax.php",
-            data: {
-                input_2: input2_value,
-                row_id2: rowid2,
-                type: 1
-            },
-
-            success: function(success) {
-                gettotal();
-            },
-            error: function() {
-                alert("error");
-            }
-
-        });
-
-    }
-
-    gettotal();
-
-    function gettotal() {
-
-        let lid = <?php echo $_SESSION['Id'] ?>;
-
-        $.ajax({
-            type: "POST",
-            url: "cart_ajax.php",
-            data: {
-                loginerid: lid
-            },
-            success: function(result) {
-                // alert(result);
-                let data = JSON.parse(result);
-                // alert(data);
-
-                document.getElementById("subtotal").innerText = '$' + data.subtotal;
-                // document.getElementById("delivery").innerText = '$' + data.delivery;
-                document.getElementById("total").innerText = data.total;
-                // document.getElementById("fullamount").value = '$' + data.fullamount;
-            },
-            error: function() {
-                alert("error");
-            }
-        })
-
-    };
+        </div>
+    </div>
+<?php
+}
+?>
 
 
-    function gototal() {
-        var total = document.getElementById('total').innerText;
-        alert(total);
-        window.location.href = 'payment_page.php?subtotal=' + total;
-    }
-</script>
 
 
 <?php

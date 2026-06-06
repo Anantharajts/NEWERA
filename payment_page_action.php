@@ -62,8 +62,8 @@ if (isset($_POST["submit"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //...........................query..............................
-
-    $insert = "INSERT INTO `checkout`(`Lid`, `AddressId`, `TotalAmount`, `PaymentMethod`, `PaymentDetails`) VALUES ('$customerid','$addressid','$totalamount','$payment_methodid','$paymentdetails')";
+    $ordernumber = rand();
+    $insert = "INSERT INTO `checkout`(`Lid`, `AddressId`,`Order_Number`, `TotalAmount`, `PaymentMethod`, `PaymentDetails`) VALUES ('$customerid','$addressid','$ordernumber','$totalamount','$payment_methodid','$paymentdetails')";
     var_dump($insert);
     if (mysqli_query($con, $insert)) {
 

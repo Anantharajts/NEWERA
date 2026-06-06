@@ -1,5 +1,13 @@
 <?php
 include('database.php');
+
+session_start();
+
+if ($_SESSION["Id"] == "") {
+
+    header('location:login.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +18,10 @@ include('database.php');
     <title>Document</title>
     <link href="assets/CSS/bootstrap.css" rel="stylesheet">
     <link href="assets/CSS/admin_css.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/2.3.8/css/dataTables.dataTables.min.css" rel="stylesheet">
     <script src="assets/Bootsrap/bootstrap_js.js"></script>
     <script src="assets/Js/jquery.js"></script>
+    <script src="//cdn.datatables.net/2.3.8/js/dataTables.min.js"></script>
 </head>
 
 <body style="background-color:#E6E6E6;">

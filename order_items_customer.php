@@ -39,7 +39,7 @@ include('customer_header.php');
                                          WHEN CH.Order_Status=1 THEN 'Processing'
                                          WHEN CH.Order_Status=2 THEN 'Shipped'
                                          WHEN CH.Order_Status=3 THEN 'Out for Delivery'
-                                         WHEN CH.Order_Status=4 THEN 'Delivered' END AS ORDER_STATUS
+                                         WHEN CH.Order_Status=4 THEN 'Delivered' END AS ORDER_STATUS,CH.Order_Status AS s_id
                                          FROM `order_items` AS O
                                          INNER JOIN `product_add` AS P ON P.Id = O.ProductId
                                          INNER JOIN `brand` AS B ON B.Id = P.BrandId
@@ -63,6 +63,7 @@ include('customer_header.php');
                                 $category = $_result['CATEGORY'];
                                 $address = $_result['a_ddress'];
                                 $order_status = $_result['ORDER_STATUS'];
+                                $order_status_id = $_result['s_id'];
 
                         ?>
                                 <tr>
@@ -91,42 +92,58 @@ include('customer_header.php');
                                     <td>
                                         <P style="margin-top: 34px;"><?php echo $order_status ?></P>
                                     </td>
-                                    <td style="width: 15%;">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $sln; ?>" style="margin-top: 27px;">
-                                            View Details
-                                        </button>
+                                    <td style="width:23%;">
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal<?php echo $sln; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Product Details</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="col row" style="flex-direction: column;gap:5px;text-align:left;">
-                                                            <div class="col">
-                                                                <h5><?php echo $product_name; ?></h5>
+                                        <div class="row" style="gap:10px;">
+
+                                            <div class="col">
+
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $sln; ?>" style="margin-top: 27px;">
+                                                    View Details
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal<?php echo $sln; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Product Details</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <div class="col">
-                                                                <p><?php echo $p_description; ?></p>
-                                                            </div>
-                                                            <div class="col">
-                                                                <p>brand : <?php echo $brand; ?></p>
-                                                            </div>
-                                                            <div class="col">
-                                                                <p>category : <?php echo $category; ?></p>
-                                                            </div>
-                                                            <!-- <div class="col">
+                                                            <div class="modal-body">
+                                                                <div class="col row" style="flex-direction: column;gap:5px;text-align:left;">
+                                                                    <div class="col">
+                                                                        <h5><?php echo $product_name; ?></h5>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p><?php echo $p_description; ?></p>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p>brand : <?php echo $brand; ?></p>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p>category : <?php echo $category; ?></p>
+                                                                    </div>
+                                                                    <!-- <div class="col">
                                                                 <p>order address:</p>
                                                             </div> -->
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
+
+                                            <div class="col">
+
+                                                <a href="order_tracking.php?statusid=<?php echo $order_status_id;?>"><button style="margin-top: 27px;padding: 8px 8px;border-radius:5px;background-color: #0d6efd;color: white;border: none;">Order Tracking</button></a>
+
+                                            </div>
+
                                         </div>
+
                                     </td>
                                 </tr>
                         <?php
@@ -143,8 +160,6 @@ include('customer_header.php');
     </div>
 
 </div>
-
-
 
 
 

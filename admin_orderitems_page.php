@@ -56,6 +56,8 @@ include('admin_header.php');
                                 $payment_type = $_result['PM_NAME'];
                                 $date = $_result['_date'];
                                 $checkoutid = $_result['Id'];
+                                $orderstatus = $_result['Order_Status'];
+                                $payment_status = $_result['Payment_Status'];
 
 
                         ?>
@@ -108,6 +110,10 @@ include('admin_header.php');
         </div>
     </div>
 </div>
+
+
+
+
 
 
 

@@ -29,7 +29,7 @@ if (isset($_GET['statusid']) != "") {
         text-align: center
     }
 
-    .steps .step .step-icon-wrap::before,
+    /* .steps .step .step-icon-wrap::before,
     .steps .step .step-icon-wrap::after {
         display: block;
         position: absolute;
@@ -40,7 +40,7 @@ if (isset($_GET['statusid']) != "") {
         background-color: #e1e7ec;
         content: '';
         z-index: 1
-    }
+    } */
 
     .steps .step .step-icon-wrap::before {
         left: 0
@@ -82,13 +82,13 @@ if (isset($_GET['statusid']) != "") {
 
     .steps .step.completed .step-icon-wrap::before,
     .steps .step.completed .step-icon-wrap::after {
-        background-color: #0da9ef
+        background-color: #f5f5f5;
     }
 
     .steps .step.completed .step-icon {
-        border-color: #0da9ef;
-        background-color: #0da9ef;
-        color: #fff
+        border-color: #e1e7ec;
+        background-color: #f5f5f5;
+        color: #606975;
     }
 
     @media (max-width: 576px) {
@@ -155,31 +155,31 @@ if (isset($_GET['statusid']) != "") {
                         <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
                             <div class="step completed">
                                 <div class="step-icon-wrap">
-                                    <div class="step-icon" id="OrderPlaced"><i class="pe-7s-cart"></i></div>
+                                    <div class="step-icon" id="OrderPlaced"><i class="pe-7s-cart" id="icon_1"></i></div>
                                 </div>
                                 <h4 class="step-title">Order Placed</h4>
                             </div>
                             <div class="step completed">
                                 <div class="step-icon-wrap">
-                                    <div class="step-icon" id="Processing"><i class="pe-7s-config"></i></div>
+                                    <div class="step-icon" id="Processing"><i class="pe-7s-config" id="icon_2"></i></div>
                                 </div>
                                 <h4 class="step-title">Processing</h4>
                             </div>
                             <div class="step completed">
                                 <div class="step-icon-wrap">
-                                    <div class="step-icon" id="Shipped"><i class="pe-7s-medal"></i></div>
+                                    <div class="step-icon" id="Shipped"><i class="pe-7s-medal" id="icon_3"></i></div>
                                 </div>
                                 <h4 class="step-title">Shipped</h4>
                             </div>
                             <div class="step">
                                 <div class="step-icon-wrap">
-                                    <div class="step-icon" id="OutforDelivery"><i class="pe-7s-car"></i></div>
+                                    <div class="step-icon" id="OutforDelivery"><i class="pe-7s-car" id="icon_4"></i></div>
                                 </div>
                                 <h4 class="step-title">Out for Delivery</h4>
                             </div>
                             <div class="step">
                                 <div class="step-icon-wrap">
-                                    <div class="step-icon" id="Delivered"><i class="pe-7s-home"></i></div>
+                                    <div class="step-icon" id="Delivered"><i class="pe-7s-home" id="icon_5"></i></div>
                                 </div>
                                 <h4 class="step-title">Delivered</h4>
                             </div>
@@ -217,47 +217,67 @@ if (isset($_GET['statusid']) != "") {
         var stap_3 = document.getElementById('Shipped');
         var stap_4 = document.getElementById('OutforDelivery');
         var stap_5 = document.getElementById('Delivered');
+        var icon_1 = document.getElementById('icon_1');
+        var icon_2 = document.getElementById('icon_2');
+        var icon_3 = document.getElementById('icon_3');
+        var icon_4 = document.getElementById('icon_4');
+        var icon_5 = document.getElementById('icon_5');
 
 
         if (sid == 0) {
-            stap_1.style.backgroundColor = "green";
-            stap_1.style.border = "1px solid green";
+            stap_1.style.backgroundColor = "#368cfd";
+            stap_1.style.border = "1px solid #368cfd";
+            icon_1.style.color = "white";
         }
         if (sid == 1) {
-            stap_1.style.backgroundColor = "green";
-            stap_2.style.backgroundColor = "green";
-            stap_1.style.border = "1px solid green";
-            stap_2.style.border = "1px solid green";
+            stap_1.style.backgroundColor = "#368cfd";
+            stap_2.style.backgroundColor = "#368cfd";
+            stap_1.style.border = "1px solid #368cfd";
+            stap_2.style.border = "1px solid #368cfd";
+            icon_1.style.color = "white";
+            icon_2.style.color = "white";
         }
         if (sid == 2) {
-            stap_1.style.backgroundColor = "green";
-            stap_1.style.border = "1px solid green";
-            stap_2.style.backgroundColor = "green";
-            stap_2.style.border = "1px solid green";
-            stap_3.style.backgroundColor = "green";
-            stap_3.style.border = "1px solid green";
+            stap_1.style.backgroundColor = "#368cfd";
+            stap_1.style.border = "1px solid #368cfd";
+            stap_2.style.backgroundColor = "#368cfd";
+            stap_2.style.border = "1px solid #368cfd";
+            stap_3.style.backgroundColor = "#368cfd";
+            stap_3.style.border = "1px solid #368cfd";
+            icon_1.style.color = "white";
+            icon_2.style.color = "white";
+            icon_3.style.color = "white";
         }
         if (sid == 3) {
-            stap_1.style.backgroundColor = "green";
-            stap_1.style.border = "1px solid green";
-            stap_2.style.backgroundColor = "green";
-            stap_2.style.border = "1px solid green";
-            stap_3.style.backgroundColor = "green";
-            stap_3.style.border = "1px solid green";
-            stap_4.style.backgroundColor = "green";
-            stap_4.style.border = "1px solid green";
+            stap_1.style.backgroundColor = "#368cfd";
+            stap_1.style.border = "1px solid #368cfd";
+            stap_2.style.backgroundColor = "#368cfd";
+            stap_2.style.border = "1px solid #368cfd";
+            stap_3.style.backgroundColor = "#368cfd";
+            stap_3.style.border = "1px solid #368cfd";
+            stap_4.style.backgroundColor = "#368cfd";
+            stap_4.style.border = "1px solid #368cfd";
+            icon_1.style.color = "white";
+            icon_2.style.color = "white";
+            icon_3.style.color = "white";
+            icon_4.style.color = "white";
         }
         if (sid == 4) {
-            stap_1.style.backgroundColor = "green";
-            stap_1.style.border = "1px solid green";
-            stap_2.style.backgroundColor = "green";
-            stap_2.style.border = "1px solid green";
-            stap_3.style.backgroundColor = "green";
-            stap_3.style.border = "1px solid green";
-            stap_4.style.backgroundColor = "green";
-            stap_4.style.border = "1px solid green";
-            stap_5.style.backgroundColor = "green";
-            stap_6.style.border = "1px solid green";
+            stap_1.style.backgroundColor = "#368cfd";
+            stap_1.style.border = "1px solid #368cfd";
+            stap_2.style.backgroundColor = "#368cfd";
+            stap_2.style.border = "1px solid #368cfd";
+            stap_3.style.backgroundColor = "#368cfd";
+            stap_3.style.border = "1px solid #368cfd";
+            stap_4.style.backgroundColor = "#368cfd";
+            stap_4.style.border = "1px solid #368cfd";
+            stap_5.style.backgroundColor = "#368cfd";
+            stap_5.style.border = "1px solid #368cfd";
+            icon_1.style.color = "white";
+            icon_2.style.color = "white";
+            icon_3.style.color = "white";
+            icon_4.style.color = "white";
+            icon_5.style.color = "white";
         }
 
 
